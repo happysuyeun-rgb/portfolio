@@ -1,0 +1,49 @@
+/* --- Footer CTA (캡처 스타일) --- */
+.footer-cta{
+  background:#FA6262;           /* 코럴 */
+  color:#fff;
+  text-align:center;
+  padding:80px 24px;
+}
+.footer-cta .title{
+  font-size:56px;                /* 큰 타이틀 */
+  font-weight:800;
+  letter-spacing:.02em;
+  margin:0 0 18px;
+}
+.footer-cta .desc{
+  font-size:22px;
+  opacity:.95;
+  margin:0 0 34px;
+}
+.footer-cta .email{
+  font-size:18px;
+  font-weight:600;
+  margin-bottom:18px;
+}
+.footer-cta .icons{
+  display:flex;
+  gap:18px;
+  justify-content:center;
+  align-items:center;
+}
+.footer-cta .icon{
+  width:42px; height:42px;
+  display:inline-flex;
+  align-items:center; justify-content:center;
+  border-radius:50%;
+  background:rgba(255,255,255,.15);
+  transition:transform .18s ease, background .18s ease;
+}
+.footer-cta .icon:hover{
+  background:rgba(255,255,255,.28);
+  transform:translateY(-2px);
+}
+.footer-cta .icon svg{display:block}
+
+/* 반응형 */
+@media (max-width: 720px){
+  .footer-cta{padding:64px 20px}
+  .footer-cta .title{font-size:40px}
+  .footer-cta .desc{font-size:18px}
+}

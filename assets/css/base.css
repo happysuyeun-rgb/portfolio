@@ -1,0 +1,107 @@
+/* =========================================================
+   GLOBAL TOKENS
+   ========================================================= */
+:root{
+  --bg: #ffffff;
+  --ink: #0F0F10;
+  --muted: #6B6B6B;
+  --border: rgba(0,0,0,.12);
+
+  --dot: #FA6262;
+  --coral: #FA6262;
+
+  --container: 1180px;
+  --gutter: 22px;
+
+  --font: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+          "Apple SD Gothic Neo", "Noto Sans KR", "맑은 고딕", Arial, sans-serif;
+}
+
+/* =========================================================
+   RESET & BASE TYPOGRAPHY
+   ========================================================= */
+*{ box-sizing: border-box; }
+
+html{ scroll-behavior: smooth; }
+
+body{
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font);
+  line-height: 1.65;
+}
+
+h1, h2, h3{
+  line-height: 1.2;
+  margin: 0 0 8px;
+}
+
+a{
+  text-decoration: none;
+  color: inherit;
+}
+
+/* =========================================================
+   LAYOUT
+   ========================================================= */
+.container{
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+/* =========================================================
+   SECTION SPACING
+   ========================================================= */
+
+/* 기본 섹션 간격 */
+.section{ padding: 88px 0; }
+
+/* FLOW(Strengths)는 풀-블리드 → 섹션 패딩 제거 */
+.section.flow,
+#strengths.section{
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+/* 커리어 이후 섹션은 넉넉한 간격(120px) */
+#careers,
+#lxe,
+#more,
+#identity{
+  padding-top: 120px;
+  padding-bottom: 120px;
+}
+
+/* =========================================================
+   FLOW – 풀 블리드 타일 (섹션 공통 스타일에 영향 X)
+   ========================================================= */
+.flow{
+  background: #FA6262;
+  color: #fff;
+}
+.flow .columns{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  min-height: 540px; /* 시안과 유사한 높이감 */
+}
+.flow .tile{
+  position: relative;
+  border-right: 1px solid rgba(255,255,255,.22);
+  overflow: hidden;
+  transition: background .25s ease, color .25s ease, transform .25s ease;
+}
+.flow .tile:last-child{ border-right: none; }
+
+/* 타이포 위치 */
+.flow .tile .big{
+  position: absolute;
+  left: 30px; bottom: 48px;
+  font-size: 90px; font-weight: 800; opacity: .95;
+}
+.flow .tile .label{
+  position: absolute;
+  left: 30px; bottom: 20px;
+  font-size: 12px; letter-spacing: .12em; opacity: .85;
+}
