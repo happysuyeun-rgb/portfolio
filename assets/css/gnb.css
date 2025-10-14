@@ -1,9 +1,140 @@
-/* GNB */
+/* ===============================
+   GNB (데스크톱 기본)
+   =============================== */
+
+/* 리스트 불릿/마진 초기화 (모든 nav.gnb 내부 ul 공통) */
+nav.gnb ul { list-style: none; margin: 0; padding: 0; }
+
+/* 기본 데스크톱 GNB */
 nav.gnb{
-  position:fixed;top:0;left:0;right:0;background:#fff;border-bottom:1px solid var(--border);
-  display:flex;justify-content:space-between;align-items:center;height:64px;z-index:1000;padding:0 48px
+  position: fixed; top: 0; left: 0; right: 0;
+  background: #fff;
+  border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+  height: 64px; padding: 0 48px;
+  z-index: 1000;
 }
-nav.gnb a.logo{font-weight:700;font-size:18px}
-nav.gnb ul{display:flex;gap:32px;list-style:none;margin:0;padding:0}
-nav.gnb li a{font-size:15px;transition:color .2s ease}
-nav.gnb li a:hover{color:var(--dot)}
+
+/* 로고 */
+nav.gnb a.logo{
+  font-weight: 700; font-size: 18px;
+  color: #111; text-decoration: none;
+}
+
+/* 가로 메뉴(데스크톱) */
+nav.gnb .gnb-menu{
+  display: flex;
+  gap: 32px;
+}
+nav.gnb .gnb-menu li a{
+  font-size: 15px;
+  color: #111;
+  text-decoration: none;
+  transition: color .2s ease;
+}
+nav.gnb .gnb-menu li a:hover{
+  color: var(--dot);
+}
+
+/* 햄버거 버튼 (데스크톱에서는 숨김) */
+nav.gnb .gnb__toggle{
+  display: none;                /* 모바일에서만 보여줄 것 */
+  width: 42px; height: 42px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #fff;
+  cursor: pointer;
+  align-items: center; justify-content: center;
+}
+nav.gnb .gnb__toggle span{
+  display: block;
+  width: 22px; height: 2px;
+  background: #111;
+  border-radius: 2px;
+  margin: 4px 0;
+}
+
+/* 드롭다운(모바일용) — 기본은 항상 숨김 */
+#gnb-dropdown{
+  display: none !important;     /* 데스크톱/모바일 공통으로 기본 숨김 */
+}
+
+/* ===============================
+   모바일(≤980px): 로고 + 햄버거만 보이게
+   =============================== */
+@media (max-width: 980px){
+  nav.gnb{ padding: 0 20px; }
+
+/* 햄버거 버튼 */
+nav.gnb .gnb__toggle {
+  display: none;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--border);
+  
+  background: #fff;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;  /* ✅ 추가 — 세로로 쌓이게 */
+  gap: 1px;                /* ✅ 각 줄 간격 */
+  padding: 0;
+}
+
+/* 햄버거 줄 3개 스타일 */
+nav.gnb .gnb__toggle span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: #111;
+  border-radius: 2px;
+  transition: all 0.25s ease;
+}
+
+/* 햄버거 hover 시 색상 변경 */
+nav.gnb .gnb__toggle:hover span {
+  background: var(--dot);
+}
+
+
+
+
+  /* 가로 메뉴 숨김 */
+  nav.gnb .gnb-menu{ display: none; }
+
+  /* 햄버거 노출 */
+  nav.gnb .gnb__toggle{ display: flex; }
+
+  /* 드롭다운 패널 (햄버거 클릭 시 .show 부여) */
+  #gnb-dropdown{
+    position: fixed;
+    top: 64px; right: 16px; left: 16px;
+    display: none;               /* 기본 숨김 */
+    flex-direction: column; gap: 2px;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: 0 20px 40px rgba(0,0,0,.12);
+    padding: 10px;
+    z-index: 1001;
+  }
+  #gnb-dropdown.show{ display: flex; } /* 토글 on */
+
+  #gnb-dropdown li{ list-style: none; }
+  #gnb-dropdown a{
+    display: block;
+    padding: 12px 14px;
+    border-radius: 8px;
+    color: #111;
+    text-decoration: none;
+  }
+  #gnb-dropdown a:hover{ background: rgba(0,0,0,.04); }
+}
+
+/* ===============================
+   데스크톱에서 드롭다운 강제 비활성화
+   (혹시 class="show"가 남아도 안 보이게)
+   =============================== */
+@media (min-width: 981px){
+  #gnb-dropdown{ display: none !important; }
+}

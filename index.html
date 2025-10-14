@@ -14,17 +14,38 @@
 </head>
 <body>
 
-  <!-- GNB -->
-  <nav class="gnb">
-    <a href="#" class="logo">SUYEON</a>
-    <ul>
-      <li><a href="#strengths">Strengths</a></li>
-      <li><a href="#careers">Work</a></li>
-      <li><a href="#lxe">Think</a></li>
-      <li><a href="#more">More</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
+
+  
+
+
+ <!-- GNB -->
+<nav class="gnb">
+  <!-- ✅ 로고: 홈으로 이동 -->
+  <a href="index.html" class="logo">SUYEON</a>
+
+   <!-- 데스크톱 메뉴 -->
+  <ul class="gnb-menu">
+    <li><a href="#strengths">Strengths</a></li>
+    <li><a href="#careers">Work</a></li>
+    <li><a href="#lxe">Think</a></li>
+    <li><a href="#more">More</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+
+   <!-- 모바일 햄버거 버튼 -->
+  <button class="gnb__toggle" aria-label="메뉴 열기" aria-controls="gnb-dropdown" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+
+  <!-- 모바일 드롭다운 -->
+  <ul id="gnb-dropdown" class="gnb-dropdown" role="menu" aria-hidden="true">
+    <li><a href="#strengths" role="menuitem">Strengths</a></li>
+    <li><a href="#careers" role="menuitem">Work</a></li>
+    <li><a href="#lxe" role="menuitem">Think</a></li>
+    <li><a href="#more" role="menuitem">More</a></li>
+    <li><a href="#contact" role="menuitem">Contact</a></li>
+  </ul>
+</nav>
 
   <!-- HERO -->
   <header class="hero" id="about">
