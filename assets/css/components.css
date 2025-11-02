@@ -1,84 +1,151 @@
 /* =========================================================
-   HERO
+   HERO (메인 상단 비주얼)
    ========================================================= */
-header.hero{
+header.hero {
   padding-top: 0;
   min-height: 740px;
   display: flex;
   align-items: center;
 }
-.hero .grid{
+
+.hero .grid {
   display: grid;
   grid-template-columns: 1.05fr .95fr;
   gap: 64px;
   align-items: center;
 }
-.hero .eyebrow{ color:#6B6B6B; font-size:20px; margin-bottom:10px; }
-.hero .title .line1{
+
+/* 왼쪽 텍스트 */
+.hero .eyebrow { color:#6B6B6B; font-size:20px; margin-bottom:10px; }
+.hero .title .line1 {
   display:block; font-size:66px; font-weight:800; line-height:1.1; letter-spacing:.01em;
 }
-.hero .title .line2{
-  display:block; font-size:66px; font-weight:900; line-height:1.04; letter-spacing:.01em; margin-top:10px;
+.hero .title .line2 {
+  display:block; font-size:66px; font-weight:900; line-height:1.04;
+  letter-spacing:.01em; margin-top:10px;
 }
-.hero .desc{ margin-top:10px; color:#222; }
-.badges{ margin-top:14px; }
-.badge{
+.hero .desc { margin-top:10px; color:#222; }
+.badges { margin-top:14px; }
+.badge {
   display:inline-block; border:1px solid rgba(0,0,0,.12);
-  background:#fff; border-radius:999px; padding:8px 12px; font-size:12px; margin:6px 6px 0 0;
+  background:#fff; border-radius:999px; padding:8px 12px;
+  font-size:12px; margin:6px 6px 0 0;
 }
-/* 오른쪽 오브(원형 2개 + 이미지 자리) */
-.visual{ display:flex; justify-content:center; align-items:center; position:relative; }
-.orbs{ position:relative; width:560px; height:560px; }
-.orbs::before,.orbs::after{
-  content:""; position:absolute; border:1.5px solid #111; border-radius:50%; pointer-events:none;
+
+/* 오른쪽 비주얼 (도형 제거, 프로필 이미지만) */
+.visual {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  position:relative;
 }
-.orbs::before{ width:520px; height:520px; left:0; top:0; }
-.orbs::after{ width:520px; height:520px; left:84px; top:52px; }
-.orbs .bg{ position:absolute; inset:0; background:var(--hero-orb, none) center/cover no-repeat; opacity:.95; }
-.visual .caption{
-  position:absolute; right:22px; top:50%; transform:translateY(-50%);
-  color:#222; font-size:14px; white-space:nowrap;
+
+/* 도형 및 캡션 완전 제거 */
+.visual .caption,
+.orbs,
+.orbs::before,
+.orbs::after { display:none !important; }
+
+/* 프로필 래퍼: 이미지와 링의 기준 크기 (340px) */
+.profile-wrap{
+  position:relative;
+  width:340px;
+  height:340px;
+  border-radius:50%;
+}
+
+
+/* 뒤 원형 도형(링) : 프로필보다 살짝 크게 */
+.profile-wrap::before{
+  content:"";
+  position:absolute;
+  inset:-12px;                 /* 340 + (12*2) = 364px */
+  border:1.5px solid #545454;     /* 얇은 선 */
+  border-radius:50%;
+  z-index:0;
+  opacity:.9;
+  transform:translate(30px,10px); /* 살짝 비켜서 깊이감 */
+}
+
+
+
+/* 실제 프로필 이미지 */
+.hero-profile{
+  position:relative;
+  width:100%;
+  height:100%;
+  border-radius:50%;
+  object-fit:cover;
+  display:block;
+  z-index:1;
+
+  /* ===== 기본 추천 애니메이션 ===== */
+  animation:heroFloat 9s ease-in-out infinite,
+             heroTilt  6s ease-in-out infinite;
+}
+
+/* 1) 부드러운 둥둥 모션 */
+@keyframes heroFloat{
+  0%   { transform:translate3d(0, 0, 0); }
+  50%  { transform:translate3d(8px, -8px, 0); }
+  100% { transform:translate3d(0, 0, 0); }
+}
+
+
+
+
+/* 살짝 둥둥이는 모션 */
+@keyframes floatOrb {
+  0%   { transform:translate(0, 0); }
+  50%  { transform:translate(8px, -8px); }
+  100% { transform:translate(0, 0); }
+}
+
+/* 반응형 */
+@media (max-width:980px){
+  .hero .grid { grid-template-columns:1fr; gap:36px; }
+  .hero .title .line1 { font-size:48px; }
+  .hero .title .line2 { font-size:56px; }
+  .hero-profile { width:380px; height:380px; }
+}
+@media (max-width:640px){
+  .hero .eyebrow { font-size:16px; }
+  .hero .title .line1 { font-size:36px; }
+  .hero .title .line2 { font-size:42px; }
+  .hero-profile { width:300px; height:300px; }
 }
 
 /* =========================================================
    FLOW
    ========================================================= */
 .flow{ background:#FA6262; color:#fff; }
-
 .flow .columns{
   display:grid;
   grid-template-columns:repeat(4,1fr);
 }
-
 .tile{
   min-height:420px;
   border-right:1px solid rgba(255,255,255,.2);
   position:relative;
   overflow:hidden;
-  /* 공백과 쉼표 포함해 안전하게 작성 */
   transition: background .25s ease, color .25s ease;
 }
-
 .tile:last-child{ border-right:none; }
 .tile:hover{ background:#fff; color:#000; }
-
 .tile .label{
   position:absolute; left:30px; bottom:20px;
   font-size:12px; opacity:.85; letter-spacing:.12em;
 }
-
 .tile .big{
   position:absolute; left:30px; bottom:48px;
   font-size:76px; font-weight:800; opacity:.95;
 }
-
 .tile .reveal{
   position:absolute; inset:0; padding:44px;
   display:flex; flex-direction:column; justify-content:center;
   transform:translateY(12px); opacity:0;
   transition: opacity .25s ease, transform .25s ease;
 }
-
 .tile:hover .reveal{ opacity:1; transform:none; }
 
 /* =========================================================
@@ -87,35 +154,33 @@ header.hero{
 :root{ --gutter:22px; --border:rgba(0,0,0,.12); --ink:#0F0F10; --dot:#FA6262; }
 .container{ padding:0 var(--gutter); }
 
-/* 레일 */
 .careers-rail{ position:relative; }
 .careers-rail::before,.careers-rail::after{
   content:""; position:absolute; left:50%; transform:translateX(-50%);
-  width:100vw; height:1px; background:var(--border); pointer-events:none; z-index:0;
+  width:100vw; height:1px; background:var(--border);
 }
 .careers-rail::before{ top:0; } .careers-rail::after{ bottom:0; }
 .careers-rail>.container{ position:relative; z-index:1; }
 .careers-rail>.container::before,.careers-rail>.container::after{
-  content:""; position:absolute; top:0; bottom:0; width:1px; background:var(--border); pointer-events:none;
+  content:""; position:absolute; top:0; bottom:0; width:1px; background:var(--border);
 }
 .careers-rail>.container::before{ left:0; } .careers-rail>.container::after{ right:0; }
 
-/* 헤드 타이틀 */
 .careers .section-head h2{
   font-size:60px; font-weight:800; letter-spacing:.02em; margin:0 0 12px;
   display:inline-flex; align-items:center;
 }
 .careers .section-head h2::after{
-  content:""; width:14px; height:14px; background:var(--dot); border-radius:50%; margin-left:12px; transform:translateY(3px);
+  content:""; width:14px; height:14px; background:var(--dot);
+  border-radius:50%; margin-left:12px; transform:translateY(3px);
 }
-
-/* 카드 그리드 */
 .careers .cards{
   position:relative; z-index:1; display:grid; grid-template-columns:repeat(3,1fr); gap:0;
 }
-.careers .cards::before{ content:""; position:absolute; top:0; left:0; right:0; height:1px; background:var(--border); z-index:2; }
-
-/* 카드 */
+.careers .cards::before{
+  content:""; position:absolute; top:0; left:0; right:0;
+  height:1px; background:var(--border);
+}
 .careers .card{
   background:#fff; border-radius:0;
   border-right:1px solid var(--border); border-bottom:1px solid var(--border);
@@ -126,7 +191,6 @@ header.hero{
 .careers .card:hover{ background:#FFF6F6; }
 .careers .card .inner{ padding:22px; }
 
-/* 썸네일 */
 .careers .card .thumb{
   width:100%; height:170px; background:#e9e9e9;
   border:1px solid rgba(0,0,0,.08); border-radius:10px; margin-bottom:20px;
@@ -137,18 +201,17 @@ header.hero{
 }
 .careers .card:hover .thumb img{ transform:scale(1.03); }
 
-/* 칩 */
 .careers .chip{
   display:inline-block; font-size:13px; padding:8px 12px;
-  background:#fff; border:1px solid var(--border); border-radius:999px; color:#333;
+  background:#fff; border:1px solid var(--border);
+  border-radius:999px; color:#333;
 }
-
-/* 버튼 */
 .careers .card .foot{ padding:18px 22px; display:flex; justify-content:center; }
 .careers .card .cta{
   display:inline-flex; align-items:center; gap:6px;
   padding:10px 16px; font-size:13px;
-  border:0; border-radius:8px; color:#000; background:#fff; transition:all .2s ease;
+  border:0; border-radius:8px; color:#000; background:#fff;
+  transition:all .2s ease;
 }
 .careers .card .cta:hover{ background:#FA6262; color:#fff; }
 
@@ -259,43 +322,6 @@ header.hero{
 .identity .director p{ margin:0; font-size:22px; line-height:1.9; color:#111; }
 
 /* =========================================================
-   RESPONSIVE
-   ========================================================= */
-@media (max-width:980px){
-  .hero .grid{ grid-template-columns:1fr; gap:36px; }
-  .orbs{ width:380px; height:380px; }
-  .orbs::before,.orbs::after{ width:350px; height:350px; }
-  .orbs::after{ left:56px; top:36px; }
-  .hero .title .line1{ font-size:48px; }
-  .hero .title .line2{ font-size:56px; }
-  .visual .caption{ right:8px; font-size:13px; }
-  .flow .columns{ grid-template-columns:repeat(2,1fr); min-height:auto; }
-  .careers .cards{ grid-template-columns:repeat(2,1fr); }
-  .timeline .row{ grid-template-columns:140px 1fr; gap:24px; }
-  .timeline .row .detail{ position:static; transform:none; justify-content:flex-start; margin-top:10px; grid-column:1/-1; }
-  .identity .head h2{ font-size:42px; }
-  .identity .pillTag{ min-height:48px; padding:12px 18px; font-size:15px; }
-  .identity .director h3{ font-size:36px; }
-  .identity .director p{ font-size:18px; }
-}
-@media (max-width:640px){
-  .container{ padding:0 16px; }
-  .hero .eyebrow{ font-size:16px; }
-  .hero .title .line1{ font-size:36px; }
-  .hero .title .line2{ font-size:42px; }
-  .flow .columns{ grid-template-columns:1fr; }
-  .tile{ min-height:320px; }
-  .careers .cards{ grid-template-columns:1fr; }
-  .careers .card{ border-right:none; }
-  .timeline .row{ grid-template-columns:100px 1fr; gap:16px; padding:22px 0; }
-  .timeline .row h3{ font-size:18px; }
-  .identity{ padding:56px 0 32px; }
-  .identity .director h3{ font-size:30px; }
-  .footer-cta .title{ font-size:24px; }
-  .to-top{ right:16px; bottom:16px; }
-}
-
-/* =========================================================
    FLOATING SCROLL-TO-TOP
    ========================================================= */
 .to-top{
@@ -303,4 +329,4 @@ header.hero{
   z-index:1100; display:flex; align-items:center; justify-content:center;
   width:52px; height:52px; border:0; border-radius:50%;
   background:var(--coral,#FA6262); color:#fff; cursor:pointer;
- 
+}
