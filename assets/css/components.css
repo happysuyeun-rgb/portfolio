@@ -1,119 +1,211 @@
 /* =========================================================
-   HERO (메인 상단 비주얼)
+   HERO (메인 상단 비주얼) — Branding Clean Final
    ========================================================= */
-header.hero {
-  padding-top: 0;
-  min-height: 740px;
-  display: flex;
-  align-items: center;
+header.hero{
+  padding-top:0;
+  min-height:740px;
+  display:flex;
+  align-items:center;
 }
-
-.hero .grid {
-  display: grid;
-  grid-template-columns: 1.05fr .95fr;
-  gap: 64px;
-  align-items: center;
+.hero{
+  /* 프로필/링 기준값(필요 시 여기 숫자만 조정) */
+  --profile-size: 340px;
+  --ring-offset: 12px;
+  --ring-stroke: #545454;
+}
+.hero .grid{
+  display:grid;
+  grid-template-columns:1.05fr .95fr;
+  gap:64px;
+  align-items:center;
 }
 
 /* 왼쪽 텍스트 */
-.hero .eyebrow { color:#6B6B6B; font-size:20px; margin-bottom:10px; }
-.hero .title .line1 {
+.hero .eyebrow{ color:#6B6B6B; font-size:20px; margin-bottom:10px; }
+.hero .title .line1{
   display:block; font-size:66px; font-weight:800; line-height:1.1; letter-spacing:.01em;
 }
-.hero .title .line2 {
-  display:block; font-size:66px; font-weight:900; line-height:1.04;
-  letter-spacing:.01em; margin-top:10px;
+.hero .title .line2{
+  display:block; font-size:66px; font-weight:900; line-height:1.04; letter-spacing:.01em; margin-top:10px;
 }
-.hero .desc { margin-top:10px; color:#222; }
-.badges { margin-top:14px; }
-.badge {
+.hero .desc{ margin-top:10px; color:#222; }
+.badges{ margin-top:14px; }
+.badge{
   display:inline-block; border:1px solid rgba(0,0,0,.12);
   background:#fff; border-radius:999px; padding:8px 12px;
   font-size:12px; margin:6px 6px 0 0;
 }
 
-/* 오른쪽 비주얼 (도형 제거, 프로필 이미지만) */
-.visual {
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  position:relative;
+/* 오른쪽 비주얼 (도형 제거, 프로필만) */
+.visual{
+  display:flex; justify-content:center; align-items:center; position:relative;
 }
+/* 불필요한 요소 숨김 */
+.visual .caption, .orbs, .orbs::before, .orbs::after{ display:none !important; }
 
-/* 도형 및 캡션 완전 제거 */
-.visual .caption,
-.orbs,
-.orbs::before,
-.orbs::after { display:none !important; }
-
-/* 프로필 래퍼: 이미지와 링의 기준 크기 (340px) */
+/* 프로필 래퍼: 이미지와 링의 기준(340px) */
 .profile-wrap{
   position:relative;
-  width:340px;
-  height:340px;
+  width:var(--profile-size);
+  height:var(--profile-size);
   border-radius:50%;
+  display:grid;
+  place-items:center;
 }
 
-
-/* 뒤 원형 도형(링) : 프로필보다 살짝 크게 */
-.profile-wrap::before{
-  content:"";
-  position:absolute;
-  inset:-12px;                 /* 340 + (12*2) = 364px */
-  border:1.5px solid #545454;     /* 얇은 선 */
+/* 뒤의 은은한 글로우 + 아웃라인 링 */
+.profile-wrap::before,
+.profile-wrap::after{
+  content:""; position:absolute; inset:calc(-1 * var(--ring-offset));
   border-radius:50%;
   z-index:0;
-  opacity:.9;
-  transform:translate(30px,10px); /* 살짝 비켜서 깊이감 */
 }
-
-
+.profile-wrap::before{
+  /* 브랜딩 톤의 아주 미세한 글로우 */
+  background:
+    radial-gradient(40% 40% at 30% 30%, rgba(250,98,98,.18), transparent 70%),
+    radial-gradient(55% 55% at 70% 70%, rgba(0,0,0,.06), transparent 75%);
+  filter: blur(.6px);
+  opacity:.45;
+  animation: glowPulse 8s ease-in-out infinite alternate;
+}
+.profile-wrap::after{
+  /* 얇은 외곽 링 — 살짝 비켜서 깊이감 */
+  border:1.5px solid var(--ring-stroke);
+  transform: translate(26px, 10px);
+  opacity:.9;
+}
 
 /* 실제 프로필 이미지 */
 .hero-profile{
-  position:relative;
-  width:100%;
-  height:100%;
-  border-radius:50%;
-  object-fit:cover;
-  display:block;
-  z-index:1;
-
-  /* ===== 기본 추천 애니메이션 ===== */
-  animation:heroFloat 9s ease-in-out infinite,
-             heroTilt  6s ease-in-out infinite;
+  position:relative; z-index:1;
+  width:100%; height:100%;
+  border-radius:50%; object-fit:cover; display:block;
+  box-shadow:0 12px 24px rgba(0,0,0,.06);
+  /* 기본은 정지, html.motion이 붙으면 등장 모션 + 미세 호흡 */
+  opacity:1; transform:none;
 }
 
-/* 1) 부드러운 둥둥 모션 */
-@keyframes heroFloat{
-  0%   { transform:translate3d(0, 0, 0); }
-  50%  { transform:translate3d(8px, -8px, 0); }
-  100% { transform:translate3d(0, 0, 0); }
+/* ================== 등장/브랜딩 모션 ================== */
+/* 접근성: JS가 html에 .motion을 붙여줄 때만 재생(없으면 정적 표시) */
+html.motion .hero .title,
+html.motion .hero .desc,
+html.motion .badge{
+  opacity:0; transform:translateY(24px);
+  animation: heroFadeUp 0.9s ease forwards;
+}
+html.motion .hero .desc { animation-delay:.12s; }
+html.motion .badge     { animation-delay:.24s; }
+
+html.motion .hero-profile{
+  opacity:0; transform:scale(.96) rotate(2deg);
+  animation: heroScaleIn 1.05s ease-out .18s forwards, heroBreathe 9s ease-in-out .18s infinite;
 }
 
+/* Keyframes */
+@keyframes heroFadeUp{
+  0%{opacity:0; transform:translateY(24px)}
+  100%{opacity:1; transform:translateY(0)}
+}
+@keyframes heroScaleIn{
+  0%{opacity:0; transform:scale(.96) rotate(2deg)}
+  100%{opacity:1; transform:scale(1) rotate(0)}
+}
+@keyframes heroBreathe{
+  0%{ transform:translate3d(0,0,0) }
+  50%{ transform:translate3d(8px,-8px,0) }
+  100%{ transform:translate3d(0,0,0) }
+}
+@keyframes glowPulse{
+  0%{ opacity:.35; transform:rotate(-6deg) scale(1);   filter:blur(.6px); }
+  100%{ opacity:.65; transform:rotate( 6deg) scale(1.04); filter:blur(1px); }
+}
 
-
-
-/* 살짝 둥둥이는 모션 */
-@keyframes floatOrb {
-  0%   { transform:translate(0, 0); }
-  50%  { transform:translate(8px, -8px); }
-  100% { transform:translate(0, 0); }
+/* 모션 최소화 환경 존중 */
+@media (prefers-reduced-motion: reduce){
+  html.motion .hero .title,
+  html.motion .hero .desc,
+  html.motion .badge,
+  html.motion .hero-profile{
+    animation:none !important; opacity:1 !important; transform:none !important;
+  }
+  .profile-wrap::before{ animation:none !important; opacity:.4; }
 }
 
 /* 반응형 */
 @media (max-width:980px){
-  .hero .grid { grid-template-columns:1fr; gap:36px; }
-  .hero .title .line1 { font-size:48px; }
-  .hero .title .line2 { font-size:56px; }
-  .hero-profile { width:380px; height:380px; }
+  .hero .grid{ grid-template-columns:1fr; gap:36px; }
+  .hero .title .line1{ font-size:48px; }
+  .hero .title .line2{ font-size:56px; }
+  .hero{ --profile-size:300px; }
 }
 @media (max-width:640px){
-  .hero .eyebrow { font-size:16px; }
-  .hero .title .line1 { font-size:36px; }
-  .hero .title .line2 { font-size:42px; }
-  .hero-profile { width:300px; height:300px; }
+  .hero .eyebrow{ font-size:16px; }
+  .hero .title .line1{ font-size:36px; }
+  .hero .title .line2{ font-size:42px; }
+  .hero{ --profile-size:260px; }
 }
+/* =========================================================
+   HERO BADGE COLOR VARIANTS
+   ========================================================= */
+.badge {
+  display:inline-block;
+  border:1px solid rgba(0,0,0,.12);
+  background:#fff;
+  border-radius:999px;
+  padding:8px 12px;
+  font-size:12px;
+  margin:6px 6px 0 0;
+  font-weight:500;
+  transition: all .25s ease;
+}
+
+/* 🌸 공통 hover 애니메이션 */
+.badge:hover {
+  transform: translateY(-1px);
+  color:#fff;
+  box-shadow: 0 6px 14px rgba(0,0,0,.15);
+}
+
+/* 🎨 개별 색상 테마 */
+.badge-product {
+  color:#FA6262;
+  border-color:#FA6262;
+}
+.badge-product:hover {
+  background:#FA6262;
+}
+
+.badge-ux {
+  color:#5C6BC0;
+  border-color:#5C6BC0;
+}
+.badge-ux:hover {
+  background:#5C6BC0;
+}
+
+.badge-brand {
+  color:#FF9800;
+  border-color:#FF9800;
+}
+.badge-brand:hover {
+  background:#FF9800;
+}
+
+.badge-endtoend {
+  color:#009688;
+  border-color:#009688;
+}
+.badge-endtoend:hover {
+  background:#009688;
+}
+
+/* ✨ 선택적으로 글자 대비가 필요할 때 (밝은 배경 대비용) */
+.badge:hover {
+  color:#fff;
+}
+
+
 
 /* =========================================================
    FLOW

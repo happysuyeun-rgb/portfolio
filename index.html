@@ -77,12 +77,13 @@
           <span class="line2">UX 크리에이터</span>
         </h1>
         <p class="desc"><strong>사람의 마음을 움직이는 시스템</strong>을 설계합니다.</p>
-        <div class="badges">
-          <span class="badge">#Product Maker</span>
-          <span class="badge">#UX Director</span>
-          <span class="badge">#Brand × Experience</span>
-          <span class="badge">#End to End UX</span>
-        </div>
+        <!-- 🎨 개별 컬러 배지 -->
+      <div class="badges">
+        <span class="badge badge-product">#Product Maker</span>
+        <span class="badge badge-ux">#UX Director</span>
+        <span class="badge badge-brand">#Brand × Experience</span>
+        <span class="badge badge-endtoend">#End to End UX</span>
+      </div>
       </div>
  <div class="visual">
   <div class="profile-wrap">
@@ -361,6 +362,13 @@
     window.addEventListener('scroll', toggle, { passive: true });
     toggle();
   })();
+</script>
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', ()=> {
+    document.documentElement.classList.add('motion');
+  });
 </script>
 
 
