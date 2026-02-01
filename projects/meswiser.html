@@ -41,9 +41,11 @@
   </nav>
 
   <main>
-    <header class="project-hero">
+    <header class="project-hero js-typed-section" data-typed-plain="GPT기반 인공지능 토탈 솔루션 메스와이저" data-typed-highlight="메스와이저">
       <span class="kicker">온프레미스 생성형 AI 업무 도우미</span>
-      <h1>GPT기반 인공지능 토탈 솔루션 메스와이저</h1>
+      <h1 class="section-title-typed">
+        <span class="typed-target"></span>
+      </h1>
       <p class="lead">본 프로젝트에서 역할은 <strong>브랜딩 & Product Design 총괄</strong>이었습니다. On-premise 환경의 생성형 AI를 적용, 내/외부 데이터로 안전하게 답변하는 메신저형 업무 도우미를 설계했습니다.</p>
       <!-- Business Link Bar — B2B CTA -->
       <div class="store-link-bar">
@@ -171,6 +173,7 @@
     <span class="to-top-arrow" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></span>
   </button>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.1.0/typed.umd.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="../assets/js/main.js"></script>
   <script src="../assets/js/cursor.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js" integrity="sha512-wC1P84CGzvLEZiSfCnijJgkkYgV5bD2b1xQ0IBxEDyBUqLLbDxvfqE7ueZ/3V+EhG+i50OvSSG6nDO8egoIkg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -219,6 +222,28 @@
     })();
 
     (function(){ const btn = document.getElementById('toTop'); if (!btn) return; btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' })); window.addEventListener('scroll', () => { btn.classList.toggle('show', window.scrollY > 400); }, { passive: true }); })();
+
+    (function(){
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const section = document.querySelector('.project-hero.js-typed-section');
+      const targetEl = section ? section.querySelector('.typed-target') : null;
+      const plain = section ? section.dataset.typedPlain : null;
+      const highlight = section ? section.dataset.typedHighlight : null;
+      if (!targetEl || !plain) return;
+      function buildHtml(p, h) { if (!h || !p.includes(h)) return p; return p.replace(h, '<span class="highlight-aurora">' + h + '</span>'); }
+      function setFallback() { if (targetEl && plain) targetEl.innerHTML = buildHtml(plain, highlight); }
+      if (prefersReduced || typeof Typed === 'undefined') { setFallback(); return; }
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          observer.unobserve(entry.target);
+          try {
+            new Typed(targetEl, { strings: [plain], typeSpeed: 50, showCursor: true, cursorChar: '|', contentType: 'text', onComplete: function(self) { if (self && self.cursor) self.cursor.style.display = 'none'; setFallback(); } });
+          } catch (e) { setFallback(); }
+        });
+      }, { threshold: 0.2 });
+      observer.observe(section);
+    })();
   </script>
 </body>
 </html>

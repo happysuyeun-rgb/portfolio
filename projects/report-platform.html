@@ -41,9 +41,11 @@
   </nav>
 
   <main>
-    <header class="project-hero">
+    <header class="project-hero js-typed-section" data-typed-plain="위치기반 정보 공유 플랫폼 – 제보서비스" data-typed-highlight="제보서비스">
       <span class="kicker">참여형 플랫폼의 경험 디자인</span>
-      <h1>위치기반 정보 공유 플랫폼 – 제보서비스</h1>
+      <h1 class="section-title-typed">
+        <span class="typed-target"></span>
+      </h1>
       <p class="lead">본 프로젝트에서 역할은 <strong>Product Design 총괄</strong>이었습니다. 시민이 위치 기반으로 생활 안전/편의 정보를 제보·공유하는 플랫폼을 설계했습니다.</p>
       <!-- Store Link Bar — App Store & Google Play -->
       <div class="store-link-bar">
@@ -171,6 +173,7 @@
     <span class="to-top-arrow" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></span>
   </button>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.1.0/typed.umd.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="../assets/js/main.js"></script>
   <script src="../assets/js/cursor.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js" integrity="sha512-wC1P84CGzvLEZiSfCnijJgkkYgV5bD2b1xQ0IBxEDyBUqLLbDxvfqE7ueZ/3V+EhG+i50OvSSG6nDO8egoIkg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -219,6 +222,28 @@
     })();
 
     (function(){ const btn = document.getElementById('toTop'); if (!btn) return; btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' })); window.addEventListener('scroll', () => { btn.classList.toggle('show', window.scrollY > 400); }, { passive: true }); })();
+
+    (function(){
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const section = document.querySelector('.project-hero.js-typed-section');
+      const targetEl = section ? section.querySelector('.typed-target') : null;
+      const plain = section ? section.dataset.typedPlain : null;
+      const highlight = section ? section.dataset.typedHighlight : null;
+      if (!targetEl || !plain) return;
+      function buildHtml(p, h) { if (!h || !p.includes(h)) return p; return p.replace(h, '<span class="highlight-aurora">' + h + '</span>'); }
+      function setFallback() { if (targetEl && plain) targetEl.innerHTML = buildHtml(plain, highlight); }
+      if (prefersReduced || typeof Typed === 'undefined') { setFallback(); return; }
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          observer.unobserve(entry.target);
+          try {
+            new Typed(targetEl, { strings: [plain], typeSpeed: 50, showCursor: true, cursorChar: '|', contentType: 'text', onComplete: function(self) { if (self && self.cursor) self.cursor.style.display = 'none'; setFallback(); } });
+          } catch (e) { setFallback(); }
+        });
+      }, { threshold: 0.2 });
+      observer.observe(section);
+    })();
   </script>
 </body>
 </html>
