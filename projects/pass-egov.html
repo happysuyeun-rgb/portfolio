@@ -1,154 +1,232 @@
 <!doctype html>
 <html lang="ko">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>PASS 지갑 내 전자고지 서비스 – Portfolio</title>
-<style>
-
-:root{
-  --ink:#0f0f10; --muted:#61656c; --border:rgba(0,0,0,.14);
-  --bg:#ffffff; --accent:#FA6262; --max:1080px;
-  --font: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", Arial, sans-serif;
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);line-height:1.75}
-.container{max-width:var(--max);margin:0 auto;padding:0 24px}
-.gnb{position:sticky;top:0;background:#fff;border-bottom:1px solid var(--border);z-index:10}
-.gnb .inner{display:flex;align-items:center;justify-content:space-between;height:56px}
-.brand{font-weight:800;letter-spacing:.2px}
-nav a{color:#111;padding:10px 12px;font-size:14px;text-decoration:none}
-nav a:hover{color:var(--accent)}
-.kicker{margin-top:18px;color:var(--muted);font-size:14px}
-h1{font-size:36px;margin:8px 0 10px;line-height:1.25}
-.badges{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 22px}
-.badge{border:1px solid var(--border);padding:6px 10px;font-size:12px;border-radius:0;background:#fff}
-.grid{display:grid;grid-template-columns:1.1fr .9fr;gap:36px}
-figure{margin:0}
-figure img{width:100%;display:block;border:1px solid var(--border)}
-figcaption{color:var(--muted);font-size:12px;margin-top:6px}
-h2{font-size:22px;margin:24px 0 10px;display:flex;align-items:center;gap:10px}
-.dot{width:8px;height:8px;border-radius:50%;background:var(--accent)}
-ul{margin:8px 0 0 22px}
-li+li{margin-top:6px}
-hr.sep{border:none;border-top:1px solid var(--border);margin:28px 0}
-.section{padding:16px 0}
-.section h3{font-size:18px;margin:0 0 10px}
-.outcome{display:grid;grid-template-columns:1fr 1fr;gap:36px}
-.num{font-weight:700;margin-bottom:10px}
-.buttonbar{display:flex;gap:10px;justify-content:center;margin:36px 0 56px}
-.btn{padding:12px 16px;border-radius:0;font-weight:700;border:1px solid var(--border);background:#fff;transition:.2s}
-.btn.primary{background:#FA6262;border-color:#FA6262;color:#fff}
-.btn.primary:hover{background:#000;color:#fff}
-.btn:hover{transform:translateY(-1px)}
-#toTop{position:fixed;right:24px;bottom:24px;width:44px;height:44px;border:1px solid var(--border);
-background:#fff;color:#111;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:20;border-radius:0;box-shadow:0 2px 8px rgba(0,0,0,.08)}
-#toTop:hover{background:#000;color:#fff}
-.smallnote{color:var(--muted);font-size:13px}
-.footer{margin:48px 0 72px;text-align:center;color:var(--muted);font-size:13px}
-.footer a{color:#0a66c2;text-decoration:none}
-
-</style>
-<link rel="stylesheet" href="../assets/css/cursor.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PASS 지갑 내 전자고지 서비스 | Seoah Lee</title>
+  <meta name="description" content="PASS 앱 내 각종 고지서 수신·열람·결제 풀 플로우 설계. Product Design 총괄.">
+  <link rel="canonical" href="https://happysuyeun-rgb.github.io/portfolio/projects/pass-egov.html">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/gnb.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="../assets/css/footer.css">
+  <link rel="stylesheet" href="../assets/css/cursor.css">
+  <link rel="stylesheet" href="../assets/css/project-detail.css">
 </head>
-<body>
-<div id="custom-cursor" class="custom-cursor" aria-hidden="true"></div>
-<div class="gnb">
-  <div class="inner container">
-    <div class="brand"><a href="../index.html" style="text-decoration:none;color:inherit">SUYEON</a></div>
-    <nav>
-      <a href="#overview">Project Overview</a>
-      <a href="#problem">Problem</a>
-      <a href="#outcome">Outcome</a>
-      <a href="#reflection">Reflection</a>
-      <a href="#impact">Impact &amp; Value</a>
-    </nav>
-  </div>
-</div>
-
-<main class="container">
-  <div class="kicker">모바일 신뢰 기반의 공공 고지 UX</div>
-  <h1>PASS 지갑 내 전자고지 서비스</h1>
-  <p class="smallnote">본 프로젝트에서 역할은 <strong>Product Design 총괄</strong>이었습니다.</p>
-  <div class="badges">
-    <span class="badge">#UX Strategy</span>
-    <span class="badge">#Product Design</span>
-    <span class="badge">#Design System</span>
+<body class="project-detail project-egov">
+  <div id="custom-cursor" class="custom-cursor" aria-hidden="true"></div>
+  <div class="project-detail-bg" aria-hidden="true">
+    <div class="aurora-orb aurora-orb-1"></div>
+    <div class="aurora-orb aurora-orb-2"></div>
+    <div class="aurora-orb aurora-orb-3"></div>
   </div>
 
-  <div class="grid" id="overview">
-    <figure>
+  <nav class="gnb" id="gnb">
+    <a href="../index.html" class="gnb-logo">SEOAH</a>
+    <ul class="gnb-menu">
+      <li><a href="../index.html#strengths">IDENTITY</a></li>
+      <li><a href="../index.html#personal-projects">PROJECTS</a></li>
+      <li><a href="../index.html#lxe">SYSTEM</a></li>
+      <li><a href="../index.html#more">MORE</a></li>
+      <li><a href="../index.html#contact">CONNECT</a></li>
+    </ul>
+    <button class="gnb__toggle" aria-label="메뉴 열기" aria-controls="gnb-dropdown" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <ul id="gnb-dropdown" class="gnb-dropdown" role="menu" aria-hidden="true">
+      <li><a href="../index.html#strengths" role="menuitem">IDENTITY</a></li>
+      <li><a href="../index.html#personal-projects" role="menuitem">PROJECTS</a></li>
+      <li><a href="../index.html#lxe" role="menuitem">SYSTEM</a></li>
+      <li><a href="../index.html#more" role="menuitem">MORE</a></li>
+      <li><a href="../index.html#contact" role="menuitem">CONNECT</a></li>
+    </ul>
+  </nav>
 
-       <img src="../assets/img/pass-egov.png" alt="전자고지">
-      <figcaption>대표 이미지</figcaption>
-    </figure>
-    <section>
-      <h2><span class="dot"></span> Project Overview</h2>
-      <ul>
-        <li>PASS 앱 내에서 각종 고지서(건강보험, 세금, 범칙금 등)의 수신·열람·결제까지 연결하는 풀 플로우 설계</li><li>민간 수준의 편의성과 공공 보안 기준을 동시에 충족하는 UX 가이드 수립</li><li>배지/이력서 등 고용24 연계 시나리오를 고려해 모듈형 컴포넌트화</li><li>툴: Figma, FigJam, Jira, Confluence</li>
-      </ul>
+  <main>
+    <header class="project-hero">
+      <span class="kicker">모바일 신뢰 기반의 공공 고지 UX</span>
+      <h1>PASS 지갑 내 전자고지 서비스</h1>
+      <p class="lead">본 프로젝트에서 역할은 <strong>Product Design 총괄</strong>이었습니다. PASS 앱 내에서 각종 고지서(건강보험, 세금, 범칙금 등)의 수신·열람·결제까지 연결하는 풀 플로우를 설계했습니다.</p>
+      <!-- Store Link Bar — App Store & Google Play -->
+      <div class="store-link-bar">
+        <a href="https://apps.apple.com/kr/search?term=PASS" target="_blank" rel="noopener" class="store-link" aria-label="App Store에서 PASS 다운로드">
+          <svg class="store-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
+          <span>App Store</span>
+        </a>
+        <a href="https://play.google.com/store/search?q=PASS&c=apps" target="_blank" rel="noopener" class="store-link" aria-label="Google Play에서 PASS 다운로드">
+          <svg class="store-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.802 8.99l-2.302 2.302-8.636-8.634z"/></svg>
+          <span>Google Play</span>
+        </a>
+      </div>
+      <div class="badges">
+        <span class="badge">#Fintech</span>
+        <span class="badge">#Paperless</span>
+        <span class="badge">#Product Design</span>
+        <span class="badge">#UX Strategy</span>
+        <span class="badge">#Design System</span>
+      </div>
+      <div class="mockup-wrap">
+        <div class="mockup-inner js-tilt" data-tilt>
+          <img src="../assets/img/pass-egov.png" alt="PASS 전자고지 서비스 미리보기">
+        </div>
+      </div>
+    </header>
+
+    <section class="project-overview container" id="overview">
+      <h2 class="section-title">Project Overview</h2>
+      <div class="overview-grid">
+        <div class="glass-card" id="challenge">
+          <h3>The Challenge</h3>
+          <p class="glass-card-desc">배경 및 문제점</p>
+          <ul>
+            <li>기관별 서로 다른 문구·양식으로 인해 사용자가 고지 흐름을 파악하기 어려움</li>
+            <li>결제 이전 단계에서 고지서 진위 확인/상세 비교가 충분히 제공되지 않음</li>
+            <li>접근성(명도, 포커스 이동, 스크린리더 레이블)이 고지 플로우마다 상이</li>
+          </ul>
+        </div>
+        <div class="glass-card" id="solution">
+          <h3>The Solution</h3>
+          <p class="glass-card-desc">핵심 해결 방향</p>
+          <ul>
+            <li>민간 수준의 편의성과 공공 보안 기준을 동시에 충족하는 UX 가이드 수립</li>
+            <li>배지/이력서 등 고용24 연계 시나리오를 고려한 모듈형 컴포넌트화</li>
+            <li><strong>Tools:</strong> Figma, FigJam, Jira, Confluence</li>
+          </ul>
+        </div>
+      </div>
     </section>
-  </div>
 
-  <hr class="sep">
-
-  <section class="section" id="problem">
-    <h2><span class="dot"></span> Problem</h2>
-    <ul>
-      <li>기관별 서로 다른 문구·양식으로 인해 사용자가 고지 흐름을 파악하기 어려움</li><li>결제 이전 단계에서 고지서 진위 확인/상세 비교가 충분히 제공되지 않음</li><li>접근성(명도, 포커스 이동, 스크린리더 레이블)이 고지 플로우마다 상이</li>
-    </ul>
-  </section>
-
-  <hr class="sep">
-
-  <section class="section" id="outcome">
-    <h2><span class="dot"></span> Outcome</h2>
-    <div class="outcome">
-      <div>
-        <h3>IA / 검색 UX</h3>
-        <ul>
-          <li>의도 기반 자동완성/추천으로 검색 → 고지서 열람까지 클릭 최소화</li><li>핵심 메타정보(발행기관, 납부기한, 금액)를 상단 카드로 요약</li><li>상세 비교 보기를 고정 패널로 제공해 이탈 없이 확인 가능</li>
-        </ul>
+    <!-- Sticky Scroll (5:5) — Smart Notification / Secure Auth / Easy Payment -->
+    <section class="project-features" id="features">
+      <div class="features-inner">
+        <div class="features-text">
+          <div class="feature-step" data-step="0">
+            <h3>Step 01</h3>
+            <h2>놓침 없는 디지털 고지 (Smart Notification)</h2>
+            <p>우편물 분실이나 배송 지연 걱정 없이, PASS 앱 푸시 알림으로 고지서를 정확한 시점에 수신합니다. 의도 기반 자동완성/추천으로 검색 → 고지서 열람까지 클릭 최소화.</p>
+          </div>
+          <div class="feature-step" data-step="1">
+            <h3>Step 02</h3>
+            <h2>오발송 없는 본인 확인 (Secure Auth)</h2>
+            <p>주소 기반이 아닌 CI(연계정보) 기반 발송으로, 타인의 열람을 원천 차단하고 오직 본인만 내용을 확인할 수 있습니다. 핵심 메타정보(발행기관, 납부기한, 금액)를 상단 카드로 요약.</p>
+          </div>
+          <div class="feature-step" data-step="2">
+            <h3>Step 03</h3>
+            <h2>원스톱 간편 납부 (Easy Payment)</h2>
+            <p>복잡한 계좌이체나 은행 앱 이동 없이, 등록된 간편결제 수단으로 앱 내에서 즉시 납부까지 완료합니다. 결제/영수증/이력 연계까지 재사용 가능한 UI 패턴 구축.</p>
+          </div>
+        </div>
+        <div class="features-visual">
+          <div class="phone-mockup">
+            <div class="screen">
+              <img src="../assets/img/pass-egov.png" alt="고지서 도착 알림 잠금화면" class="feature-img active" data-step="0">
+              <img src="../assets/img/pass-egov.png" alt="생체인증으로 고지서 열람" class="feature-img" data-step="1">
+              <img src="../assets/img/pass-egov.png" alt="납부 완료 화면" class="feature-img" data-step="2">
+            </div>
+          </div>
+        </div>
       </div>
-      <div>
-        <h3>시각체계 / 확장성</h3>
-        <ul>
-          <li>브랜드·기관 로고가 혼재해도 일관되게 보이는 컴포운드 토큰 설계</li><li>다크모드 및 다양한 고지서 템플릿 확장 대응</li><li>결제/영수증/이력 연계까지 재사용 가능한 UI 패턴 구축</li>
-        </ul>
+    </section>
+
+    <section class="project-result container" id="impact">
+      <h2 class="section-title">The Impact — 주요 성과</h2>
+      <div class="bento-grid">
+        <div class="bento-card">
+          <h4>Cost Saving</h4>
+          <p>종이 발송 비용 획기적 절감. 고지서 열람→결제 전환율 상승과 민원 상담건수 감소에 기여</p>
+        </div>
+        <div class="bento-card">
+          <h4>Paperless</h4>
+          <p>탄소 배출 감소 및 ESG 경영 실현. PASS 내 다른 서비스에서도 재사용 가능한 컴포넌트로 운영 효율↑</p>
+        </div>
+        <div class="bento-card">
+          <h4>Adoption</h4>
+          <p>국세청, 관세청 등 주요 공공기관 도입. 공공 고지 UX의 참조 사례로 활용</p>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <hr class="sep">
+    <section class="project-next">
+      <a href="meswiser.html" class="next-card next-card-aurora">
+        <span>Ready to Build Impact?</span>
+        <strong>다음 프로젝트: 메스와이저 →</strong>
+      </a>
+    </section>
 
-  <section class="section" id="reflection">
-    <h2><span class="dot"></span> Reflection</h2>
-    <ul>
-      <li>‘빠른 납부’보다 ‘안심하고 납부’에 초점을 둔 내러티브가 전환율에 더 긍정적</li><li>기관별 사소한 예외가 실제 오류로 이어지기 쉬워 QA 플로우를 강화</li><li>설계-디자인-가이드를 한 소스에서 관리해 협업 효율 높임</li>
-    </ul>
-  </section>
+    <footer class="footer-cta" id="contact" role="contentinfo" aria-label="Contact">
+      <div class="container">
+        <h2 class="footer-title">Ready to Build Impact?</h2>
+        <p class="footer-desc">제품 전략과 AI 협업으로 비즈니스 임팩트를 만들고 싶다면, 언제든 연락 주세요.</p>
+        <div class="footer-actions">
+          <a class="footer-email-btn" href="mailto:seoah.lab@gmail.com" aria-label="이메일 보내기">seoah.lab@gmail.com</a>
+          <div class="footer-icons">
+            <a class="footer-icon" href="mailto:seoah.lab@gmail.com" aria-label="Send email">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.09 0 2-.9 2-2V6c0-1.1-.91-2-2-2zm0 4-8 5L4 8V6l8 5 8-5v2z"/></svg>
+            </a>
+            <a class="footer-icon" href="https://www.linkedin.com/in/seoah-lab" target="_blank" rel="noopener" aria-label="LinkedIn">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+          </div>
+        </div>
+        <p class="footer-copyright">© 2026 Seoah Lee. All Rights Reserved. Designed & <span class="footer-built">Built by Seoah</span>.</p>
+      </div>
+    </footer>
+  </main>
 
-  <hr class="sep">
+  <button id="toTop" class="to-top" aria-label="맨 위로 가기">
+    <span class="to-top-arrow" aria-hidden="true">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+    </span>
+  </button>
 
-  <section class="section" id="impact">
-    <h2><span class="dot"></span> Impact &amp; Value</h2>
-    <ul>
-      <li>고지서 열람→결제 전환율 상승(추정)과 민원 상담건수 감소에 기여</li><li>PASS 내 다른 서비스에서도 재사용 가능한 컴포넌트로 운영 효율↑</li><li>공공 고지 UX의 참조 사례로 활용</li>
-    </ul>
-  </section>
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/cursor.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js" integrity="sha512-wC1P84CGzvLEZiSfCnijJgkkYgV5bD2b1xQ0IBxEDyBUqLLbDxvfqE7ueZ/3V+EhG+i50OvSSG6nDO8egoIkg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script>
+    (function(){ const gnb = document.getElementById('gnb'); if (!gnb) return; function check() { gnb.classList.toggle('gnb-scrolled', window.scrollY > 60); } window.addEventListener('scroll', check, { passive: true }); check(); })();
 
-  <div class="buttonbar">
-    <a class="btn" href="../index.html">홈으로 돌아가기</a>
-  </div>
-</main>
+    if (typeof VanillaTilt !== 'undefined' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const tiltEl = document.querySelector('.project-hero .mockup-inner.js-tilt');
+      if (tiltEl) VanillaTilt.init(tiltEl, { max: 8, speed: 400, glare: true, 'max-glare': 0.2, perspective: 1000 });
+    }
 
-<button id="toTop" onclick="window.scrollTo({top:0, behavior:'smooth'})" aria-label="맨 위로">↑</button>
+    (function(){
+      const section = document.querySelector('.project-features');
+      const steps = document.querySelectorAll('.feature-step');
+      const imgs = document.querySelectorAll('.feature-img');
+      if (!section || !steps.length || !imgs.length) return;
+      function getActiveStep() {
+        const vh = window.innerHeight;
+        const viewportCenter = window.scrollY + vh * 0.5;
+        const sectionTop = section.offsetTop;
+        const sectionBottom = sectionTop + section.offsetHeight;
+        if (viewportCenter < sectionTop) return 0;
+        if (viewportCenter > sectionBottom) return steps.length - 1;
+        let active = 0;
+        steps.forEach((step, i) => {
+          const rect = step.getBoundingClientRect();
+          const stepTop = rect.top + window.scrollY;
+          const stepBottom = stepTop + rect.height;
+          const stepCenter = stepTop + rect.height * 0.5;
+          if (viewportCenter >= stepTop && viewportCenter <= stepBottom) active = i;
+          else if (viewportCenter > stepCenter) active = Math.max(active, i);
+        });
+        return active;
+      }
+      function updateActive() {
+        const active = getActiveStep();
+        imgs.forEach(img => { img.classList.toggle('active', parseInt(img.dataset.step) === active); });
+      }
+      let ticking = false;
+      function onScroll() {
+        if (!ticking) { requestAnimationFrame(() => { updateActive(); ticking = false; }); ticking = true; }
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', updateActive);
+      updateActive();
+    })();
 
-<footer class="footer">
-  © SUYEON · <a href="mailto:happysuyeun@naver.com">happysuyeun@naver.com</a> ·
-  <a href="https://www.linkedin.com/in/happysuyeun" target="_blank" rel="noopener">LinkedIn</a>
-</footer>
-<script src="../assets/js/cursor.js"></script>
+    (function(){ const btn = document.getElementById('toTop'); if (!btn) return; btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' })); window.addEventListener('scroll', () => { btn.classList.toggle('show', window.scrollY > 400); }, { passive: true }); })();
+  </script>
 </body>
 </html>
