@@ -119,7 +119,8 @@ body.project-nldb .feature-step h3{ color: #38bdf8; }
 body.project-nldb .project-hero .mockup-inner img{
   box-shadow: 0 25px 80px rgba(0, 0, 0, 0.4), 0 0 40px rgba(56, 189, 248, 0.15);
 }
-body.project-nldb .project-features .desktop-mockup{
+body.project-nldb .project-features .desktop-mockup,
+body.project-nldb .project-features .phone-mockup{
   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5), 0 0 40px rgba(56, 189, 248, 0.12);
 }
 
