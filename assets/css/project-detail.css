@@ -378,6 +378,10 @@ body.project-detail nav.gnb.gnb-scrolled .gnb-menu li a{
   margin: 0 auto;
   animation: mockupFloat 5s ease-in-out infinite;
 }
+/* 고용24 — 상단 메인 이미지 (230px → 276px, 20% 확대) */
+body.project-goyong24 .project-hero .mockup-wrap{
+  max-width: 276px;
+}
 .project-hero .mockup-inner{
   width: 100%;
   transform-style: preserve-3d;
@@ -527,6 +531,7 @@ body.project-detail nav.gnb.gnb-scrolled .gnb-menu li a{
   background: #0f172a;
   position: relative;
 }
+.project-features .phone-mockup .screen .feature-img,
 .project-features .phone-mockup .screen img{
   position: absolute;
   inset: 0;
@@ -536,9 +541,74 @@ body.project-detail nav.gnb.gnb-scrolled .gnb-menu li a{
   opacity: 0;
   transition: opacity 0.6s ease;
 }
+.project-features .phone-mockup .screen .feature-img.active,
 .project-features .phone-mockup .screen img.active{
   opacity: 1;
   z-index: 1;
+}
+/* 고용24 Step 03 — 제출하기/제출하기 선택 교대 표시 */
+.project-features .phone-mockup .screen .feature-img-alternating{
+  display: flex;
+}
+.project-features .phone-mockup .screen .feature-img-alternating img{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: none;
+}
+.project-features .phone-mockup .screen .feature-img-alternating img:first-child{
+  animation: step3Default 4s ease-in-out infinite;
+}
+.project-features .phone-mockup .screen .feature-img-alternating img:last-child{
+  animation: step3Selected 4s ease-in-out infinite;
+}
+@keyframes step3Default{
+  0%, 45% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+@keyframes step3Selected{
+  0%, 45% { opacity: 0; }
+  50%, 95% { opacity: 1; }
+  100% { opacity: 0; }
+}
+/* 고용24 Step 01 — 메인/배지상세/배지상세(뒤) 3개 교대 표시 */
+.project-features .phone-mockup .screen .feature-img-alternating-3{
+  display: flex;
+}
+.project-features .phone-mockup .screen .feature-img-alternating-3 img{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: none;
+}
+.project-features .phone-mockup .screen .feature-img-alternating-3 img:nth-child(1){
+  animation: step1Img1 5s ease-in-out infinite;
+}
+.project-features .phone-mockup .screen .feature-img-alternating-3 img:nth-child(2){
+  animation: step1Img2 5s ease-in-out infinite;
+}
+.project-features .phone-mockup .screen .feature-img-alternating-3 img:nth-child(3){
+  animation: step1Img3 5s ease-in-out infinite;
+}
+@keyframes step1Img1{
+  0%, 28% { opacity: 1; }
+  33%, 100% { opacity: 0; }
+}
+@keyframes step1Img2{
+  0%, 28% { opacity: 0; }
+  33%, 61% { opacity: 1; }
+  66%, 100% { opacity: 0; }
+}
+@keyframes step1Img3{
+  0%, 61% { opacity: 0; }
+  66%, 97% { opacity: 1; }
+  100% { opacity: 0; }
 }
 /* Desktop Mockup — Web Platform (KIST 등) */
 .project-features .desktop-mockup{
