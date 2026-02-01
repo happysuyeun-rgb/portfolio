@@ -360,60 +360,91 @@ html.motion .hero-profile-full{
 
 
 /* =========================================================
-   FLOW (Dreamy Glass Accordion)
+   FLOW — The Iconic Typography (Aurora & Glass)
    ========================================================= */
 .flow .tile{
-  min-height: 420px;
-  background: rgba(147, 112, 219, 0.25);
-  background: linear-gradient(135deg, rgba(167,139,250,0.35) 0%, rgba(96,165,250,0.3) 50%, rgba(250,98,98,0.2) 100%);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(0,0,0,0.06);
-  border-right: 1px solid rgba(0,0,0,0.05);
-  transition: flex 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-              background 0.35s ease,
-              box-shadow 0.35s ease,
-              border-color 0.35s ease,
-              backdrop-filter 0.35s ease;
+  position: relative;
+  min-height: 400px;
+  /* Default: 프로스트 글래스 */
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: background 0.5s ease-out,
+              box-shadow 0.5s ease-out,
+              border-color 0.5s ease-out,
+              backdrop-filter 0.5s ease-out;
 }
-.flow .tile:last-child{ border-right: 1px solid rgba(0,0,0,0.05); }
+/* Hover: 불투명 흰색 */
 .flow .tile:hover{
-  background: rgba(255,255,255,0.4);
-  box-shadow: 0 0 40px rgba(167,139,250,0.15), inset 0 0 30px rgba(255,255,255,0.3);
-  border-color: rgba(0,0,0,0.08);
+  background: #fff;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 0 40px rgba(167, 139, 250, 0.12), inset 0 0 30px rgba(255, 255, 255, 0.5);
+  border-color: rgba(255, 255, 255, 0.4);
 }
-.flow .tile .label{
-  position: absolute; left: 30px; bottom: 20px;
-  font-size: 12px; letter-spacing: .12em;
-  color: #334155;
-  opacity: 1;
-}
-.flow .tile:hover .label{ color: #000; }
+
+/* 거대 알파벳 (F, L, O, W) — 카드 정중앙, The Iconic Typography */
 .flow .tile .big{
-  position: absolute; left: 30px; bottom: 48px;
-  font-size: 76px; font-weight: 800;
-  color: #0f172a;
-  opacity: 0.1;
-  filter: blur(2px);
-  mix-blend-mode: overlay;
-  transition: opacity 0.35s ease, filter 0.35s ease;
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(6rem, 12vw, 10rem);
+  font-weight: 900;
+  color: rgba(147, 112, 219, 0.35);
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
 }
 .flow .tile:hover .big{
-  opacity: 0.15;
-  filter: blur(1px);
+  opacity: 0.05;
+  transform: scale(1.5);
 }
+
+/* 소제목 (Default 노출) — 카드 상단 좌측 */
+.flow .tile .tile-label{
+  position: absolute;
+  left: 24px;
+  top: 24px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: rgba(30, 41, 59, 0.85);
+  opacity: 1;
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+.flow .tile:hover .tile-label{
+  opacity: 0;
+  transform: translateY(-8px);
+  pointer-events: none;
+}
+
+/* 상세 설명 (Hover 시 Fade In) — The Readable Content */
 .flow .tile .reveal{
-  position: absolute; inset: 0; padding: 44px;
-  display: flex; flex-direction: column; justify-content: center;
-  transform: translateY(12px); opacity: 0;
-  transition: opacity .35s ease, transform .35s ease;
+  position: absolute;
+  inset: 0;
+  padding: 44px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transform: translateY(12px);
+  opacity: 0;
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
 }
-.flow .tile .reveal h3{ color: #1e293b; transition: color .25s ease; }
-.flow .tile .reveal p{ color: #475569; transition: color .25s ease; }
-.flow .tile .label{ transition: color .25s ease; }
-.flow .tile:hover .reveal h3{ color: #000; }
-.flow .tile:hover .reveal p{ color: #000; }
-.flow .tile:hover .reveal{ opacity: 1; transform: none; }
+.flow .tile .reveal h3{
+  color: #0f172a;
+  font-weight: 700;
+}
+.flow .tile .reveal p{
+  color: #334155;
+  line-height: 1.7;
+}
+.flow .tile:hover .reveal{
+  opacity: 1;
+  transform: translateY(0);
+}
 
 /* =========================================================
    HOLOGRAPHIC GLASS CARD — 공통 디자인 시스템
@@ -461,9 +492,22 @@ html.motion .hero-profile-full{
   transform: translateY(3px);
 }
 
-/* 공통 Glass Card 베이스 */
+/* 카드 링크 (전체 클릭 가능) */
+.card-link{
+  display: block;
+  height: 100%;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+/* 공통 Glass Card 베이스 — Equal Height + Flex */
 .personal-projects .card,
 .careers .card{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
   background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -485,13 +529,14 @@ html.motion .hero-profile-full{
 .careers-rail{ position: relative; }
 .careers-rail>.container{ position: relative; z-index: 1; }
 
-/* 카드 그리드: gap 32px */
+/* 카드 그리드: Equal Height (items-stretch) */
 .careers .cards{
   position: relative;
   z-index: 1;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 32px;
+  align-items: stretch;
 }
 
 /* Lift-Up Interaction: translateY(-8px) + shadow-xl */
@@ -517,7 +562,14 @@ html.motion .hero-profile-full{
   flex-wrap: wrap;
   gap: 8px;
 }
-.careers .card .inner{ padding: 32px; }
+/* Content: flex-1로 남은 공간 차지 → 버튼 하단 고정 */
+.careers .card .inner{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 32px;
+  min-height: 0;
+}
 
 /* 썸네일: overflow hidden + scale on hover */
 .careers .card .thumb{
@@ -558,23 +610,36 @@ html.motion .hero-profile-full{
   color: var(--brand-indigo);
 }
 
-.careers .card .foot{ padding: 24px 32px; display: flex; justify-content: center; }
-.careers .card .cta{
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 10px 16px;
-  font-size: 13px;
-  border-radius: 8px;
-  color: #334155;
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
-  transition: all .25s ease;
+/* Foot: 하단 고정, Option A 꽉 찬 하단 바 */
+.careers .card .foot{
+  flex-shrink: 0;
+  padding: 0;
+  margin-top: auto;
 }
-.careers .card .cta:hover{
-  background: var(--brand-indigo);
+.careers .card .cta{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 16px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 0 0 16px 16px;
+  color: #334155;
+  background: rgba(248, 250, 252, 0.9);
+  border: none;
+  border-top: 1px solid rgba(226, 232, 240, 0.8);
+  transition: all .3s ease;
+}
+.careers .card-link:hover .cta,
+.careers .card-wrapper:hover .cta:not(.cta-placeholder){
+  background: linear-gradient(135deg, var(--brand-indigo) 0%, #818cf8 100%);
   color: #fff;
-  border-color: var(--brand-indigo);
+  border-top-color: transparent;
+}
+.careers .card .cta-placeholder{
+  opacity: 0.7;
+  cursor: default;
 }
 
 /* =========================================================
@@ -583,13 +648,19 @@ html.motion .hero-profile-full{
 .personal-projects-rail{ position: relative; }
 .personal-projects-rail > .container{ position: relative; z-index: 1; }
 
-/* 카드 그리드: gap 32px */
+/* 카드 그리드: 1열 (모바일) / 3열 (PC 980px+), Equal Height */
 .personal-projects-cards{
   position: relative;
   z-index: 1;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
   gap: 32px;
+  align-items: stretch;
+}
+@media (min-width: 981px){
+  .personal-projects-cards{
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 /* 3D Tilt: vanilla-tilt.js 적용 (JS에서 .personal-projects .js-tilt만 초기화) */
@@ -598,9 +669,14 @@ html.motion .hero-profile-full{
   transition: box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-/* Hover Glow: 보라/파랑 그라데이션 테두리 빛 */
+/* Holographic Glass: 반투명 유리 + 오로라 보더 */
 .personal-projects .card{
   position: relative;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 }
 .personal-projects .card::before{
   content: "";
@@ -608,7 +684,7 @@ html.motion .hero-profile-full{
   inset: -1px;
   border-radius: 17px;
   padding: 1px;
-  background: linear-gradient(135deg, rgba(167,139,250,0.6) 0%, rgba(96,165,250,0.6) 50%, rgba(147,197,253,0.6) 100%);
+  background: linear-gradient(135deg, rgba(167,139,250,0.7) 0%, rgba(34,211,238,0.6) 100%);
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
@@ -617,17 +693,28 @@ html.motion .hero-profile-full{
   transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   pointer-events: none;
 }
-.personal-projects .card-wrapper:hover .card::before{
+.personal-projects .card-wrapper:hover .card::before,
+.personal-projects .card-link:hover .card::before{
   opacity: 1;
 }
-.personal-projects .card-wrapper:hover .card{
+.personal-projects .card-wrapper:hover .card,
+.personal-projects .card-link:hover .card{
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.35);
   box-shadow:
-    0 0 30px rgba(167,139,250,0.25),
-    0 0 60px rgba(96,165,250,0.15),
+    0 0 25px rgba(167, 139, 250, 0.4),
+    0 0 50px rgba(34, 211, 238, 0.25),
     0 25px 50px -12px rgba(99, 102, 241, 0.2);
 }
 
-.personal-projects .card .inner{ padding: 28px; }
+/* Content: flex-1로 남은 공간 차지 → 버튼 하단 고정 */
+.personal-projects .card .inner{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 32px;
+  min-height: 0;
+}
 
 /* 썸네일: overflow hidden + scale 1.1 + grayscale→color */
 .image-container{
@@ -674,37 +761,40 @@ html.motion .hero-profile-full{
   color: var(--brand-indigo);
 }
 
-.personal-projects .card .foot{ padding: 22px 28px; display: flex; justify-content: center; }
+/* Foot: 하단 고정, Option A 꽉 찬 하단 바 */
+.personal-projects .card .foot{
+  flex-shrink: 0;
+  padding: 0;
+  margin-top: auto;
+  padding-top: 24px;
+}
 .personal-projects .card .cta{
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 10px 16px;
-  font-size: 13px;
-  border-radius: 8px;
+  justify-content: center;
+  width: 100%;
+  padding: 16px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 0 0 16px 16px;
   color: #334155;
   background: rgba(248, 250, 252, 0.9);
-  border: 1px solid #e2e8f0;
-  transition: all .25s ease;
+  border: none;
+  border-top: 1px solid rgba(226, 232, 240, 0.8);
+  transition: all .3s ease;
 }
-.personal-projects .card .cta:hover{
-  background: var(--brand-indigo);
+.personal-projects .card-link:hover .cta{
+  background: linear-gradient(135deg, var(--brand-indigo) 0%, #818cf8 100%);
   color: #fff;
-  border-color: var(--brand-indigo);
+  border-top-color: transparent;
 }
 .personal-projects .card .cta-placeholder{
   opacity: .7;
   cursor: default;
   color: #666;
 }
-.personal-projects .card .cta-placeholder:hover{
-  background: rgba(248, 250, 252, 0.9);
-  color: #666;
-  border-color: #e2e8f0;
-}
 
 @media (max-width: 980px){
-  .personal-projects-cards{ grid-template-columns: 1fr; }
   .personal-projects .card .thumb{ height: 170px; }
 }
 @media (max-width: 640px){
@@ -1497,11 +1587,10 @@ html.motion .hero-profile-full{
   .badges{ margin-top: 60px; }        /* 데스크톱 100px → 태블릿 60px */
 
   /* FLOW: 2열 */
-  .flow .columns{ flex-wrap: wrap; }
-  .flow .tile{ flex: 1 1 50%; min-height: 320px; }
-  .flow .tile:hover{ flex: 1 1 50%; }
-  .tile .big{ font-size: 56px; }
-  .tile .reveal{ padding: 32px; }
+  .flow .flow-grid{ grid-template-columns: repeat(2, 1fr); }
+  .flow .tile{ min-height: 320px; }
+  .flow .tile .big{ font-size: 5rem; }
+  .flow .tile .reveal{ padding: 32px; }
 
   /* CAREERS: 3열 → 2열 */
   .careers .cards{ grid-template-columns: repeat(2, 1fr); gap: 24px; }
@@ -1529,14 +1618,15 @@ html.motion .hero-profile-full{
   .badges{ margin-top: 40px; }      /* 모바일은 더 컴팩트 */
 
   /* FLOW: 1열 */
-  .flow .columns{ flex-wrap: wrap; }
-  .flow .tile{ flex: 1 1 100%; min-height: 260px; }
-  .flow .tile:hover{ flex: 1 1 100%; }
-  .tile .big{ font-size: 48px; left: 24px; bottom: 40px; }
-  .tile .label{ left: 24px; bottom: 16px; }
-  .tile .reveal{ padding: 28px; }
+  .flow .flow-grid{ grid-template-columns: 1fr; }
+  .flow .tile{ min-height: 260px; }
+  .flow .tile .big{ font-size: 4rem; }
+  .flow .tile .tile-label{ left: 20px; top: 20px; font-size: 13px; }
+  .flow .tile .reveal{ padding: 28px; }
   @media (hover: none){
-    .tile .reveal{ opacity: 1; transform: none; }
+    .flow .tile .reveal{ opacity: 1; transform: none; }
+    .flow .tile .tile-label{ opacity: 0; pointer-events: none; }
+    .flow .tile .big{ opacity: 0.05; transform: scale(1.5); }
   }
 
   /* CAREERS: 1열 */
@@ -1598,29 +1688,26 @@ html.motion .hero-profile-full{
 /* --- FLOW 큰 이니셜 글자 겹침 방지 --- */
 
 /* 모든 화면에서: 워터마크로 뒤로 보내기 */
-.tile{ position: relative; }
-.tile .big{
-  z-index: 0;           /* 본문보다 뒤 */
-  opacity: .08;         /* 희미하게 */
-  pointer-events: none; /* 터치 방해 방지 */
+.flow .tile{ position: relative; }
+.flow .tile .big{
+  z-index: 0;
+  pointer-events: none;
 }
-.tile .label,
-.tile .reveal,
-.tile h3,
-.tile p,
-.tile *:not(.big){
+.flow .tile .tile-label,
+.flow .tile .reveal,
+.flow .tile h3,
+.flow .tile p,
+.flow .tile *:not(.big){
   position: relative;
   z-index: 1;           /* 본문이 항상 위 */
 }
 
-/* 모바일에선 가독성 위해 숨김 */
+/* 모바일: 거대 알파벳 숨김, 상세 텍스트 상시 노출 */
 @media (max-width: 640px){
-  .flow .columns{ flex-wrap: wrap; }
-  .flow .tile{ flex: 1 1 100%; min-height: 260px; }
-  .tile .big{ display: none; }
-  /* 텍스트 여백 조금 보강(선택) */
-  .tile .reveal{ padding: 24px; }
-  .tile .label{ left: 20px; bottom: 14px; }
+  .flow .flow-grid{ grid-template-columns: 1fr; }
+  .flow .tile .big{ display: none; }
+  .flow .tile .reveal{ padding: 24px; opacity: 1; transform: none; }
+  .flow .tile .tile-label{ opacity: 0; pointer-events: none; }
 }
 
 /* =========================================================

@@ -84,46 +84,18 @@ a{
   color: #1e293b;
   overflow: hidden;
 }
-.flow .columns{
-  display: flex;
+.flow .flow-grid{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   min-height: 540px;
   position: relative;
   z-index: 1;
 }
 .flow .tile{
   position: relative;
-  flex: 1 1 0;
-  min-width: 0;
+  min-height: 400px;
   overflow: hidden;
-  transition: flex 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-              background 0.35s ease,
-              box-shadow 0.35s ease,
-              border-color 0.35s ease;
-}
-.flow .tile:hover{
-  flex: 1.4;
 }
 @media (prefers-reduced-motion: reduce){
-  .flow .tile:hover{ flex: 1; }
-}
-.flow .tile .big{
-  position: absolute;
-  left: 30px; bottom: 48px;
-  font-size: 90px; font-weight: 800;
-  color: #0f172a;
-  opacity: 0.1;
-  filter: blur(2px);
-  mix-blend-mode: overlay;
-  transition: opacity 0.35s ease, filter 0.35s ease;
-}
-.flow .tile:hover .big{
-  opacity: 0.15;
-  filter: blur(1px);
-}
-.flow .tile .label{
-  position: absolute;
-  left: 30px; bottom: 20px;
-  font-size: 12px; letter-spacing: .12em;
-  color: #334155;
-  opacity: 1;
+  .flow .tile:hover{ transform: none; }
 }

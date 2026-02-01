@@ -16,7 +16,7 @@
   let cursorX = 0, cursorY = 0;
   const ease = 0.12; // 부드러운 추적 (낮을수록 더 유려함)
 
-  const clickables = 'a, button, .card, .cta, .badge, .pillTag, .tile, .btn, .gnb-menu a, .logo, [role="button"]';
+  const clickables = 'a, button, .card, .card-link, .cta, .badge, .pillTag, .tile, .btn, .gnb-menu a, .gnb-logo, [role="button"]';
 
   function lerp(start, end, factor) {
     return start + (end - start) * factor;
