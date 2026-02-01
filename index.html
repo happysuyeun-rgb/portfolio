@@ -196,8 +196,8 @@
 <section class="section careers" id="careers">
   <div class="container">
     <div class="section-head scroll-reveal">
-      <h2>CAREERS <span class="dot"></span></h2>
-      <p class="lead">제품 기획부터 시스템 설계, Product Design까지 — 기술을 이해하고 리딩하는 <strong>Product Director</strong></p>
+      <h2>ENTERPRISE EXPERIENCE <span class="dot"></span></h2>
+      <p class="lead">공공부터 대규모 플랫폼까지, 복잡한 문제를 해결하고 시스템을 설계한 실무 경험입니다.</p>
     </div>
   </div>
 
@@ -279,33 +279,47 @@
   </div>
 </section>
 
-<!-- LOGIC × EMOTION -->
+<!-- AI Product Director Philosophy -->
 <section class="section lxe" id="lxe">
   <div class="container">
     <div class="statement scroll-reveal">
-      <h3>브랜드의 경험을 구조로,</h3>
-      <h2>감정을 인터페이스로 번역합니다.</h2>
-      <div>LOGIC × EMOTION = EXPERIENCE</div>
+      <h2>Imagined by Human, Built by AI</h2>
+      <p class="lxe-desc">기획의 논리(Logic)와 디자인의 감성(Emotion)을 AI 기술로 연결하여, 압도적인 속도로 제품을 완성합니다.</p>
     </div>
 
-    <div class="venn-wrap scroll-reveal">
-      <div class="circle logic"><span>LOGIC</span></div>
-      <div class="circle emotion"><span>EMOTION</span></div>
-      <div class="circle exp" title="EXPERIENCE">
-        <span class="exp-title">EXPERIENCE</span>
-        <span class="exp-sub">논리와 감성이<br>만나는 지점</span>
-      </div>
+    <div class="lxe-diagram scroll-reveal">
+      <svg class="lxe-lines" viewBox="0 0 400 340" aria-hidden="true">
+        <defs>
+          <linearGradient id="circleGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#a78bfa"/>
+            <stop offset="100%" stop-color="#60a5fa"/>
+          </linearGradient>
+          <linearGradient id="circleGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#60a5fa"/>
+            <stop offset="100%" stop-color="#f472b6"/>
+          </linearGradient>
+          <linearGradient id="circleGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#f472b6"/>
+            <stop offset="100%" stop-color="#a78bfa"/>
+          </linearGradient>
+          <marker id="phArrowhead" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+            <polygon points="0 0, 8 3, 0 6" fill="rgba(255,255,255,0.5)"/>
+          </marker>
+        </defs>
+        <!-- 연결선 (순환 흐름) -->
+        <path class="lxe-path" d="M 200 50 L 90 280 L 310 280 Z" fill="none" stroke="url(#circleGrad1)" stroke-width="1" stroke-dasharray="6 4" opacity="0.5"/>
+        <line x1="200" y1="50" x2="90" y2="280" stroke="url(#circleGrad1)" stroke-width="1" opacity="0.6" marker-end="url(#phArrowhead)"/>
+        <line x1="90" y1="280" x2="310" y2="280" stroke="url(#circleGrad2)" stroke-width="1" opacity="0.6" marker-end="url(#phArrowhead)"/>
+        <line x1="310" y1="280" x2="200" y2="50" stroke="url(#circleGrad3)" stroke-width="1" opacity="0.6" marker-end="url(#phArrowhead)"/>
+        <!-- 3개 원 (그라데이션 테두리) -->
+        <circle cx="200" cy="50" r="42" fill="none" stroke="url(#circleGrad1)" stroke-width="1.5" opacity="0.8"/>
+        <circle cx="90" cy="280" r="42" fill="none" stroke="url(#circleGrad2)" stroke-width="1.5" opacity="0.8"/>
+        <circle cx="310" cy="280" r="42" fill="none" stroke="url(#circleGrad3)" stroke-width="1.5" opacity="0.8"/>
+      </svg>
+      <div class="lxe-node lxe-node-1"><span class="lxe-node-title">Idea</span><span class="lxe-node-sub">상상/기획</span></div>
+      <div class="lxe-node lxe-node-2"><span class="lxe-node-title">AI Tech</span><span class="lxe-node-sub">기술/가속</span></div>
+      <div class="lxe-node lxe-node-3"><span class="lxe-node-title">Impact</span><span class="lxe-node-sub">결과/제품</span></div>
     </div>
-
-    <!-- ✅ 모바일 대체 레이아웃 추가 -->
-    <div class="venn-mini scroll-reveal" aria-hidden="false">
-      <span class="pill">LOGIC</span>
-      <span class="op">×</span>
-      <span class="pill">EMOTION</span>
-      <span class="op">=</span>
-      <span class="pill exp">EXPERIENCE</span>
-    </div>
-    <!-- ✅ 여기까지만 새로 추가 -->
   </div>
 </section>
 
@@ -321,76 +335,100 @@
       <div class="timeline scroll-reveal-stagger">
 
         <!-- 2025 -->
-        <div class="row scroll-reveal-item">
-          <div class="yearbox">
-            <div class="year">2025</div>
-            <div class="pill">공공 UX 혁신</div>
+        <article class="timeline-row scroll-reveal-item">
+          <div class="timeline-left">
+            <span class="timeline-dot" aria-hidden="true"></span>
+            <div class="yearbox">
+              <div class="year">2025</div>
+              <div class="pill">공공 UX 혁신</div>
+            </div>
           </div>
-          <div>
+          <div class="timeline-right">
             <h3>PASS 지갑 내 전자고지 서비스</h3>
             <p class="desc">PASS 앱 내에서 각종 고지서(건강보험, 세금, 범칙금 등)의 수신·열람·결제까지 연결하는 서비스.</p>
             <div class="kws">
-              <span class="kw">#모바일UX</span><span class="kw">#Product Design</span><span class="kw">#공공서비스</span>
+              <span class="kw">#모바일UX</span>
+              <span class="kw">#Product Design</span>
+              <span class="kw">#공공서비스</span>
             </div>
+            <div class="detail"><a href="projects/pass-egov.html">자세히보기 <span class="arrow">→</span></a></div>
           </div>
-          <div class="detail"><a href="projects/pass-egov.html">자세히보기 →</a></div>
-        </div>
+        </article>
 
         <!-- 2024 -->
-        <div class="row scroll-reveal-item">
-          <div class="yearbox">
-            <div class="year">2024</div>
-            <div class="pill">생성형 AI와의 협업</div>
+        <article class="timeline-row scroll-reveal-item">
+          <div class="timeline-left">
+            <span class="timeline-dot" aria-hidden="true"></span>
+            <div class="yearbox">
+              <div class="year">2024</div>
+              <div class="pill">생성형 AI와의 협업</div>
+            </div>
           </div>
-          <div>
+          <div class="timeline-right">
             <h3>GPT기반 인공지능 토탈 솔루션 메스와이저</h3>
             <p class="desc">On-premise 생성형 AI를 적용, 근거가 보이는 답변과 거버넌스를 동시에 제공하는 업무 도우미.</p>
             <div class="kws">
-              <span class="kw">#챗봇</span><span class="kw">#Prompt Engineering</span><span class="kw">#Product Design</span>
+              <span class="kw">#챗봇</span>
+              <span class="kw">#Prompt Engineering</span>
+              <span class="kw">#Product Design</span>
             </div>
+            <div class="detail"><a href="projects/meswiser.html">자세히보기 <span class="arrow">→</span></a></div>
           </div>
-          <div class="detail"><a href="projects/meswiser.html">자세히보기 →</a></div>
-        </div>
+        </article>
 
         <!-- 2023 -->
-        <div class="row scroll-reveal-item">
-          <div class="yearbox">
-            <div class="year">2023</div>
-            <div class="pill">참여형 플랫폼의 경험 디자인</div>
+        <article class="timeline-row scroll-reveal-item">
+          <div class="timeline-left">
+            <span class="timeline-dot" aria-hidden="true"></span>
+            <div class="yearbox">
+              <div class="year">2023</div>
+              <div class="pill">참여형 플랫폼의 경험 디자인</div>
+            </div>
           </div>
-          <div>
+          <div class="timeline-right">
             <h3>위치기반 정보 공유 플랫폼 - 제보서비스</h3>
             <p class="desc">시민이 직접 정보를 제보하고, 실시간으로 소통하는 생활 밀착형 정보 플랫폼.</p>
             <div class="kws">
-              <span class="kw">#서비스 브랜딩</span><span class="kw">#Product Design</span><span class="kw">#커뮤니티</span>
+              <span class="kw">#서비스 브랜딩</span>
+              <span class="kw">#Product Design</span>
+              <span class="kw">#커뮤니티</span>
             </div>
+            <div class="detail"><a href="projects/report-platform.html">자세히보기 <span class="arrow">→</span></a></div>
           </div>
-          <div class="detail"><a href="projects/report-platform.html">자세히보기 →</a></div>
-        </div>
+        </article>
 
       </div>
     </div>
   </section>
 
-  <!-- CORE IDENTITY -->
+  <!-- CAPABILITY & DNA (Infinite Marquee) -->
   <section class="section identity" id="identity">
     <div class="container">
-      <div class="head scroll-reveal">
-        <h2>CORE IDENTITY <span class="dot"></span></h2>
+      <div class="identity-head scroll-reveal">
+        <h2>CAPABILITY & DNA <span class="dot"></span></h2>
+        <p class="identity-declaration">
+          I don't just design interfaces; I engineer business impact.<br>
+          <span class="identity-declaration-ko">단순한 화면 설계가 아닙니다. AI 기술과 데이터로 비즈니스의 문제를 가장 빠르고 아름답게 해결합니다.</span>
+        </p>
       </div>
 
-      <div class="pills scroll-reveal">
-        <span class="pillTag">#FULL-CYCLE MAKER</span>
-        <span class="pillTag accent">#PRODUCT DIRECTOR</span>
-        <span class="pillTag dark">#Product Design</span>
-        <span class="pillTag">#Prompt Engineering</span>
-        <span class="pillTag accent">#Data-Driven UX</span>
-      </div>
-
-      <div class="director scroll-reveal">
-        <h3>PRODUCT DIRECTOR</h3>
-        <div class="sub">TECH-AWARE, IMPACT-DRIVEN</div>
-        <p>기술 스택 이해와 브랜딩 감각, UX 전문성을 결합해,<br>복잡한 문제를 데이터 기반의 직관적 경험으로 풀어냅니다.</p>
+      <div class="marquee-wrap">
+        <!-- Row 1: 왼쪽으로 흐름, Outline Text -->
+        <div class="marquee-row marquee-left" aria-hidden="true">
+          <div class="marquee-track">
+            <span class="marquee-text marquee-outline">PRODUCT DIRECTOR • AI-NATIVE MAKER • FULL-CYCLE DESIGN • </span>
+            <span class="marquee-text marquee-outline">PRODUCT DIRECTOR • AI-NATIVE MAKER • FULL-CYCLE DESIGN • </span>
+            <span class="marquee-text marquee-outline">PRODUCT DIRECTOR • AI-NATIVE MAKER • FULL-CYCLE DESIGN • </span>
+          </div>
+        </div>
+        <!-- Row 2: 오른쪽으로 흐름, Solid Color -->
+        <div class="marquee-row marquee-right" aria-hidden="true">
+          <div class="marquee-track">
+            <span class="marquee-text marquee-solid">PROMPT ENGINEERING • DATA-DRIVEN • BRANDING • SYSTEM ARCHITECTURE • </span>
+            <span class="marquee-text marquee-solid">PROMPT ENGINEERING • DATA-DRIVEN • BRANDING • SYSTEM ARCHITECTURE • </span>
+            <span class="marquee-text marquee-solid">PROMPT ENGINEERING • DATA-DRIVEN • BRANDING • SYSTEM ARCHITECTURE • </span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
