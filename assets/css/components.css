@@ -198,11 +198,10 @@ header.hero{
   .hero .title:hover .typewriter-suffix{ animation: none; }
 }
 .hero .desc{ margin-top:10px; color:#222; }
-.badges{ margin-top:14px; display:flex; flex-wrap:wrap; }
+.badges{ margin-top:14px; display:flex; flex-wrap:wrap; gap:12px; }
 .badge{
-  display:inline-block; border:1px solid rgba(0,0,0,.12);
-  background:#fff; border-radius:999px; padding:8px 12px;
-  font-size:12px; margin:6px 6px 0 0;
+  display:inline-block; border-radius:999px; padding:8px 12px;
+  font-size:12px;
 }
 
 
@@ -290,71 +289,74 @@ html.motion .hero-profile-full{
   color: #222;
 }
 
-/* 💡 여기 수정! 타이틀-배지 사이 여백 */
+/* 💡 타이틀-배지 사이 여백 */
 .badges {
-  margin-top: 60px; /* 기존 14px → 150px로 변경 */
+  margin-top: 60px;
+  gap: 14px;
 }
-
-
 
 /* =========================================================
-   HERO BADGE COLOR VARIANTS
+   HERO BADGE — Floating Glass Chips (Glassmorphism)
    ========================================================= */
-.badge {
-  display:inline-block;
-  border:1px solid rgba(0,0,0,.12);
-  background:#fff;
-  border-radius:999px;
-  padding:8px 12px;
-  font-size:12px;
-  margin:6px 6px 0 0;
-  font-weight:500;
-  transition: all .25s ease;
+.hero .badge {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 9999px;
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(30, 41, 59, 0.9);
+  cursor: default;
+  transition: transform 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* 🌸 공통 hover 애니메이션 */
-.badge:hover {
-  transform: translateY(-1px);
-  color:#fff;
-  box-shadow: 0 6px 14px rgba(0,0,0,.15);
+/* Idle: Floating 애니메이션 (각 태그별 다른 delay/duration) */
+html.motion .hero .badge:nth-child(1) { animation: heroFadeUp 0.9s ease 0.24s forwards, badgeFloat 3.2s ease-in-out 1.2s infinite; }
+html.motion .hero .badge:nth-child(2) { animation: heroFadeUp 0.9s ease 0.3s forwards, badgeFloat 4s ease-in-out 1.3s infinite; }
+html.motion .hero .badge:nth-child(3) { animation: heroFadeUp 0.9s ease 0.36s forwards, badgeFloat 3.6s ease-in-out 1.4s infinite; }
+html.motion .hero .badge:nth-child(4) { animation: heroFadeUp 0.9s ease 0.42s forwards, badgeFloat 4.2s ease-in-out 1.5s infinite; }
+.hero .badge:nth-child(1) { animation: badgeFloat 3.2s ease-in-out 0s infinite; }
+.hero .badge:nth-child(2) { animation: badgeFloat 4s ease-in-out 0.4s infinite; }
+.hero .badge:nth-child(3) { animation: badgeFloat 3.6s ease-in-out 0.8s infinite; }
+.hero .badge:nth-child(4) { animation: badgeFloat 4.2s ease-in-out 0.2s infinite; }
+@keyframes badgeFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
 
-/* 🎨 개별 색상 테마 */
-.badge-product {
-  color:#FA6262;
-  border-color:#FA6262;
+/* Hover: Scale + Neon Glow (태그별 고유 컬러) */
+.hero .badge:hover {
+  animation-play-state: paused;
+  transform: scale(1.08) translateY(-2px);
 }
-.badge-product:hover {
-  background:#FA6262;
+.hero .badge-product:hover {
+  border-color: rgba(168, 85, 247, 0.8);
+  color: #7c3aed;
+  box-shadow: 0 0 15px rgba(168, 85, 247, 0.5);
 }
-
-.badge-ux {
-  color:#5C6BC0;
-  border-color:#5C6BC0;
+.hero .badge-ux:hover {
+  border-color: rgba(96, 165, 250, 0.8);
+  color: #2563eb;
+  box-shadow: 0 0 15px rgba(96, 165, 250, 0.5);
 }
-.badge-ux:hover {
-  background:#5C6BC0;
+.hero .badge-brand:hover {
+  border-color: rgba(16, 185, 129, 0.8);
+  color: #059669;
+  box-shadow: 0 0 15px rgba(16, 185, 129, 0.5);
 }
-
-.badge-brand {
-  color:#FF9800;
-  border-color:#FF9800;
-}
-.badge-brand:hover {
-  background:#FF9800;
-}
-
-.badge-endtoend {
-  color:#009688;
-  border-color:#009688;
-}
-.badge-endtoend:hover {
-  background:#009688;
+.hero .badge-endtoend:hover {
+  border-color: rgba(245, 158, 11, 0.8);
+  color: #d97706;
+  box-shadow: 0 0 15px rgba(245, 158, 11, 0.5);
 }
 
-/* ✨ 선택적으로 글자 대비가 필요할 때 (밝은 배경 대비용) */
-.badge:hover {
-  color:#fff;
+/* 모션 최소화 환경 */
+@media (prefers-reduced-motion: reduce) {
+  .hero .badge { animation: none; }
+  .hero .badge:hover { transform: none; }
 }
 
 
@@ -539,22 +541,51 @@ html.motion .hero-profile-full{
   align-items: stretch;
 }
 
-/* Lift-Up Interaction: translateY(-8px) + shadow-xl */
+/* Lift-Up Interaction + Aurora Glow (AI-NATIVE PROJECTS와 동일) */
 .careers .card-wrapper{
   overflow: visible;
   transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
               box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
+.careers .card{
+  position: relative;
+}
+/* 오로라 그라데이션 테두리 (호버 시 선 색상) */
+.careers .card::before{
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: 17px;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(167,139,250,0.7) 0%, rgba(34,211,238,0.6) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  pointer-events: none;
+}
+.careers .card-wrapper:hover .card::before,
+.careers .card-link:hover .card::before{
+  opacity: 1;
+}
 .careers .card-wrapper:hover{
   transform: translateY(-8px);
 }
-.careers .card-wrapper:hover .card{
+.careers .card-wrapper:hover .card,
+.careers .card-link:hover .card{
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(255, 255, 255, 0.6);
   box-shadow:
-    0 25px 50px -12px rgba(99, 102, 241, 0.2),
-    0 12px 24px -8px rgba(0, 0, 0, 0.08);
+    0 0 25px rgba(167, 139, 250, 0.4),
+    0 0 50px rgba(34, 211, 238, 0.25),
+    0 25px 50px -12px rgba(99, 102, 241, 0.2);
 }
 @media (prefers-reduced-motion: reduce){
   .careers .card-wrapper:hover{ transform: none; }
+  .careers .card .cta,
+  .personal-projects .card .cta{ animation: none; }
 }
 
 .careers .card .chips{
@@ -588,10 +619,13 @@ html.motion .hero-profile-full{
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  filter: grayscale(30%);
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              filter 0.5s ease;
 }
 .careers .card-wrapper:hover .thumb img{
-  transform: scale(1.08);
+  transform: scale(1.1);
+  filter: grayscale(0%);
 }
 
 /* 태그: bg-gray-100 + text-gray-600, Hover 시 Indigo */
@@ -616,6 +650,11 @@ html.motion .hero-profile-full{
   padding: 0;
   margin-top: auto;
 }
+/* Animated Aurora Gradient — CTA 버튼 */
+@keyframes gradient-x {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
 .careers .card .cta{
   display: flex;
   align-items: center;
@@ -623,23 +662,31 @@ html.motion .hero-profile-full{
   width: 100%;
   padding: 16px 24px;
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 700;
   border-radius: 0 0 16px 16px;
-  color: #334155;
-  background: rgba(248, 250, 252, 0.9);
+  color: #fff;
+  background: linear-gradient(90deg, #7c3aed 0%, #06b6d4 50%, #9333ea 100%);
+  background-size: 200% 200%;
+  background-position: 0% 50%;
+  animation: gradient-x 4s ease infinite;
   border: none;
-  border-top: 1px solid rgba(226, 232, 240, 0.8);
-  transition: all .3s ease;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
+  transform-origin: center bottom;
+  transition: filter 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
 }
 .careers .card-link:hover .cta,
 .careers .card-wrapper:hover .cta:not(.cta-placeholder){
-  background: linear-gradient(135deg, var(--brand-indigo) 0%, #818cf8 100%);
-  color: #fff;
-  border-top-color: transparent;
+  filter: brightness(1.1) drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
+  box-shadow: 0 4px 20px rgba(168, 85, 247, 0.5);
+  transform: scale(1.02);
 }
 .careers .card .cta-placeholder{
   opacity: 0.7;
   cursor: default;
+  background: rgba(248, 250, 252, 0.9);
+  color: #334155;
+  animation: none;
 }
 
 /* =========================================================
@@ -775,23 +822,30 @@ html.motion .hero-profile-full{
   width: 100%;
   padding: 16px 24px;
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 700;
   border-radius: 0 0 16px 16px;
-  color: #334155;
-  background: rgba(248, 250, 252, 0.9);
+  color: #fff;
+  background: linear-gradient(90deg, #7c3aed 0%, #06b6d4 50%, #9333ea 100%);
+  background-size: 200% 200%;
+  background-position: 0% 50%;
+  animation: gradient-x 4s ease infinite;
   border: none;
-  border-top: 1px solid rgba(226, 232, 240, 0.8);
-  transition: all .3s ease;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
+  transform-origin: center bottom;
+  transition: filter 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
 }
 .personal-projects .card-link:hover .cta{
-  background: linear-gradient(135deg, var(--brand-indigo) 0%, #818cf8 100%);
-  color: #fff;
-  border-top-color: transparent;
+  filter: brightness(1.1) drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
+  box-shadow: 0 4px 20px rgba(168, 85, 247, 0.5);
+  transform: scale(1.02);
 }
 .personal-projects .card .cta-placeholder{
   opacity: .7;
   cursor: default;
+  background: rgba(248, 250, 252, 0.9);
   color: #666;
+  animation: none;
 }
 
 @media (max-width: 980px){
