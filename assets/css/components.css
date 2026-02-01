@@ -393,39 +393,41 @@ html.motion .hero-profile-full{
 .tile:hover .reveal{ opacity:1; transform:none; }
 
 /* =========================================================
-   CAREERS
+   CAREERS (ENTERPRISE EXPERIENCE)
    ========================================================= */
 :root{ --gutter:22px; --border:rgba(0,0,0,.12); --ink:#0F0F10; --dot:#FA6262; }
 .container{ padding:0 var(--gutter); }
 
-.careers-rail{ position:relative; }
-.careers-rail::before,.careers-rail::after{
-  content:""; position:absolute; left:50%; transform:translateX(-50%);
-  width:100vw; height:1px; background:var(--border);
+/* 섹션 배경: Off-White (slate-50) */
+.careers{
+  background: #f8fafc;
 }
-.careers-rail::before{ top:0; } .careers-rail::after{ bottom:0; }
-.careers-rail>.container{ position:relative; z-index:1; }
-.careers-rail>.container::before,.careers-rail>.container::after{
-  content:""; position:absolute; top:0; bottom:0; width:1px; background:var(--border);
+#careers{
+  padding-top: 96px;
+  padding-bottom: 96px;
 }
-.careers-rail>.container::before{ left:0; } .careers-rail>.container::after{ right:0; }
+
+.careers-rail{ position: relative; }
+.careers-rail>.container{ position: relative; z-index: 1; }
 
 .careers .section-head h2{
-  font-size:60px; font-weight:800; letter-spacing:.02em; margin:0 0 12px;
-  display:inline-flex; align-items:center;
+  font-size: 60px; font-weight: 800; letter-spacing: .02em; margin: 0 0 12px;
+  display: inline-flex; align-items: center;
 }
 .careers .section-head h2::after{
-  content:""; width:14px; height:14px; background:var(--dot);
-  border-radius:50%; margin-left:12px; transform:translateY(3px);
+  content: ""; width: 14px; height: 14px; background: var(--dot);
+  border-radius: 50%; margin-left: 12px; transform: translateY(3px);
 }
+
+/* 카드 그리드: gap-8 (32px) */
 .careers .cards{
-  position:relative; z-index:1; display:grid; grid-template-columns:repeat(3,1fr); gap:0;
+  position: relative; z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
 }
-.careers .cards::before{
-  content:""; position:absolute; top:0; left:0; right:0;
-  height:1px; background:var(--border);
-}
-/* Card Wrapper (Hover lift + shadow) */
+
+/* Card Wrapper: Hover 시에만 shadow + translate */
 .card-wrapper{
   overflow: visible;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -433,6 +435,12 @@ html.motion .hero-profile-full{
 .card-wrapper:hover{
   transform: translateY(-5px);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+.careers .card-wrapper{
+  transition: transform 0.25s ease;
+}
+.careers .card-wrapper:hover{
+  transform: translateY(-4px);
 }
 @media (prefers-reduced-motion: reduce){
   .card-wrapper:hover{ transform: none; }
@@ -448,50 +456,56 @@ html.motion .hero-profile-full{
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
   transition: background .25s ease, box-shadow .25s ease;
 }
+
+/* Careers 카드: Pure White, 얇은 테두리, 평소 shadow-sm */
 .careers .card{
-  background: rgba(249, 250, 251, 0.6);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: #fff;
+  border: 1px solid #f1f5f9;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
-  transition: all 0.3s ease;
-  border-right:1px solid rgba(0, 0, 0, 0.08);
-  border-bottom:1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  transition: box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.careers .card-wrapper:hover .card{
+  border-color: #e2e8f0;
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.04);
 }
 .careers .card .chips{
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
 }
-.careers .card-wrapper:nth-child(3n) .card{ border-right:none; }
-.careers .card-wrapper:nth-child(-n+3) .card{ border-top:none; }
-.careers .card:hover{ background: rgba(249, 250, 251, 0.85); }
-.careers .card .inner{ padding:22px; }
+.careers .card .inner{ padding: 32px; }
 
 .careers .card .thumb{
-  width:100%; height:170px; background:#e9e9e9;
-  border:1px solid rgba(0,0,0,.08); border-radius:10px; margin-bottom:20px;
-  overflow:hidden; display:flex; align-items:center; justify-content:center;
+  width: 100%; height: 170px; background: #f1f5f9;
+  border: 1px solid #e2e8f0; border-radius: 10px; margin-bottom: 20px;
+  overflow: hidden; display: flex; align-items: center; justify-content: center;
 }
 .careers .card .thumb img{
-  width:100%; height:100%; object-fit:cover; display:block; transition:transform .35s ease;
+  width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .35s ease;
 }
-.careers .card:hover .thumb img{ transform:scale(1.03); }
+.careers .card-wrapper:hover .thumb img{ transform: scale(1.02); }
 
+/* Modern Badge: 연한 배경, 톤 다운 텍스트 */
 .careers .chip{
-  display:inline-block; font-size:13px; padding:8px 12px;
-  background:#1f2937; border:1px solid #1f2937;
-  border-radius:999px; color:#fff;
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 6px 10px;
+  background: #f1f5f9;
+  border: 1px solid rgba(226, 232, 240, 0.6);
+  border-radius: 999px;
+  color: #475569;
 }
-.careers .card .foot{ padding:18px 22px; display:flex; justify-content:center; }
+.careers .card .foot{ padding: 24px 32px; display: flex; justify-content: center; }
 .careers .card .cta{
-  display:inline-flex; align-items:center; gap:6px;
-  padding:10px 16px; font-size:13px;
-  border:0; border-radius:8px; color:#000; background:#fff;
-  transition:all .2s ease;
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 10px 16px; font-size: 13px;
+  border-radius: 8px; color: #334155; background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  transition: all .2s ease;
 }
-.careers .card .cta:hover{ background:#FA6262; color:#fff; }
+.careers .card .cta:hover{ background: var(--dot); color: #fff; border-color: var(--dot); }
 
 /* =========================================================
    AI-NATIVE PROJECTS (personal-projects)
@@ -575,13 +589,34 @@ html.motion .hero-profile-full{
 }
 
 /* =========================================================
-   AI PRODUCT DIRECTOR (LXE) — Logic × Emotion × Product
+   AI PRODUCT DIRECTOR (LXE) — Glowing Energy Core
    ========================================================= */
 .lxe{
-  background: #111827; /* gray-900 스타일 */
+  position: relative;
+  background: #030712; /* gray-950 */
   color: #fff;
+  overflow: hidden;
 }
-.lxe .statement{ text-align:center; margin:0 auto 40px; max-width: 640px; }
+/* 회로/노이즈 텍스처 오버레이 */
+.lxe-bg-pattern{
+  position: absolute;
+  inset: 0;
+  opacity: 0.06;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 24px 24px;
+  pointer-events: none;
+}
+.lxe-bg-pattern::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.4;
+  mix-blend-mode: overlay;
+}
+.lxe .statement{ text-align: center; margin: 0 auto 40px; max-width: 640px; position: relative; z-index: 1; }
 .lxe .statement h2{
   font-size: clamp(28px, 5vw, 56px);
   font-weight: 800;
@@ -596,59 +631,256 @@ html.motion .hero-profile-full{
   letter-spacing: .02em;
 }
 
-/* Idea / AI Tech / Impact — 3개 원 순환 다이어그램 */
+/* 다이어그램 컨테이너 */
 .lxe-diagram{
   position: relative;
   width: 100%;
-  max-width: 380px;
+  max-width: 400px;
   margin: 0 auto;
   aspect-ratio: 400 / 340;
+  z-index: 1;
 }
-.lxe-diagram .lxe-lines{
+.lxe-diagram .lxe-beams{
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
-  display: block;
-  filter: drop-shadow(0 0 8px rgba(167, 139, 250, 0.25));
+  z-index: 0;
 }
-.lxe-diagram line{
-  stroke-opacity: 0.75;
+
+/* 에너지 빔 연결선 */
+.lxe-beam{
+  stroke-opacity: 0.9;
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 6px currentColor);
+  transition: stroke-opacity 0.3s ease, filter 0.3s ease;
 }
-.lxe-diagram .lxe-path{
-  stroke-width: 1;
-  stroke-dasharray: 6 4;
-  animation: lxeDash 12s linear infinite;
+.lxe-beam-group:hover .lxe-beam,
+.lxe-diagram[data-hover="1"] .lxe-beam-1,
+.lxe-diagram[data-hover="2"] .lxe-beam-1,
+.lxe-diagram[data-hover="2"] .lxe-beam-2,
+.lxe-diagram[data-hover="3"] .lxe-beam-2,
+.lxe-diagram[data-hover="3"] .lxe-beam-3,
+.lxe-diagram[data-hover="1"] .lxe-beam-3{
+  stroke-opacity: 1;
 }
-@keyframes lxeDash{
-  to { stroke-dashoffset: -40; }
+.lxe-diagram[data-hover="1"] .lxe-beam-1,
+.lxe-diagram[data-hover="2"] .lxe-beam-2,
+.lxe-diagram[data-hover="3"] .lxe-beam-3{
+  filter: drop-shadow(0 0 12px currentColor);
+}
+
+/* 파티클 흐름 애니메이션 (에너지 빔 위) */
+.lxe-particle{
+  stroke-opacity: 0.7;
+  stroke-dasharray: 8 200;
+  stroke-linecap: round;
+  animation: lxeParticleFlow 2s linear infinite;
+}
+.lxe-particle-2{ animation-delay: 0.66s; }
+.lxe-particle-3{ animation-delay: 1.33s; }
+.lxe-diagram[data-hover="1"] .lxe-particle-1,
+.lxe-diagram[data-hover="2"] .lxe-particle-1,
+.lxe-diagram[data-hover="2"] .lxe-particle-2,
+.lxe-diagram[data-hover="3"] .lxe-particle-2,
+.lxe-diagram[data-hover="3"] .lxe-particle-3,
+.lxe-diagram[data-hover="1"] .lxe-particle-3{
+  stroke-opacity: 0.9;
+  animation-duration: 1s;
+}
+@keyframes lxeParticleFlow{
+  0% { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: -208; }
 }
 @media (prefers-reduced-motion: reduce){
-  .lxe-diagram .lxe-path{ animation: none; }
+  .lxe-particle{ animation: none; stroke-opacity: 0.5; }
 }
-.lxe-node{
+
+/* Glowing Orb 노드 */
+.lxe-orb{
   position: absolute;
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  transition: transform 0.35s ease, box-shadow 0.35s ease, filter 0.35s ease;
+  z-index: 2;
+}
+.lxe-orb::before{
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+.lxe-orb:hover,
+.lxe-orb:focus-visible{
+  transform: translate(-50%, -50%) scale(1.08);
+}
+.lxe-orb:hover::before,
+.lxe-orb:focus-visible::before{
+  opacity: 1;
+  animation: lxeRipple 1.2s ease-out infinite;
+}
+@keyframes lxeRipple{
+  0% { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(1.4); opacity: 0; }
+}
+
+/* Orb 1: IDEA (보라) */
+.lxe-orb-1{ left: 50%; top: 14.7%; }
+.lxe-orb-1 .lxe-orb-glow{
+  position: absolute;
+  inset: -20%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(167,139,250,0.5) 0%, rgba(96,165,250,0.2) 50%, transparent 70%);
+  box-shadow:
+    0 0 30px rgba(167,139,250,0.6),
+    0 0 60px rgba(167,139,250,0.3),
+    inset 0 0 20px rgba(167,139,250,0.2);
+  filter: drop-shadow(0 0 15px rgba(167,139,250,0.5));
+}
+.lxe-orb-1 .lxe-orb-inner{
+  background: linear-gradient(135deg, #a78bfa 0%, #818cf8 50%, #60a5fa 100%);
+  box-shadow: inset 0 0 20px rgba(255,255,255,0.2);
+}
+.lxe-orb-1::before{ background: radial-gradient(circle, rgba(167,139,250,0.4) 0%, transparent 70%); }
+.lxe-orb-1:hover .lxe-orb-glow,
+.lxe-orb-1:focus-visible .lxe-orb-glow{
+  box-shadow:
+    0 0 45px rgba(167,139,250,0.8),
+    0 0 90px rgba(167,139,250,0.4),
+    inset 0 0 25px rgba(167,139,250,0.3);
+}
+
+/* Orb 2: AI TECH (파랑) */
+.lxe-orb-2{ left: 22.5%; top: 82.4%; }
+.lxe-orb-2 .lxe-orb-glow{
+  position: absolute;
+  inset: -20%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(96,165,250,0.5) 0%, rgba(56,189,248,0.2) 50%, transparent 70%);
+  box-shadow:
+    0 0 30px rgba(96,165,250,0.6),
+    0 0 60px rgba(56,189,248,0.3),
+    inset 0 0 20px rgba(96,165,250,0.2);
+  filter: drop-shadow(0 0 15px rgba(96,165,250,0.5));
+}
+.lxe-orb-2 .lxe-orb-inner{
+  background: linear-gradient(135deg, #60a5fa 0%, #38bdf8 50%, #22d3ee 100%);
+  box-shadow: inset 0 0 20px rgba(255,255,255,0.2);
+}
+.lxe-orb-2::before{ background: radial-gradient(circle, rgba(96,165,250,0.4) 0%, transparent 70%); }
+.lxe-orb-2:hover .lxe-orb-glow,
+.lxe-orb-2:focus-visible .lxe-orb-glow{
+  box-shadow:
+    0 0 45px rgba(96,165,250,0.8),
+    0 0 90px rgba(56,189,248,0.4),
+    inset 0 0 25px rgba(96,165,250,0.3);
+}
+
+/* Orb 3: IMPACT (청록) */
+.lxe-orb-3{ left: 77.5%; top: 82.4%; }
+.lxe-orb-3 .lxe-orb-glow{
+  position: absolute;
+  inset: -20%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(34,211,238,0.5) 0%, rgba(20,184,166,0.2) 50%, transparent 70%);
+  box-shadow:
+    0 0 30px rgba(34,211,238,0.6),
+    0 0 60px rgba(20,184,166,0.3),
+    inset 0 0 20px rgba(34,211,238,0.2);
+  filter: drop-shadow(0 0 15px rgba(34,211,238,0.5));
+}
+.lxe-orb-3 .lxe-orb-inner{
+  background: linear-gradient(135deg, #22d3ee 0%, #2dd4bf 50%, #14b8a6 100%);
+  box-shadow: inset 0 0 20px rgba(255,255,255,0.2);
+}
+.lxe-orb-3::before{ background: radial-gradient(circle, rgba(34,211,238,0.4) 0%, transparent 70%); }
+.lxe-orb-3:hover .lxe-orb-glow,
+.lxe-orb-3:focus-visible .lxe-orb-glow{
+  box-shadow:
+    0 0 45px rgba(34,211,238,0.8),
+    0 0 90px rgba(20,184,166,0.4),
+    inset 0 0 25px rgba(34,211,238,0.3);
+}
+
+/* Orb 내부 */
+.lxe-orb-inner{
+  position: relative;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  transform: translate(-50%, -50%);
-  text-align: center;
+  z-index: 1;
 }
-.lxe-node-title{
-  font-size: clamp(13px, 2vw, 16px);
-  font-weight: 700;
-  letter-spacing: .1em;
+.lxe-orb-title{
+  font-size: clamp(11px, 1.6vw, 14px);
+  font-weight: 800;
+  letter-spacing: .12em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.98);
+  color: #fff;
+  text-shadow: 0 0 12px rgba(255,255,255,0.8), 0 0 24px rgba(255,255,255,0.4);
 }
-.lxe-node-sub{
-  font-size: clamp(10px, 1.2vw, 12px);
-  color: rgba(255,255,255,0.65);
-  margin-top: 4px;
+.lxe-orb-sub{
+  font-size: clamp(9px, 1.1vw, 11px);
+  color: rgba(255,255,255,0.9);
+  margin-top: 2px;
   letter-spacing: .04em;
+  text-shadow: 0 0 8px rgba(255,255,255,0.5);
 }
-.lxe-node-1{ left: 50%; top: 14.7%; }    /* Idea (상단) */
-.lxe-node-2{ left: 22.5%; top: 82.4%; }  /* AI Tech (좌하) */
-.lxe-node-3{ left: 77.5%; top: 82.4%; }  /* Impact (우하) */
+
+/* Scroll Reveal: 순차 등장 */
+.lxe-diagram:not(.is-visible) .lxe-orb{
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.5);
+}
+.lxe-diagram.is-visible .lxe-orb-1{
+  animation: lxeOrbReveal 0.6s ease-out forwards;
+}
+.lxe-diagram.is-visible .lxe-orb-2{
+  animation: lxeOrbReveal 0.6s ease-out 0.15s forwards;
+  opacity: 0;
+}
+.lxe-diagram.is-visible .lxe-orb-3{
+  animation: lxeOrbReveal 0.6s ease-out 0.3s forwards;
+  opacity: 0;
+}
+.lxe-diagram:not(.is-visible) .lxe-beam{
+  stroke-dasharray: 400 400;
+  stroke-dashoffset: 400;
+}
+.lxe-diagram.is-visible .lxe-beam-1{
+  animation: lxeBeamDraw 0.5s ease-out 0.4s forwards;
+}
+.lxe-diagram.is-visible .lxe-beam-2{
+  animation: lxeBeamDraw 0.5s ease-out 0.55s forwards;
+}
+.lxe-diagram.is-visible .lxe-beam-3{
+  animation: lxeBeamDraw 0.5s ease-out 0.7s forwards;
+}
+@keyframes lxeOrbReveal{
+  0%{ opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+  100%{ opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+@keyframes lxeBeamDraw{
+  0%{ stroke-dasharray: 400 400; stroke-dashoffset: 400; }
+  100%{ stroke-dasharray: 400 400; stroke-dashoffset: 0; }
+}
+@media (prefers-reduced-motion: reduce){
+  .lxe-diagram:not(.is-visible) .lxe-orb,
+  .lxe-diagram:not(.is-visible) .lxe-beam,
+  .lxe-diagram:not(.is-visible) .lxe-particle{ opacity: 1; transform: none; stroke-dasharray: none; stroke-dashoffset: 0; }
+  .lxe-diagram .lxe-orb{ animation: none; }
+}
 
 /* =========================================================
    MORE PROJECT (타임라인 스타일)
@@ -957,9 +1189,7 @@ html.motion .hero-profile-full{
   .tile .reveal{ padding: 32px; }
 
   /* CAREERS: 3열 → 2열 */
-  .careers .cards{ grid-template-columns: repeat(2, 1fr); }
-  .careers .card-wrapper:nth-child(3n) .card{ border-right: 1px solid var(--border); }
-  .careers .card-wrapper:nth-child(2n) .card{ border-right: none; } /* 마지막 열은 오른쪽 보더 제거 */
+  .careers .cards{ grid-template-columns: repeat(2, 1fr); gap: 24px; }
   .careers .card .thumb{ height: 160px; }
 
   /* LXE 다이어그램 */
@@ -995,8 +1225,7 @@ html.motion .hero-profile-full{
   }
 
   /* CAREERS: 1열 */
-  .careers .cards{ grid-template-columns: 1fr; }
-  .careers .card-wrapper .card{ border-right: none; }
+  .careers .cards{ grid-template-columns: 1fr; gap: 24px; }
   .careers .card .thumb{ height: 150px; }
 
   /* LXE */
@@ -1040,7 +1269,7 @@ html.motion .hero-profile-full{
 /* 터치 환경: 카드 hover 배경색 오작동 방지 */
 @media (hover: none){
   .tile:hover{ background: #FA6262; color:#fff; } /* 시각적 차이 최소화 (원한다면 제거 가능) */
-  .careers .card:hover .thumb img{ transform:none; }
+  .careers .card-wrapper:hover .thumb img{ transform: none; }
 }
 /* 모션 최소화 환경 */
 /* --- FLOW 큰 이니셜 글자 겹침 방지 --- */

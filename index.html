@@ -279,46 +279,77 @@
   </div>
 </section>
 
-<!-- AI Product Director Philosophy -->
+<!-- AI Product Director Philosophy (Glowing Energy Core) -->
 <section class="section lxe" id="lxe">
+  <div class="lxe-bg-pattern" aria-hidden="true"></div>
   <div class="container">
     <div class="statement scroll-reveal">
       <h2>Imagined by Human, Built by AI</h2>
       <p class="lxe-desc">기획의 논리(Logic)와 디자인의 감성(Emotion)을 AI 기술로 연결하여, 압도적인 속도로 제품을 완성합니다.</p>
     </div>
 
-    <div class="lxe-diagram scroll-reveal">
-      <svg class="lxe-lines" viewBox="0 0 400 340" aria-hidden="true">
+    <div class="lxe-diagram scroll-reveal" data-lxe-diagram>
+      <!-- 에너지 빔 연결선 (SVG) -->
+      <svg class="lxe-beams" viewBox="0 0 400 340" aria-hidden="true">
         <defs>
-          <linearGradient id="circleGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+          <linearGradient id="beamGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" stop-color="#a78bfa"/>
+            <stop offset="50%" stop-color="#818cf8"/>
             <stop offset="100%" stop-color="#60a5fa"/>
           </linearGradient>
-          <linearGradient id="circleGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+          <linearGradient id="beamGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" stop-color="#60a5fa"/>
-            <stop offset="100%" stop-color="#f472b6"/>
+            <stop offset="50%" stop-color="#38bdf8"/>
+            <stop offset="100%" stop-color="#22d3ee"/>
           </linearGradient>
-          <linearGradient id="circleGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#f472b6"/>
-            <stop offset="100%" stop-color="#a78bfa"/>
+          <linearGradient id="beamGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#22d3ee"/>
+            <stop offset="50%" stop-color="#2dd4bf"/>
+            <stop offset="100%" stop-color="#14b8a6"/>
           </linearGradient>
-          <marker id="phArrowhead" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
-            <polygon points="0 0, 8 3, 0 6" fill="rgba(255,255,255,0.5)"/>
+          <filter id="beamGlow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="2" result="blur"/>
+            <feMerge>
+              <feMergeNode in="blur"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+          <marker id="beamArrow" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+            <polygon points="0 0, 10 4, 0 8" fill="rgba(255,255,255,0.8)"/>
           </marker>
         </defs>
-        <!-- 연결선 (순환 흐름) -->
-        <path class="lxe-path" d="M 200 50 L 90 280 L 310 280 Z" fill="none" stroke="url(#circleGrad1)" stroke-width="1" stroke-dasharray="6 4" opacity="0.5"/>
-        <line x1="200" y1="50" x2="90" y2="280" stroke="url(#circleGrad1)" stroke-width="1" opacity="0.6" marker-end="url(#phArrowhead)"/>
-        <line x1="90" y1="280" x2="310" y2="280" stroke="url(#circleGrad2)" stroke-width="1" opacity="0.6" marker-end="url(#phArrowhead)"/>
-        <line x1="310" y1="280" x2="200" y2="50" stroke="url(#circleGrad3)" stroke-width="1" opacity="0.6" marker-end="url(#phArrowhead)"/>
-        <!-- 3개 원 (그라데이션 테두리) -->
-        <circle cx="200" cy="50" r="42" fill="none" stroke="url(#circleGrad1)" stroke-width="1.5" opacity="0.8"/>
-        <circle cx="90" cy="280" r="42" fill="none" stroke="url(#circleGrad2)" stroke-width="1.5" opacity="0.8"/>
-        <circle cx="310" cy="280" r="42" fill="none" stroke="url(#circleGrad3)" stroke-width="1.5" opacity="0.8"/>
+        <g class="lxe-beam-group">
+          <line class="lxe-beam lxe-beam-1" x1="200" y1="50" x2="90" y2="280" stroke="url(#beamGrad1)" stroke-width="2" filter="url(#beamGlow)" marker-end="url(#beamArrow)"/>
+          <line class="lxe-beam lxe-beam-2" x1="90" y1="280" x2="310" y2="280" stroke="url(#beamGrad2)" stroke-width="2" filter="url(#beamGlow)" marker-end="url(#beamArrow)"/>
+          <line class="lxe-beam lxe-beam-3" x1="310" y1="280" x2="200" y2="50" stroke="url(#beamGrad3)" stroke-width="2" filter="url(#beamGlow)" marker-end="url(#beamArrow)"/>
+          <line class="lxe-particle lxe-particle-1" x1="200" y1="50" x2="90" y2="280" stroke="url(#beamGrad1)" stroke-width="1"/>
+          <line class="lxe-particle lxe-particle-2" x1="90" y1="280" x2="310" y2="280" stroke="url(#beamGrad2)" stroke-width="1"/>
+          <line class="lxe-particle lxe-particle-3" x1="310" y1="280" x2="200" y2="50" stroke="url(#beamGrad3)" stroke-width="1"/>
+        </g>
       </svg>
-      <div class="lxe-node lxe-node-1"><span class="lxe-node-title">Idea</span><span class="lxe-node-sub">상상/기획</span></div>
-      <div class="lxe-node lxe-node-2"><span class="lxe-node-title">AI Tech</span><span class="lxe-node-sub">기술/가속</span></div>
-      <div class="lxe-node lxe-node-3"><span class="lxe-node-title">Impact</span><span class="lxe-node-sub">결과/제품</span></div>
+
+      <!-- Glowing Orb 노드 -->
+      <div class="lxe-orb lxe-orb-1" data-lxe-node tabindex="0" role="button" aria-label="Idea 상상/기획">
+        <div class="lxe-orb-glow"></div>
+        <div class="lxe-orb-inner">
+          <span class="lxe-orb-title">Idea</span>
+          <span class="lxe-orb-sub">상상/기획</span>
+        </div>
+      </div>
+      <div class="lxe-orb lxe-orb-2" data-lxe-node tabindex="0" role="button" aria-label="AI Tech 기술/가속">
+        <div class="lxe-orb-glow"></div>
+        <div class="lxe-orb-inner">
+          <span class="lxe-orb-title">AI Tech</span>
+          <span class="lxe-orb-sub">기술/가속</span>
+        </div>
+      </div>
+      <div class="lxe-orb lxe-orb-3" data-lxe-node tabindex="0" role="button" aria-label="Impact 결과/제품">
+        <div class="lxe-orb-glow"></div>
+        <div class="lxe-orb-inner">
+          <span class="lxe-orb-title">Impact</span>
+          <span class="lxe-orb-sub">결과/제품</span>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -521,6 +552,19 @@
       });
 
       targets.forEach(el => observer.observe(el));
+    })();
+
+    // LXE Philosophy: Orb hover → beam highlight
+    (function() {
+      const diagram = document.querySelector('[data-lxe-diagram]');
+      const orbs = document.querySelectorAll('[data-lxe-node]');
+      if (!diagram || !orbs.length) return;
+      orbs.forEach((orb, i) => {
+        orb.addEventListener('mouseenter', () => diagram.setAttribute('data-hover', String(i + 1)));
+        orb.addEventListener('mouseleave', () => diagram.removeAttribute('data-hover'));
+        orb.addEventListener('focus', () => diagram.setAttribute('data-hover', String(i + 1)));
+        orb.addEventListener('blur', () => diagram.removeAttribute('data-hover'));
+      });
     })();
 
     // Typewriter Effect
