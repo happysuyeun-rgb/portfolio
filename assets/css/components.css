@@ -483,6 +483,21 @@ html.motion .hero .badge:nth-child(4) { animation: heroFadeUp 0.9s ease 0.42s fo
   display: inline-flex;
   align-items: center;
 }
+/* 타이핑 효과용 H2 */
+.section-title-typed{
+  min-height: 60px;
+}
+.section-title-typed .typed-target{
+  display: inline;
+  color: inherit;
+}
+/* Violet → Pink → Cyan 오로라 그라데이션 (타이핑 하이라이트) */
+.highlight-aurora{
+  background: linear-gradient(90deg, #a78bfa 0%, #f472b6 50%, #22d3ee 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 .personal-projects .section-head h2::after,
 .careers .section-head h2::after{
   content: "";

@@ -109,8 +109,11 @@
   <!-- AI-NATIVE PROJECTS -->
   <section class="section personal-projects" id="personal-projects">
     <div class="container">
-      <div class="section-head scroll-reveal">
-        <h2>AI-NATIVE PROJECTS <span class="dot"></span></h2>
+      <div class="section-head scroll-reveal js-typed-section" data-typed-plain="AI-NATIVE PROJECTS" data-typed-highlight="AI-NATIVE">
+        <h2 class="section-title-typed">
+          <span class="typed-target"></span>
+          <span class="dot" aria-hidden="true"></span>
+        </h2>
         <p class="lead">제품 기획부터 시스템 설계, Product Design까지 — 기술을 이해하고 리딩하며 AI와 협업하여 1인 주도로 런칭한 프로젝트입니다.</p>
       </div>
     </div>
@@ -219,8 +222,11 @@
   <!-- CAREERS -->
 <section class="section careers" id="careers">
   <div class="container">
-    <div class="section-head scroll-reveal">
-      <h2>ENTERPRISE EXPERIENCE <span class="dot"></span></h2>
+      <div class="section-head scroll-reveal js-typed-section" data-typed-plain="Built for Enterprise Experience" data-typed-highlight="Enterprise">
+      <h2 class="section-title-typed">
+        <span class="typed-target"></span>
+        <span class="dot" aria-hidden="true"></span>
+      </h2>
       <p class="lead">공공부터 대규모 플랫폼까지, 복잡한 문제를 해결하고 시스템을 설계한 실무 경험입니다.</p>
     </div>
   </div>
@@ -307,8 +313,10 @@
 <section class="section lxe" id="lxe">
   <div class="lxe-bg-pattern" aria-hidden="true"></div>
   <div class="container">
-    <div class="statement scroll-reveal">
-      <h2>Imagined by Human, Built by AI</h2>
+    <div class="statement scroll-reveal js-typed-section" data-typed-plain="Imagined by Human, Built by AI" data-typed-highlight="Built by AI">
+      <h2 class="section-title-typed">
+        <span class="typed-target"></span>
+      </h2>
       <p class="lxe-desc">기획의 논리(Logic)와 디자인의 감성(Emotion)을 AI 기술로 연결하여, 압도적인 속도로 제품을 완성합니다.</p>
     </div>
 
@@ -513,8 +521,10 @@
 
   <!-- FOOTER CTA (Deep Dark & Professional) -->
   <footer class="footer-cta" id="contact" role="contentinfo" aria-label="Contact">
-    <div class="container scroll-reveal">
-      <h2 class="footer-title">Ready to Build the Next Big Thing?</h2>
+    <div class="container scroll-reveal js-typed-section" data-typed-plain="Ready to Build the Next Big Thing?" data-typed-highlight="Next Big Thing?">
+      <h2 class="footer-title section-title-typed">
+        <span class="typed-target"></span>
+      </h2>
       <p class="footer-desc">복잡한 문제를 가장 심플한 경험으로 설계합니다. 지금 바로 논의해보세요.</p>
 
       <div class="footer-actions">
@@ -555,6 +565,7 @@
 
 <script src="assets/js/cursor.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js" integrity="sha512-wC1P84CGzvLEZiSfCnijJgkkYgV5bD2b1xQ0IBxEDyBUqLLbDxvfqE7ueZ/3V+EhG+i50OvSSG6nDO8egoIkg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.1.0/typed.umd.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <!-- 스크립트 (공통으로 쓰고 싶으면 assets/js/toTop.js로 분리해도 OK) -->
 <script>
   (function () {
@@ -721,6 +732,59 @@
         gyroscope: false
       });
     }
+
+    // Scroll-Triggered Typing Effect (class 기반 — 여러 섹션 동시 제어)
+    (function() {
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const sections = document.querySelectorAll('.js-typed-section');
+      if (!sections.length) return;
+
+      function buildHtml(plain, highlight) {
+        if (!highlight || !plain.includes(highlight)) return plain;
+        return plain.replace(highlight, '<span class="highlight-aurora">' + highlight + '</span>');
+      }
+
+      function setFallback(targetEl, plain, highlight) {
+        if (targetEl && plain) targetEl.innerHTML = buildHtml(plain, highlight);
+      }
+
+      sections.forEach((section) => {
+        const targetEl = section.querySelector('.typed-target');
+        const plain = section.dataset.typedPlain;
+        const highlight = section.dataset.typedHighlight;
+        if (!targetEl || !plain) return;
+
+        if (prefersReduced || typeof Typed === 'undefined') {
+          setFallback(targetEl, plain, highlight);
+          return;
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            observer.unobserve(entry.target);
+
+            try {
+              new Typed(targetEl, {
+                strings: [plain],
+                typeSpeed: 40,
+                showCursor: true,
+                cursorChar: '|',
+                contentType: 'text',
+                onComplete: function(self) {
+                  if (self && self.cursor) self.cursor.style.display = 'none';
+                  setFallback(targetEl, plain, highlight);
+                }
+              });
+            } catch (e) {
+              setFallback(targetEl, plain, highlight);
+            }
+          });
+        }, { threshold: 0.3 });
+
+        observer.observe(section);
+      });
+    })();
   });
 </script>
 
