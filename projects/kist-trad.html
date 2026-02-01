@@ -59,8 +59,10 @@ background:#fff;color:#111;display:flex;align-items:center;justify-content:cente
   .grid, .outcome{grid-template-columns:1fr}
 }
 </style>
+<link rel="stylesheet" href="../assets/css/cursor.css">
 </head>
 <body>
+<div id="custom-cursor" class="custom-cursor" aria-hidden="true"></div>
 
 <!-- GNB -->
 <div class="gnb">
@@ -85,8 +87,8 @@ background:#fff;color:#111;display:flex;align-items:center;justify-content:cente
   <div class="badges">
     <span class="badge">#PublicPlatform</span>
     <span class="badge">#UX Strategy</span>
-    <span class="badge">#IA 설계</span>
-    <span class="badge">#UI/UX</span>
+    <span class="badge">#System Architecture</span>
+    <span class="badge">#Product Design</span>
     <span class="badge">#Design System</span>
   </div>
 
@@ -99,7 +101,7 @@ background:#fff;color:#111;display:flex;align-items:center;justify-content:cente
     <div>
       <h2><span class="dot"></span> Project Overview</h2>
       <ul>
-        <li><strong>역할:</strong> 기획 · 정보구조 설계 · UI/UX 총괄</li>
+        <li><strong>역할:</strong> Product Planning · System Architecture · Product Design 총괄</li>
         <li><strong>핵심기능:</strong> 통합 검색/분야 필터, 중점분야 큐레이션, FAQ/절차 안내, 관련사업 연계, 수요 접수</li>
         <li><strong>Site Concept:</strong> “전통의 미장센 × 모던 UI” — 동양화 일러스트와 현대적 컴포넌트의 조화</li>
         <li><strong>Tools:</strong> Figma, FigJam(플로우/IA), 운영 가이드</li>
@@ -166,6 +168,7 @@ background:#fff;color:#111;display:flex;align-items:center;justify-content:cente
 
 <!-- Floating to top -->
 <button id="toTop" title="맨 위로" aria-label="맨 위로">▲</button>
+<script src="../assets/js/cursor.js"></script>
 <script>
 document.getElementById('toTop').addEventListener('click', function() {
   window.scrollTo({top:0, behavior:'smooth'});

@@ -59,8 +59,10 @@ background:#fff;color:#111;display:flex;align-items:center;justify-content:cente
   .grid, .outcome{grid-template-columns:1fr}
 }
 </style>
+<link rel="stylesheet" href="../assets/css/cursor.css">
 </head>
 <body>
+<div id="custom-cursor" class="custom-cursor" aria-hidden="true"></div>
 
 <!-- GNB -->
 <div class="gnb">
@@ -86,7 +88,7 @@ background:#fff;color:#111;display:flex;align-items:center;justify-content:cente
   <div class="badges">
     <span class="badge">#브랜딩</span>
     <span class="badge">#브랜딩</span>
-    <span class="badge">#UI/UX</span>
+    <span class="badge">#Product Design</span>
     <span class="badge">#Design System</span>
   </div>
 
@@ -100,7 +102,7 @@ background:#fff;color:#111;display:flex;align-items:center;justify-content:cente
       <h2><span class="dot"></span> Project Overview</h2>
       <ul>
         <li><strong>기간:</strong> 2023년</li>
-        <li><strong>역할:</strong> UI/UX 총괄 · 컴포넌트 가이드 100% 전달</li>
+        <li><strong>역할:</strong> Product Design 총괄 · 컴포넌트 가이드 100% 전달</li>
         <li><strong>Site Concept:</strong> 데이터 탐색을 쉽게, 정보 구조를 명확하게 — 민간 서비스 수준의 사용성을 갖춘 공공 데이터 포털</li>
         <li><strong>Tools:</strong> Figma (디자인 시스템, 컴포넌트 문서화)</li>
       </ul>
@@ -164,6 +166,7 @@ background:#fff;color:#111;display:flex;align-items:center;justify-content:cente
 
 <!-- Floating to top -->
 <button id="toTop" title="맨 위로" aria-label="맨 위로">▲</button>
+<script src="../assets/js/cursor.js"></script>
 <script>
 document.getElementById('toTop').addEventListener('click', function() {
   window.scrollTo({top:0, behavior:'smooth'});

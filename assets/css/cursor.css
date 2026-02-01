@@ -1,0 +1,53 @@
+/* =========================================================
+   CUSTOM CURSOR
+   ========================================================= */
+.custom-cursor {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 24px;
+  height: 24px;
+  margin-left: -12px;
+  margin-top: -12px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.25);
+  pointer-events: none;
+  z-index: 9999;
+  will-change: transform;
+  opacity: 0;
+  transition: opacity 0.2s ease,
+              width 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              height 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              margin 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              background 0.35s ease;
+}
+
+.custom-cursor.is-active {
+  opacity: 1;
+}
+
+.custom-cursor--hover {
+  width: 36px;
+  height: 36px;
+  margin-left: -18px;
+  margin-top: -18px;
+  background: rgba(255, 255, 255, 0.9);
+  mix-blend-mode: difference;
+}
+
+/* 기본 커서 숨김 (데스크톱 마우스 사용 시에만) */
+@media (hover: hover) and (pointer: fine) {
+  body.has-custom-cursor {
+    cursor: none;
+  }
+  body.has-custom-cursor * {
+    cursor: none;
+  }
+}
+
+/* 터치 기기에서는 커스텀 커서 비활성화 */
+@media (hover: none) or (pointer: coarse) {
+  .custom-cursor {
+    display: none !important;
+  }
+}
