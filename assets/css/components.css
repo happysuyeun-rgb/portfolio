@@ -147,19 +147,11 @@ header.hero{
   transition: transform .2s ease;
 }
 /* Text Gradient (Royal Blue → Purple) */
-.hero .title .typewriter-text,
-.hero .title .typewriter-suffix{
+.hero .title .typewriter-text{
   background: linear-gradient(135deg, #4169e1 0%, #5b4fc7 40%, #6a0dad 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-}
-.hero .title .typewriter-suffix{
-  opacity: 0;
-  transition: opacity .2s ease;
-}
-.hero .title .typewriter-suffix.visible{
-  opacity: 1;
 }
 .hero .title .typewriter-cursor{
   display: inline-block;
@@ -177,8 +169,7 @@ header.hero{
 }
 
 /* Glitch Effect (Hover) */
-.hero .title:hover .typewriter-text,
-.hero .title:hover .typewriter-suffix{
+.hero .title:hover .typewriter-text{
   animation: glitchText 0.6s ease-in-out infinite;
 }
 @keyframes glitchText{
@@ -194,8 +185,7 @@ header.hero{
   90% { text-shadow: none; transform: translate(0, 0); }
 }
 @media (prefers-reduced-motion: reduce){
-  .hero .title:hover .typewriter-text,
-  .hero .title:hover .typewriter-suffix{ animation: none; }
+  .hero .title:hover .typewriter-text{ animation: none; }
 }
 .hero .desc{ margin-top:10px; color:#222; }
 .badges{ margin-top:14px; display:flex; flex-wrap:wrap; gap:12px; }
