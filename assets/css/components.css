@@ -132,10 +132,10 @@ header.hero{
 /* 왼쪽 텍스트 */
 .hero .eyebrow{ color:#141414; font-size:20px; margin-bottom:10px; }
 .hero .title .line1{
-  display:block; font-size:66px; font-weight:800; line-height:1.1; letter-spacing:.01em;
+  display:inline; font-size:66px; font-weight:800; line-height:1.1; letter-spacing:.01em;
 }
 .hero .title .line2{
-  display:block; font-size:66px; font-weight:900; line-height:1.04; letter-spacing:.01em; margin-top:10px;
+  display:inline; font-size:66px; font-weight:900; line-height:1.04; letter-spacing:.01em; margin-left:.08em;
 }
 
 /* Typewriter Effect */
@@ -187,7 +187,7 @@ header.hero{
 @media (prefers-reduced-motion: reduce){
   .hero .title:hover .typewriter-text{ animation: none; }
 }
-.hero .desc{ margin-top:10px; color:#222; }
+.hero .desc{ margin-top:34px; color:#222; }
 .badges{ margin-top:14px; display:flex; flex-wrap:wrap; gap:12px; }
 .badge{
   display:inline-block; border-radius:999px; padding:8px 12px;
@@ -275,7 +275,7 @@ html.motion .hero-profile-full{
 
 /* 메인 타이틀과 배지 사이 간격 조정 */
 .hero .desc {
-  margin-top: 10px;
+  margin-top: 34px;
   color: #222;
 }
 
