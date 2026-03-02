@@ -506,6 +506,8 @@ html.motion .hero .badge:nth-child(4) { animation: heroFadeUp 0.9s ease 0.42s fo
   text-decoration: none;
   color: inherit;
   cursor: pointer;
+  position: relative;
+  pointer-events: auto;
 }
 
 /* 공통 Glass Card 베이스 — Equal Height + Flex */
