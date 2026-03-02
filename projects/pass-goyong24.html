@@ -123,7 +123,24 @@
       </div>
     </section>
 
-    <!-- C. 핵심 의사결정 — Why this structure? -->
+    <!-- C. IA 구조도 — Information Architecture -->
+    <section class="project-ia container" id="ia">
+      <h2 class="section-title">구조 설계 — Information Architecture</h2>
+      <p class="ia-desc">화면 설계에 앞서 서비스의 전체 정보 구조를 먼저 정의했습니다.<br>모바일지갑 내 진입 경로부터 배지 발급까지의 계층 구조와 이동 흐름을 설계하고, 각 화면의 Page ID와 연결 경로를 문서화해 개발팀과의 커뮤니케이션 기준을 마련했습니다.</p>
+      <div class="ia-embed-wrap">
+        <iframe
+          src="../assets/ia/goyo24-ia.html"
+          class="ia-embed"
+          id="iaEmbed"
+          title="고용24 IA 구조도"
+          loading="lazy"
+          scrolling="no"
+          onload="autoResizeIframe(this)"
+        ></iframe>
+      </div>
+    </section>
+
+    <!-- D. 핵심 의사결정 — Why this structure? -->
     <section class="project-decision container" id="decision">
       <h2 class="section-title">핵심 의사결정 — Why this structure?</h2>
       <div class="decision-grid">
@@ -363,6 +380,34 @@
       }, { threshold: 0.2 });
       observer.observe(section);
     })();
+  </script>
+  <script>
+    function autoResizeIframe(iframe) {
+      try {
+        const doc = iframe.contentDocument || iframe.contentWindow.document;
+        const body = doc.body;
+        const html = doc.documentElement;
+        const height = Math.max(
+          body.scrollHeight, body.offsetHeight,
+          html.scrollHeight, html.offsetHeight,
+          html.clientHeight
+        );
+        iframe.style.height = (height + 40) + 'px';
+      } catch(e) {
+        // 크로스 오리진 등 접근 불가 시 fallback 높이
+        iframe.style.height = '1050px';
+      }
+    }
+
+    // 혹시 onload 이벤트가 늦게 발생하는 경우를 대비한 폴백
+    window.addEventListener('load', function() {
+      const iframe = document.getElementById('iaEmbed');
+      if (iframe) {
+        setTimeout(function() {
+          autoResizeIframe(iframe);
+        }, 600);
+      }
+    });
   </script>
 </body>
 </html>

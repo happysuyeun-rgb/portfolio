@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>고용24 모바일지갑 — Information Architecture</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=DM+Mono:wght@400;500&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0d0f14;
+    --surface: #161921;
+    --border: rgba(255,255,255,0.07);
+    --accent: #f5c842;
+    --accent2: #3b82f6;
+    --text: #e8eaf0;
+    --muted: #6b7280;
+    --node-bg: #1e2230;
+    --node-border: rgba(255,255,255,0.12);
+    --highlight: rgba(245,200,66,0.08);
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Noto Sans KR', sans-serif;
+    min-height: 100vh;
+    overflow-x: auto;
+  }
+
+  /* ── Header ── */
+  .header {
+    padding: 56px 64px 32px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    opacity: 0;
+    animation: fadeUp 0.7s ease 0.1s forwards;
+  }
+
+  .header-left .label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .header-left h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(36px, 5vw, 64px);
+    letter-spacing: 0.04em;
+    line-height: 1;
+    color: var(--text);
+  }
+
+  .header-left h1 span {
+    color: var(--accent);
+  }
+
+  .header-meta {
+    text-align: right;
+  }
+
+  .header-meta .tag {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    padding: 4px 10px;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-left: 6px;
+  }
+
+  .header-meta .tag.active {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: rgba(245,200,66,0.05);
+  }
+
+  /* ── Description ── */
+  .desc {
+    padding: 24px 64px 0;
+    opacity: 0;
+    animation: fadeUp 0.7s ease 0.2s forwards;
+  }
+
+  .desc p {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.8;
+    max-width: 560px;
+  }
+
+  /* ── Legend ── */
+  .legend {
+    padding: 20px 64px;
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.7s ease 0.3s forwards;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    color: var(--muted);
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.08em;
+  }
+
+  .legend-dot {
+    width: 10px; height: 10px;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  /* ── Canvas ── */
+  .canvas {
+    padding: 48px 64px 80px;
+    position: relative;
+  }
+
+  /* ── Flow Row (top navigation path) ── */
+  .flow-row {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin-bottom: 48px;
+    opacity: 0;
+    animation: fadeUp 0.7s ease 0.4s forwards;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+  }
+
+  /* ── Node ── */
+  .node {
+    position: relative;
+    background: var(--node-bg);
+    border: 1px solid var(--node-border);
+    border-radius: 6px;
+    padding: 10px 18px;
+    font-size: 12.5px;
+    font-weight: 500;
+    white-space: nowrap;
+    cursor: default;
+    transition: all 0.25s ease;
+    user-select: none;
+  }
+
+  .node:hover {
+    border-color: rgba(255,255,255,0.3);
+    background: #242840;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+  }
+
+  .node.accent {
+    background: var(--highlight);
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .node.accent:hover {
+    background: rgba(245,200,66,0.15);
+    box-shadow: 0 0 24px rgba(245,200,66,0.2);
+  }
+
+  .node.root {
+    background: #1a1f2e;
+    border-color: rgba(59,130,246,0.5);
+    color: var(--accent2);
+    font-weight: 700;
+  }
+
+  /* ── Arrow between nodes ── */
+  .arrow {
+    display: flex;
+    align-items: center;
+    color: var(--muted);
+    padding: 0 8px;
+    flex-shrink: 0;
+  }
+
+  .arrow svg { display: block; }
+
+  /* ── Tree section ── */
+  .tree-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  /* ── Section title ── */
+  .section-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-title::after {
+    content: '';
+    display: block;
+    height: 1px;
+    width: 120px;
+    background: var(--border);
+  }
+
+  /* ── Main tree wrapper ── */
+  .tree-wrapper {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 40px 48px;
+    background: var(--surface);
+    position: relative;
+    opacity: 0;
+    animation: fadeUp 0.7s ease 0.5s forwards;
+    width: 100%;
+  }
+
+  .tree-wrapper::before {
+    content: 'GOYO 24 — SERVICE TREE';
+    position: absolute;
+    top: -1px; left: 32px;
+    transform: translateY(-50%);
+    background: var(--surface);
+    padding: 0 8px;
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+  }
+
+  /* ── SVG connector ── */
+  .tree-svg {
+    display: block;
+    overflow: visible;
+    width: 100%;
+  }
+
+  /* ── Node in SVG via foreignObject ── */
+  .fo-node {
+    background: var(--node-bg);
+    border: 1px solid var(--node-border);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 500;
+    font-family: 'Noto Sans KR', sans-serif;
+    color: var(--text);
+    cursor: pointer;
+    transition: all 0.25s ease;
+    height: 100%;
+    width: 100%;
+    padding: 0 12px;
+    text-align: center;
+    line-height: 1.4;
+    white-space: pre-wrap;
+  }
+
+  .fo-node:hover {
+    background: #242840;
+    border-color: rgba(255,255,255,0.3);
+  }
+
+  .fo-node.node-accent {
+    background: var(--highlight);
+    border-color: var(--accent);
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  .fo-node.node-accent:hover {
+    background: rgba(245,200,66,0.18);
+    box-shadow: 0 0 20px rgba(245,200,66,0.25);
+  }
+
+  .fo-node.node-root {
+    border-color: rgba(59,130,246,0.6);
+    color: var(--accent2);
+    font-weight: 700;
+    background: rgba(59,130,246,0.06);
+  }
+
+  /* ── Tooltip ── */
+  .tooltip {
+    position: fixed;
+    background: #1e2230;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 12px;
+    line-height: 1.7;
+    color: var(--text);
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: all 0.2s ease;
+    z-index: 100;
+    max-width: 240px;
+    box-shadow: 0 16px 48px rgba(0,0,0,0.5);
+  }
+
+  .tooltip.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .tooltip .tt-title {
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 4px;
+    font-size: 12px;
+  }
+
+  .tooltip .tt-desc {
+    color: var(--muted);
+    font-size: 11px;
+  }
+
+  /* ── Connector lines SVG ── */
+  .connector-line {
+    stroke: rgba(255,255,255,0.12);
+    stroke-width: 1.5;
+    fill: none;
+    stroke-dasharray: 0;
+    transition: stroke 0.3s;
+  }
+
+  .connector-line.highlighted {
+    stroke: var(--accent);
+    stroke-width: 2;
+  }
+
+  /* ── Badge ── */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 99px;
+    font-size: 10px;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.06em;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+
+  .badge.new { background: rgba(59,130,246,0.15); color: var(--accent2); border: 1px solid rgba(59,130,246,0.3); }
+  .badge.key { background: var(--highlight); color: var(--accent); border: 1px solid rgba(245,200,66,0.3); }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Mobile */
+  @media (max-width: 768px) {
+    .header, .desc, .legend, .canvas { padding-left: 24px; padding-right: 24px; }
+    .header { flex-direction: column; align-items: flex-start; gap: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-left">
+    <div class="label">UX / Information Architecture</div>
+    <h1>고용24 <span>모바일지갑</span></h1>
+  </div>
+  <div class="header-meta">
+    <span class="tag active">IA Diagram</span>
+    <span class="tag">Mobile App</span>
+    <span class="tag">Gov-Tech</span>
+  </div>
+</div>
+
+<div class="desc">
+  <p>취업지원 디지털 증명 및 제출 서비스인 고용24의 정보 구조 설계안입니다. 모바일지갑 내 진입 경로부터 배지 발급까지의 전체 서비스 플로우와 계층 구조를 시각화합니다.</p>
+</div>
+
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot" style="background:#1e2230;border:1px solid rgba(255,255,255,0.2)"></div>서비스 노드</div>
+  <div class="legend-item"><div class="legend-dot" style="background:rgba(245,200,66,0.12);border:1px solid #f5c842"></div>핵심 기능 (발급)</div>
+  <div class="legend-item"><div class="legend-dot" style="background:rgba(59,130,246,0.08);border:1px solid rgba(59,130,246,0.5)"></div>진입점</div>
+</div>
+
+<div class="canvas">
+
+  <!-- Navigation Flow Row -->
+  <div class="section-title">진입 경로 — Navigation Path</div>
+  <div class="flow-row" id="flowRow">
+    <div class="node root" data-tip="root" style="animation-delay:0.4s">모바일지갑 메인</div>
+    <div class="arrow"><svg width="20" height="12" viewBox="0 0 20 12"><path d="M0 6h16M10 1l6 5-6 5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="node" data-tip="자격증명" style="animation-delay:0.45s">자격증명</div>
+    <div class="arrow"><svg width="20" height="12" viewBox="0 0 20 12"><path d="M0 6h16M10 1l6 5-6 5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="node" data-tip="정부전자문서" style="animation-delay:0.5s">정부 전자문서지갑</div>
+    <div class="arrow"><svg width="20" height="12" viewBox="0 0 20 12"><path d="M0 6h16M10 1l6 5-6 5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="node" data-tip="모두의증명" style="animation-delay:0.55s">모두의 증명</div>
+    <div class="arrow"><svg width="20" height="12" viewBox="0 0 20 12"><path d="M0 6h16M10 1l6 5-6 5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="node" data-tip="국민비서" style="animation-delay:0.6s">국민비서</div>
+    <div class="arrow"><svg width="20" height="12" viewBox="0 0 20 12"><path d="M0 6h16M10 1l6 5-6 5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="node" data-tip="qnet" style="animation-delay:0.65s">Q-Net</div>
+    <div class="arrow"><svg width="20" height="12" viewBox="0 0 20 12"><path d="M0 6h16M10 1l6 5-6 5" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.7"/></svg></div>
+    <div class="node accent" data-tip="goyo24" style="animation-delay:0.7s">고용24 <span class="badge key">FOCUS</span></div>
+  </div>
+
+  <!-- Service Tree -->
+  <div class="section-title" style="opacity:0;animation:fadeUp 0.7s ease 0.6s forwards">서비스 구조 — Service Architecture</div>
+
+  <div class="tree-wrapper" id="treeWrapper">
+    <svg id="treeSvg" class="tree-svg" viewBox="0 0 900 420" preserveAspectRatio="xMidYMid meet" style="min-height:300px">
+      <defs>
+        <marker id="arrowEnd" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+          <path d="M0,0 L0,6 L6,3 z" fill="rgba(255,255,255,0.15)"/>
+        </marker>
+      </defs>
+
+      <!-- Root: 고용24 -->
+      <!-- Level 1: 5 children -->
+      <!-- Level 2: 배지목록, 이력서목록 -->
+      <!-- Level 3: 발급 -->
+
+      <!-- Connector lines -->
+      <!-- Root to children -->
+      <line class="connector-line" x1="450" y1="58" x2="450" y2="80"/>
+      <!-- horizontal bus -->
+      <line class="connector-line" x1="90" y1="80" x2="810" y2="80"/>
+      <!-- bus to each child -->
+      <line class="connector-line" x1="90"  y1="80" x2="90"  y2="110"/>
+      <line class="connector-line" x1="270" y1="80" x2="270" y2="110"/>
+      <line class="connector-line" x1="450" y1="80" x2="450" y2="110"/>
+      <line class="connector-line" x1="630" y1="80" x2="630" y2="110"/>
+      <line class="connector-line" x1="810" y1="80" x2="810" y2="110"/>
+
+      <!-- 나의 전자지갑 sub: none -->
+      <!-- 디지털 배지 → 배지목록(제출) -->
+      <line class="connector-line" x1="270" y1="168" x2="270" y2="190"/>
+      <line class="connector-line" x1="270" y1="190" x2="270" y2="190"/>
+      <!-- 디지털 배지 → 배지목록 -->
+      <line class="connector-line" x1="270" y1="168" x2="200" y2="230"/>
+
+      <!-- 디지털이력서 → 이력서목록(제출) -->
+      <line class="connector-line" x1="450" y1="168" x2="390" y2="230"/>
+
+      <!-- 배지목록 → 발급 -->
+      <line class="connector-line" x1="200" y1="288" x2="200" y2="310"/>
+      <!-- 이력서목록 → 발급 note: shared 발급 or separate -->
+      <line class="connector-line" x1="390" y1="288" x2="310" y2="310"/>
+
+      <!-- Root node: 고용24 -->
+      <foreignObject x="336" y="10" width="228" height="48">
+        <div xmlns="http://www.w3.org/1999/xhtml" class="fo-node node-root" data-tip="goyo24-root">
+          고용24 취업지원 서비스
+        </div>
+      </foreignObject>
+
+      <!-- Level 1 children -->
+      <foreignObject x="20" y="110" width="140" height="58">
+        <div xmlns="http://www.w3.org/1999/xhtml" class="fo-node" data-tip="wallet">나의 전자지갑</div>
+      </foreignObject>
+
+      <foreignObject x="200" y="110" width="140" height="58">
+        <div xmlns="http://www.w3.org/1999/xhtml" class="fo-node" data-tip="badge">디지털 배지</div>
+      </foreignObject>
+
+      <foreignObject x="380" y="110" width="140" height="58">
+        <div xmlns="http://www.w3.org/1999/xhtml" class="fo-node" data-tip="resume">디지털 이력서</div>
+      </foreignObject>
+
+      <foreignObject x="560" y="110" width="140" height="58">
+        <div xmlns="http://www.w3.org/1999/xhtml" class="fo-node" data-tip="history">이용 내역</div>
+      </foreignObject>
+
+      <foreignObject x="740" y="110" width="140" height="58">
+        <div xmlns="http://www.w3.org/1999/xhtml" class="fo-node" data-tip="submit">제출 내역</div>
+      </foreignObject>
+
+      <!-- Level 2 -->
+      <foreignObject x="130" y="230" width="140" height="58">
+        <div xmlns="http://www.w3.org/1999/xhtml" class="fo-node" data-tip="badgelist">배지 목록 (제출)</div>
+      </foreignObject>
+
+      <foreignObject x="320" y="230" width="140" height="58">
+        <div xmlns="http://www.w3.org/1999/xhtml" class="fo-node" data-tip="resumelist">이력서 목록 (제출)</div>
+      </foreignObject>
+
+      <!-- Level 3: 발급 -->
+      <foreignObject x="200" y="310" width="160" height="58">
+        <div xmlns="http://www.w3.org/1999/xhtml" class="fo-node node-accent" data-tip="issue">발급 <span class="badge key" style="font-size:9px">KEY ACTION</span></div>
+      </foreignObject>
+
+    </svg>
+  </div>
+</div>
+
+<!-- Tooltip -->
+<div class="tooltip" id="tooltip">
+  <div class="tt-title" id="ttTitle"></div>
+  <div class="tt-desc" id="ttDesc"></div>
+</div>
+
+<script>
+const tooltips = {
+  'root': { title: '모바일지갑 메인', desc: '서비스 진입점. 자격증명, 정부문서, 고용24 등 하위 서비스로 분기합니다.' },
+  '자격증명': { title: '자격증명', desc: '사용자의 디지털 자격증명을 관리하는 섹션입니다.' },
+  '정부전자문서': { title: '정부 전자문서지갑', desc: '정부 발급 전자문서를 저장·관리하는 지갑 서비스입니다.' },
+  '모두의증명': { title: '모두의 증명', desc: '다양한 기관의 증명서를 디지털로 발급받는 서비스입니다.' },
+  '국민비서': { title: '국민비서', desc: '생애주기별 공공서비스 알림 및 안내 서비스입니다.' },
+  'qnet': { title: 'Q-Net', desc: '국가기술자격 취득 관련 정보 및 증명 서비스입니다.' },
+  'goyo24': { title: '고용24', desc: '취업지원 디지털 증명 및 제출 서비스 진입점입니다.' },
+  'goyo24-root': { title: '고용24 취업지원 서비스', desc: '전체 서비스 루트 노드. 5개 주요 기능으로 구성됩니다.' },
+  'wallet': { title: '나의 전자지갑', desc: '발급된 디지털 배지와 이력서를 보관하는 개인 지갑입니다.' },
+  'badge': { title: '디지털 배지', desc: '취업 관련 경력·역량을 증명하는 디지털 배지 관리 섹션입니다.' },
+  'resume': { title: '디지털 이력서', desc: '구직자의 이력서를 디지털로 생성·관리·제출하는 섹션입니다.' },
+  'history': { title: '이용 내역', desc: '서비스 이용 전반의 기록과 이력을 확인하는 섹션입니다.' },
+  'submit': { title: '제출 내역', desc: '기업 등에 제출된 문서의 현황과 이력을 관리합니다.' },
+  'badgelist': { title: '배지 목록 (제출)', desc: '제출 가능한 디지털 배지 리스트를 표시하고 선택합니다.' },
+  'resumelist': { title: '이력서 목록 (제출)', desc: '제출 가능한 이력서 리스트를 표시하고 선택합니다.' },
+  'issue': { title: '발급', desc: '선택한 배지 또는 이력서를 공식 발급 처리하는 핵심 액션 화면입니다.' },
+};
+
+const tooltip = document.getElementById('tooltip');
+const ttTitle = document.getElementById('ttTitle');
+const ttDesc  = document.getElementById('ttDesc');
+
+document.addEventListener('mousemove', e => {
+  tooltip.style.left = (e.clientX + 16) + 'px';
+  tooltip.style.top  = (e.clientY + 16) + 'px';
+});
+
+document.querySelectorAll('[data-tip]').forEach(el => {
+  el.addEventListener('mouseenter', e => {
+    const key = el.getAttribute('data-tip');
+    const data = tooltips[key];
+    if (!data) return;
+    ttTitle.textContent = data.title;
+    ttDesc.textContent  = data.desc;
+    tooltip.classList.add('visible');
+  });
+  el.addEventListener('mouseleave', () => {
+    tooltip.classList.remove('visible');
+  });
+});
+
+// Animate connector lines in sequence
+const lines = document.querySelectorAll('.connector-line');
+lines.forEach((line, i) => {
+  const len = line.getTotalLength ? line.getTotalLength() : 100;
+  line.style.strokeDasharray = len;
+  line.style.strokeDashoffset = len;
+  line.style.transition = `stroke-dashoffset 0.5s ease ${0.6 + i * 0.07}s`;
+  setTimeout(() => { line.style.strokeDashoffset = 0; }, 50);
+});
+
+// Highlight path on flow node hover
+document.querySelectorAll('.flow-row .node').forEach(node => {
+  node.addEventListener('mouseenter', () => {
+    document.querySelectorAll('.flow-row .node').forEach(n => n.style.opacity = '0.4');
+    node.style.opacity = '1';
+  });
+  node.addEventListener('mouseleave', () => {
+    document.querySelectorAll('.flow-row .node').forEach(n => n.style.opacity = '1');
+  });
+});
+</script>
+</body>
+</html>
