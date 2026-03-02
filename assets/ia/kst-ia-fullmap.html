@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KST 전통문화혁신플랫폼 — Full IA Map</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=DM+Mono:wght@400;500&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #111318;
+  --surface: #1a1d25;
+  --surface2: #20232e;
+  --border: rgba(255,255,255,0.08);
+  --border2: rgba(255,255,255,0.14);
+  --text: #eceef4;
+  --muted: #676b7e;
+  --dim: #3a3e50;
+
+  --c-red: #e03c2f;
+  --c-red-soft: rgba(224,60,47,0.12);
+  --c-blue: #3b6be8;
+  --c-blue-soft: rgba(59,107,232,0.12);
+  --c-purple: #7c42e8;
+  --c-purple-soft: rgba(124,66,232,0.12);
+  --c-teal: #1fa88a;
+  --c-teal-soft: rgba(31,168,138,0.12);
+  --c-amber: #d4900a;
+  --c-amber-soft: rgba(212,144,10,0.12);
+  --c-pink: #c2386e;
+  --c-pink-soft: rgba(194,56,110,0.12);
+  --c-slate: #5a7fa0;
+  --c-slate-soft: rgba(90,127,160,0.12);
+}
+
+html, body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Noto Sans KR', sans-serif;
+  min-height: 100vh;
+}
+
+/* ── PAGE HEADER ── */
+.page-header {
+  padding: 40px 56px 28px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  position: relative;
+  overflow: hidden;
+}
+
+.page-header::before {
+  content: 'IA';
+  position: absolute;
+  right: 40px; top: -10px;
+  font-family: 'Syne', sans-serif;
+  font-size: 140px;
+  font-weight: 800;
+  color: rgba(255,255,255,0.025);
+  pointer-events: none;
+  user-select: none;
+  line-height: 1;
+}
+
+.ph-left .eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.ph-left h1 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(22px, 3vw, 40px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.ph-left h1 em {
+  font-style: normal;
+  color: var(--c-red);
+}
+
+.ph-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.ph-chip {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  padding: 4px 12px;
+  border-radius: 2px;
+  border: 1px solid var(--border2);
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+.ph-chip.hi { border-color: var(--c-red); color: var(--c-red); background: var(--c-red-soft); }
+
+/* ── LEGEND BAR ── */
+.legend-bar {
+  padding: 14px 56px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.lg-item {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 11px;
+  color: var(--muted);
+  font-family: 'DM Mono', monospace;
+  letter-spacing: 0.06em;
+}
+
+.lg-swatch {
+  width: 24px; height: 10px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+/* ── CANVAS ── */
+.canvas {
+  padding: 40px 56px 80px;
+  overflow-x: auto;
+}
+
+/* ── IA TABLE LAYOUT ── */
+.ia-table {
+  width: 100%;
+  min-width: 960px;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+/* ── LEVEL ROWS ── */
+.level-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  color: var(--dim);
+  text-transform: uppercase;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+  padding: 0 8px;
+  white-space: nowrap;
+  vertical-align: middle;
+  width: 28px;
+}
+
+/* ── ROOT NODE ── */
+.node-root {
+  background: var(--text);
+  color: var(--bg);
+  border-radius: 8px;
+  padding: 10px 24px;
+  font-size: 14px;
+  font-weight: 900;
+  font-family: 'Syne', sans-serif;
+  letter-spacing: -0.01em;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+/* ── SECTION NODES (L1) ── */
+.node-l1 {
+  border-radius: 6px;
+  padding: 8px 14px;
+  font-size: 12.5px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  border: 1.5px solid;
+  cursor: default;
+  transition: filter 0.2s, transform 0.2s;
+  position: relative;
+}
+
+.node-l1:hover {
+  filter: brightness(1.2);
+  transform: translateY(-2px);
+}
+
+/* ── L2 NODES ── */
+.node-l2 {
+  border-radius: 5px;
+  padding: 6px 12px;
+  font-size: 11.5px;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  border: 1px solid;
+  cursor: default;
+  transition: filter 0.2s, transform 0.2s;
+}
+
+.node-l2:hover {
+  filter: brightness(1.15);
+  transform: translateY(-1px);
+}
+
+/* ── L3 NODES ── */
+.node-l3 {
+  border-radius: 4px;
+  padding: 4px 10px;
+  font-size: 11px;
+  font-weight: 400;
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  border: 1px solid;
+  color: var(--muted);
+  border-color: var(--border2);
+  background: var(--surface2);
+  transition: border-color 0.2s;
+}
+
+.node-l3:hover { border-color: rgba(255,255,255,0.3); color: var(--text); }
+
+/* ── SPECIAL NODES ── */
+.node-key {
+  border-color: var(--c-red) !important;
+  background: var(--c-red-soft) !important;
+  color: var(--c-red) !important;
+  font-weight: 700 !important;
+}
+
+.node-kist {
+  border-color: var(--c-amber) !important;
+  background: var(--c-amber-soft) !important;
+  color: var(--c-amber) !important;
+  font-size: 10px !important;
+}
+
+/* ── COLOR THEMES per section ── */
+.t-red   { background: var(--c-red-soft);    border-color: var(--c-red);    color: var(--c-red); }
+.t-blue  { background: var(--c-blue-soft);   border-color: var(--c-blue);   color: var(--c-blue); }
+.t-purple{ background: var(--c-purple-soft); border-color: var(--c-purple); color: var(--c-purple); }
+.t-teal  { background: var(--c-teal-soft);   border-color: var(--c-teal);   color: var(--c-teal); }
+.t-amber { background: var(--c-amber-soft);  border-color: var(--c-amber);  color: var(--c-amber); }
+.t-pink  { background: var(--c-pink-soft);   border-color: var(--c-pink);   color: var(--c-pink); }
+.t-slate { background: var(--c-slate-soft);  border-color: var(--c-slate);  color: var(--c-slate); }
+
+/* ── CONNECTOR LINES via SVG overlay ── */
+.ia-wrapper {
+  position: relative;
+}
+
+/* ── SECTION BLOCK ── */
+.section-block {
+  opacity: 0;
+  animation: fadeUp 0.5s ease forwards;
+}
+
+/* ── GRID LAYOUT ── */
+.ia-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+
+/* Top: root row */
+.row-root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 0 0;
+  opacity: 0;
+  animation: fadeUp 0.6s ease 0.05s forwards;
+}
+
+/* Connector from root down */
+.root-connector {
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  height: 32px;
+  opacity: 0;
+  animation: fadeIn 0.4s ease 0.3s forwards;
+}
+
+.root-connector svg { overflow: visible; }
+
+/* L1 sections row */
+.row-l1 {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  opacity: 0;
+  animation: fadeUp 0.5s ease 0.35s forwards;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.section-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 120px;
+  flex: 1;
+  max-width: 180px;
+  position: relative;
+}
+
+/* vertical line from bus to L1 node */
+.v-conn {
+  width: 1.5px;
+  background: var(--border2);
+  flex-shrink: 0;
+}
+
+/* horizontal bus line */
+.bus-line {
+  height: 1.5px;
+  background: var(--border2);
+  position: absolute;
+  top: 0;
+}
+
+/* L2 children area */
+.l2-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding-top: 6px;
+  width: 100%;
+}
+
+.l2-row {
+  display: flex;
+  justify-content: center;
+}
+
+.l3-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding-top: 4px;
+}
+
+/* ── FULL LAYOUT using SVG-driven approach ── */
+
+.ia-svg-container {
+  position: relative;
+  width: 100%;
+  min-width: 1100px;
+}
+
+.ia-svg {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.ia-nodes {
+  position: relative;
+}
+
+/* ── FLEXBOX TREE APPROACH ── */
+.tree-root-row {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0;
+  opacity: 0;
+  animation: fadeUp 0.6s ease 0.1s forwards;
+}
+
+.tree-l1-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 0;
+  opacity: 0;
+  animation: fadeUp 0.6s ease 0.3s forwards;
+}
+
+.tree-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  min-width: 0;
+}
+
+.tree-col-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 0 4px;
+}
+
+.tree-children {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  width: 100%;
+  margin-top: 6px;
+}
+
+.tree-child-item {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.tree-grandchildren {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  margin-top: 5px;
+  width: 100%;
+}
+
+/* vertical tick lines */
+.tick-v {
+  width: 1px;
+  background: var(--border2);
+  flex-shrink: 0;
+}
+
+.h20 { height: 20px; }
+.h14 { height: 14px; }
+.h10 { height: 10px; }
+
+/* ── NODE STYLES (final) ── */
+.n-root {
+  background: var(--text);
+  color: #111318;
+  border-radius: 10px;
+  padding: 12px 28px;
+  font-size: 15px;
+  font-weight: 900;
+  font-family: 'Syne', sans-serif;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+}
+
+.n-l1 {
+  border-radius: 7px;
+  padding: 8px 14px;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+  border: 1.5px solid;
+  cursor: default;
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  max-width: 150px;
+}
+
+.n-l1:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.3); }
+
+.n-l2 {
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-size: 11px;
+  font-weight: 500;
+  white-space: nowrap;
+  border: 1px solid;
+  cursor: default;
+  transition: transform 0.15s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  max-width: 140px;
+}
+
+.n-l2:hover { transform: translateY(-1px); }
+
+.n-l3 {
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 10.5px;
+  font-weight: 400;
+  white-space: nowrap;
+  border: 1px solid var(--border2);
+  background: var(--surface2);
+  color: var(--muted);
+  cursor: default;
+  transition: border-color 0.15s, color 0.15s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  max-width: 140px;
+}
+
+.n-l3:hover { border-color: rgba(255,255,255,0.25); color: var(--text); }
+
+.n-key {
+  border-color: var(--c-red) !important;
+  background: var(--c-red-soft) !important;
+  color: var(--c-red) !important;
+  font-weight: 700 !important;
+}
+
+.n-sys {
+  border-color: var(--c-amber) !important;
+  background: var(--c-amber-soft) !important;
+  color: var(--c-amber) !important;
+  font-size: 10px !important;
+}
+
+/* ── SECTION NUMBERS ── */
+.sec-num {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  opacity: 0.6;
+  margin-right: 2px;
+}
+
+/* ── TOOLTIP ── */
+.tip {
+  position: fixed;
+  background: var(--surface2);
+  border: 1px solid var(--border2);
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 11.5px;
+  color: var(--text);
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: all 0.18s ease;
+  z-index: 200;
+  max-width: 220px;
+  line-height: 1.7;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+}
+
+.tip.show { opacity: 1; transform: translateY(0); }
+.tip-title { font-weight: 700; margin-bottom: 3px; }
+.tip-desc { color: var(--muted); font-size: 10.5px; }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:translateY(0); } }
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@keyframes drawLine {
+  from { stroke-dashoffset: 1000; }
+  to   { stroke-dashoffset: 0; }
+}
+
+.draw-line {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: drawLine 1.2s ease 0.5s forwards;
+}
+
+/* ── SVG connector styles ── */
+.conn { stroke: var(--border2); stroke-width: 1.5; fill: none; }
+.conn-accent { stroke: var(--c-red); stroke-width: 1.5; fill: none; opacity: 0.4; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 800px) {
+  .page-header, .legend-bar, .canvas { padding-left: 20px; padding-right: 20px; }
+  .ia-svg-container { min-width: 900px; }
+}
+</style>
+</head>
+<body>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="ph-left">
+    <div class="eyebrow">Information Architecture · Full Map</div>
+    <h1>KST 전통문화<em>혁신플랫폼</em><br>전체 IA 구조도</h1>
+  </div>
+  <div class="ph-right">
+    <span class="ph-chip hi">IA Diagram</span>
+    <span class="ph-chip">3 Levels</span>
+    <span class="ph-chip">7 Sections</span>
+  </div>
+</div>
+
+<!-- LEGEND -->
+<div class="legend-bar">
+  <div class="lg-item"><div class="lg-swatch" style="background:var(--text)"></div>루트 (Home)</div>
+  <div class="lg-item"><div class="lg-swatch" style="background:var(--c-red-soft);border:1.5px solid var(--c-red)"></div>대메뉴 (L1) · 소통·참여</div>
+  <div class="lg-item"><div class="lg-swatch" style="background:var(--c-blue-soft);border:1.5px solid var(--c-blue)"></div>대메뉴 (L1) · 정보</div>
+  <div class="lg-item"><div class="lg-swatch" style="background:var(--c-teal-soft);border:1.5px solid var(--c-teal)"></div>중메뉴 (L2)</div>
+  <div class="lg-item"><div class="lg-swatch" style="background:var(--surface2);border:1px solid var(--border2)"></div>세부 페이지 (L3)</div>
+  <div class="lg-item"><div class="lg-swatch" style="background:var(--c-red-soft);border:1.5px solid var(--c-red)"></div>핵심 액션</div>
+  <div class="lg-item"><div class="lg-swatch" style="background:var(--c-amber-soft);border:1.5px solid var(--c-amber)"></div>시스템 처리</div>
+</div>
+
+<!-- CANVAS -->
+<div class="canvas">
+<div class="ia-svg-container" id="iaContainer">
+
+  <!-- ROOT -->
+  <div class="tree-root-row" id="rootRow">
+    <div class="n-root">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="#c8392b" stroke-width="1.5"/><circle cx="7" cy="7" r="2.5" fill="#c8392b"/></svg>
+      KST 전통문화혁신플랫폼
+    </div>
+  </div>
+
+  <!-- ROOT → L1 CONNECTOR (SVG) -->
+  <div style="position:relative; height:48px; opacity:0; animation:fadeIn 0.4s ease 0.4s forwards;">
+    <svg width="100%" height="48" style="position:absolute;top:0;left:0;overflow:visible;" id="connSvg">
+      <!-- drawn by JS -->
+    </svg>
+  </div>
+
+  <!-- L1 ROW + all children -->
+  <div class="tree-l1-row" id="l1Row">
+
+    <!-- 01 플랫폼 소개 -->
+    <div class="tree-col" style="animation-delay:0.35s">
+      <div class="tree-col-inner">
+        <div class="n-l1 t-blue"><span class="sec-num">01</span>플랫폼 소개</div>
+        <div class="tick-v h14"></div>
+        <div class="tree-children">
+          <div class="tree-child-item"><div class="n-l2 t-blue">플랫폼 소개</div></div>
+          <div class="tree-child-item"><div class="n-l2 t-blue">관련 사업</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 02 주요분야 -->
+    <div class="tree-col" style="animation-delay:0.4s">
+      <div class="tree-col-inner">
+        <div class="n-l1 t-teal"><span class="sec-num">02</span>주요분야</div>
+        <div class="tick-v h14"></div>
+        <div class="tree-children">
+          <div class="tree-child-item"><div class="n-l2 t-teal" style="font-size:10.5px">전통문화 중점분야</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 03 전문가·기업 -->
+    <div class="tree-col" style="animation-delay:0.45s">
+      <div class="tree-col-inner">
+        <div class="n-l1 t-purple"><span class="sec-num">03</span>전문가·기업</div>
+        <div class="tick-v h14"></div>
+        <div class="tree-children">
+          <div class="tree-child-item"><div class="n-l2 t-purple">전문가 소개</div></div>
+          <div class="tree-child-item"><div class="n-l2 t-purple">기업 소개</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 04 소통·참여 -->
+    <div class="tree-col" style="animation-delay:0.5s">
+      <div class="tree-col-inner">
+        <div class="n-l1 t-red"><span class="sec-num">04</span>소통·참여</div>
+        <div class="tick-v h14"></div>
+        <div class="tree-children">
+          <!-- 수요조사 -->
+          <div class="tree-child-item">
+            <div class="n-l2 t-red" style="font-size:10.5px" data-tip="수요조사" data-desc="기술수요·애로기술 접수 및 전문가 답변">상시 수요조사 창구</div>
+          </div>
+          <div class="tick-v h10"></div>
+          <div class="tree-grandchildren">
+            <div class="tree-child-item"><div class="n-l3">양식 작성</div></div>
+            <div class="tree-child-item"><div class="n-l3">작성완료 및 등록</div></div>
+            <div class="tree-child-item"><div class="n-l3 n-key">발급 / 답변등록</div></div>
+            <div class="tree-child-item"><div class="n-l3 n-sys">KIST 이메일 알림</div></div>
+          </div>
+          <!-- QA -->
+          <div class="tick-v h10" style="margin-top:8px"></div>
+          <div class="tree-child-item" style="margin-top:2px">
+            <div class="n-l2 t-red" data-tip="Q&A 게시판" data-desc="공개글·비공개글·답변·댓글·좋아요">Q&A</div>
+          </div>
+          <div class="tick-v h10"></div>
+          <div class="tree-grandchildren">
+            <div class="tree-child-item"><div class="n-l3">글등록 (공개/비공개)</div></div>
+            <div class="tree-child-item"><div class="n-l3">답변 / 댓글 / 좋아요</div></div>
+            <div class="tree-child-item"><div class="n-l3 n-sys">비공개 시 이메일 알림</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 05 공지사항 -->
+    <div class="tree-col" style="animation-delay:0.55s">
+      <div class="tree-col-inner">
+        <div class="n-l1 t-amber"><span class="sec-num">05</span>공지사항</div>
+        <div class="tick-v h14"></div>
+        <div class="tree-children">
+          <div class="tree-child-item"><div class="n-l2 t-amber">공지사항</div></div>
+          <div class="tree-child-item"><div class="n-l2 t-amber">FAQ</div></div>
+          <div class="tree-child-item"><div class="n-l2 t-amber">오시는 길</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 06 지원단 소개 -->
+    <div class="tree-col" style="animation-delay:0.6s">
+      <div class="tree-col-inner">
+        <div class="n-l1 t-pink"><span class="sec-num">06</span>지원단 소개</div>
+        <div class="tick-v h14"></div>
+        <div class="tree-children">
+          <div class="tree-child-item"><div class="n-l2 t-pink">인사말</div></div>
+          <div class="tree-child-item"><div class="n-l2 t-pink">지원단 소개</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 07 이용안내 -->
+    <div class="tree-col" style="animation-delay:0.65s">
+      <div class="tree-col-inner">
+        <div class="n-l1 t-slate"><span class="sec-num">07</span>이용안내</div>
+        <div class="tick-v h14"></div>
+        <div class="tree-children">
+          <div class="tree-child-item"><div class="n-l2 t-slate" style="font-size:10.5px">이용약관</div></div>
+          <div class="tree-child-item"><div class="n-l2 t-slate" style="font-size:10.5px">개인정보처리방침</div></div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /l1Row -->
+
+  <!-- ─── CROSS-CUTTING: 로그인/회원가입 (부유 박스) ─── -->
+  <div style="margin-top: 40px; opacity:0; animation: fadeUp 0.5s ease 0.8s forwards;">
+    <div style="
+      border: 1px dashed rgba(255,255,255,0.15);
+      border-radius: 10px;
+      padding: 20px 24px;
+      background: rgba(255,255,255,0.02);
+    ">
+      <div style="font-family:'DM Mono',monospace; font-size:9px; letter-spacing:0.2em; color:var(--muted); text-transform:uppercase; margin-bottom:14px;">
+        공통 시스템 — 로그인 · 회원관리 (전 페이지 연결)
+      </div>
+      <div style="display:flex; gap:12px; flex-wrap:wrap; align-items:flex-start;">
+
+        <!-- 회원가입 -->
+        <div style="display:flex; flex-direction:column; align-items:center; gap:5px;">
+          <div class="n-l2 t-blue" style="max-width:none">회원가입</div>
+          <div style="display:flex; gap:5px; flex-wrap:wrap; justify-content:center;">
+            <div class="n-l3">일반회원</div>
+            <div class="n-l3">전문가 회원</div>
+            <div class="n-l3">전문기업 회원</div>
+          </div>
+          <div class="n-l3 n-sys" style="max-width:none; font-size:10px; margin-top:2px;">전문가·기업: KIST 승인 (최대 7일)</div>
+        </div>
+
+        <div style="width:1px; background:var(--border); align-self:stretch;"></div>
+
+        <!-- 로그인 -->
+        <div style="display:flex; flex-direction:column; align-items:center; gap:5px;">
+          <div class="n-l2 t-blue" style="max-width:none">간편로그인</div>
+          <div style="display:flex; gap:5px; flex-wrap:wrap; justify-content:center;">
+            <div class="n-l3">이메일 인증</div>
+            <div class="n-l3">SMS 인증</div>
+          </div>
+        </div>
+
+        <div style="width:1px; background:var(--border); align-self:stretch;"></div>
+
+        <!-- 아이디/비번 분실 -->
+        <div style="display:flex; flex-direction:column; align-items:center; gap:5px;">
+          <div class="n-l2 t-blue" style="max-width:none">아이디·비밀번호 찾기</div>
+          <div style="display:flex; gap:5px; flex-wrap:wrap; justify-content:center;">
+            <div class="n-l3">이메일 인증</div>
+            <div class="n-l3">임시 비밀번호 발급</div>
+          </div>
+        </div>
+
+        <div style="width:1px; background:var(--border); align-self:stretch;"></div>
+
+        <!-- 마이페이지 -->
+        <div style="display:flex; flex-direction:column; align-items:center; gap:5px;">
+          <div class="n-l2 t-purple" style="max-width:none">마이페이지</div>
+          <div style="display:flex; gap:5px; flex-wrap:wrap; justify-content:center;">
+            <div class="n-l3">프로필</div>
+            <div class="n-l3">회원정보 수정</div>
+            <div class="n-l3">알림설정</div>
+            <div class="n-l3">나의 문의 및 답변</div>
+            <div class="n-l3">수요조사 내역</div>
+            <div class="n-l3">Q&A 내역</div>
+            <div class="n-l3">내가 쓴 게시물</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div><!-- /ia-svg-container -->
+</div><!-- /canvas -->
+
+<!-- TOOLTIP -->
+<div class="tip" id="tip">
+  <div class="tip-title" id="tipTitle"></div>
+  <div class="tip-desc" id="tipDesc"></div>
+</div>
+
+<script>
+// ── Draw root → L1 connector lines via SVG ──
+function drawConnectors() {
+  const svg = document.getElementById('connSvg');
+  const rootRow = document.getElementById('rootRow');
+  const l1Row = document.getElementById('l1Row');
+  const container = document.getElementById('iaContainer');
+
+  const rootRect = rootRow.querySelector('.n-root').getBoundingClientRect();
+  const containerRect = container.getBoundingClientRect();
+  const svgRect = svg.getBoundingClientRect();
+
+  const rootCX = rootRect.left + rootRect.width / 2 - svgRect.left;
+  const rootBottom = 0;
+  const busY = 36;
+
+  const cols = l1Row.querySelectorAll('.tree-col');
+  const points = [];
+
+  cols.forEach(col => {
+    const n = col.querySelector('.n-l1');
+    if (!n) return;
+    const r = n.getBoundingClientRect();
+    const cx = r.left + r.width / 2 - svgRect.left;
+    points.push(cx);
+  });
+
+  if (points.length === 0) return;
+
+  const minX = Math.min(...points);
+  const maxX = Math.max(...points);
+
+  svg.innerHTML = '';
+
+  // vertical from root down
+  const lineDown = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+  lineDown.setAttribute('x1', rootCX); lineDown.setAttribute('y1', 0);
+  lineDown.setAttribute('x2', rootCX); lineDown.setAttribute('y2', busY);
+  lineDown.setAttribute('class', 'conn draw-line');
+  svg.appendChild(lineDown);
+
+  // horizontal bus
+  const bus = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+  bus.setAttribute('x1', minX); bus.setAttribute('y1', busY);
+  bus.setAttribute('x2', maxX); bus.setAttribute('y2', busY);
+  bus.setAttribute('class', 'conn draw-line');
+  svg.appendChild(bus);
+
+  // drop lines to each col
+  points.forEach((cx, i) => {
+    const drop = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    drop.setAttribute('x1', cx); drop.setAttribute('y1', busY);
+    drop.setAttribute('x2', cx); drop.setAttribute('y2', 48);
+    drop.setAttribute('class', 'conn draw-line');
+    svg.appendChild(drop);
+  });
+}
+
+// Run after fonts & layout settle
+setTimeout(drawConnectors, 400);
+window.addEventListener('resize', () => setTimeout(drawConnectors, 100));
+
+// ── Tooltip ──
+const tip = document.getElementById('tip');
+const tipTitle = document.getElementById('tipTitle');
+const tipDesc  = document.getElementById('tipDesc');
+
+document.addEventListener('mousemove', e => {
+  tip.style.left = (e.clientX + 14) + 'px';
+  tip.style.top  = (e.clientY + 14) + 'px';
+});
+
+document.querySelectorAll('[data-tip]').forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    tipTitle.textContent = el.dataset.tip;
+    tipDesc.textContent  = el.dataset.desc || '';
+    tip.classList.add('show');
+  });
+  el.addEventListener('mouseleave', () => tip.classList.remove('show'));
+});
+
+// ── Stagger L1 cols ──
+document.querySelectorAll('.tree-col').forEach((col, i) => {
+  col.style.opacity = '0';
+  col.style.animation = `fadeUp 0.5s ease ${0.35 + i * 0.07}s forwards`;
+});
+</script>
+</body>
+</html>
