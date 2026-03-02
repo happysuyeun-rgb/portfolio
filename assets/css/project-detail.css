@@ -472,6 +472,84 @@ body.project-egov .project-hero .mockup-wrap.mockup-phone .mockup-inner img{
 .project-overview .glass-card li{
   margin-bottom: 8px;
 }
+
+/* Project Meta Bar */
+.project-meta-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 32px;
+  margin-bottom: 40px;
+  padding: 20px 24px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+}
+.meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.meta-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #a78bfa;
+}
+.meta-value {
+  font-size: 13px;
+  color: rgba(255,255,255,0.75);
+}
+
+/* Project Decision — 핵심 의사결정 */
+.project-decision {
+  margin-top: 80px;
+  margin-bottom: 0;
+}
+.project-decision .section-title {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 700;
+  color: #fff;
+  margin: 0;
+  text-align: center;
+}
+.decision-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  margin-top: 32px;
+}
+.decision-card {
+  padding: 28px 24px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  transition: border-color 0.2s, background 0.2s;
+}
+.decision-card:hover {
+  border-color: rgba(167,139,250,0.4);
+  background: rgba(167,139,250,0.05);
+}
+.decision-num {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: #a78bfa;
+  margin-bottom: 12px;
+}
+.decision-card h3 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: rgba(255,255,255,0.92);
+  line-height: 1.4;
+}
+.decision-card p {
+  font-size: 13.5px;
+  line-height: 1.75;
+  color: rgba(255,255,255,0.55);
+}
+
 @media (max-width: 768px){
   .project-overview .overview-grid{
     grid-template-columns: 1fr;
