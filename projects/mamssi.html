@@ -92,6 +92,8 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 .hero-typewriter-cursor{opacity:1;animation:heroCursorBlink 1s step-end infinite;}
 .hero-ttl.typed .hero-typewriter-cursor{display:none;}
 @keyframes heroCursorBlink{50%{opacity:0;}}
+.hero-cta-btns{display:none !important;}
+#cta .cta-btns{display:none !important;}
 
 .hero-en{
   font-size:11px;letter-spacing:.3em;text-transform:uppercase;
@@ -477,7 +479,7 @@ body.mamssi-detail .gnb.gnb-scrolled .gnb__toggle span{ background:#0f172a; }
       <span class="chip">Cursor AI 협업</span>
       <span class="chip" style="border-color:rgba(82,183,136,.4);color:#52b788;">● 스토어 등록 준비 중</span>
     </div>
-    <div style="display:flex;gap:10px;margin-top:36px;opacity:0;animation:fadeUp .8s ease 1.3s forwards;flex-wrap:wrap;">
+    <div class="hero-cta-btns" style="display:flex;gap:10px;margin-top:36px;opacity:0;animation:fadeUp .8s ease 1.3s forwards;flex-wrap:wrap;">
       <a href="https://mamssi-app.vercel.app" target="_blank" class="btn-f" style="font-size:13px;padding:13px 26px;">🌱 앱 체험하기</a>
       <a href="https://mamssi.vercel.app" target="_blank" class="btn-o" style="font-size:13px;padding:13px 26px;">홈페이지 보기 →</a>
     </div>
