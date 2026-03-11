@@ -1,0 +1,638 @@
+/* =========================================================
+   WORKFLOW PAGE — 고용24 상세와 동일 톤 (Aurora + Violet/Cyan/Blue)
+   ========================================================= */
+
+/* Hero — SEOAH WORKFLOW (타이핑) */
+.project-hero.workflow-hero {
+  min-height: 55vh;
+  padding: 100px 24px 64px;
+}
+.project-hero.workflow-hero h1 {
+  font-size: clamp(2.2rem, 5.5vw, 3.5rem);
+  letter-spacing: 0.08em;
+}
+.project-hero.workflow-hero .lead {
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+/* 컨테이너 */
+.workflow-content {
+  position: relative;
+  z-index: 1;
+  padding: 120px 48px 80px;
+}
+.workflow-wrap {
+  max-width: 860px;
+  margin: 0 auto;
+}
+@media (max-width: 768px) {
+  .workflow-content { padding: 100px 24px 60px; }
+}
+
+/* 톤 변수 (project-detail 고용24와 동일) */
+.workflow-content {
+  --wf-violet: #a78bfa;
+  --wf-cyan: #06b6d4;
+  --wf-blue: #60a5fa;
+  --wf-gray: #64748b;
+  --wf-border: rgba(255, 255, 255, 0.08);
+  --wf-surface: rgba(255, 255, 255, 0.05);
+  --wf-text: #cbd5e1;
+  --wf-muted: #94a3b8;
+  --wf-dim: #475569;
+  --wf-radius: 14px;
+  --wf-transition: 0.3s ease;
+}
+
+/* CORE COMPETENCIES */
+.core-competencies {
+  margin-bottom: 52px;
+  opacity: 0;
+  animation: wfFadeUp 0.6s ease 0.15s forwards;
+}
+.core-competencies-title {
+  font-family: 'DM Mono', monospace;
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin: 0 0 24px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(167, 139, 250, 0.35);
+}
+.comp-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.comp-card {
+  background: var(--wf-surface);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--wf-border);
+  border-radius: var(--wf-radius);
+  padding: 24px 22px;
+  transition: transform var(--wf-transition), border-color var(--wf-transition), box-shadow var(--wf-transition), background var(--wf-transition);
+}
+.comp-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+}
+.comp-card:first-child:hover {
+  border-color: rgba(167, 139, 250, 0.4);
+  background: rgba(167, 139, 250, 0.06);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25), 0 0 30px rgba(167, 139, 250, 0.12);
+}
+.comp-card:nth-child(2):hover {
+  border-color: rgba(96, 165, 250, 0.4);
+  background: rgba(96, 165, 250, 0.06);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25), 0 0 30px rgba(96, 165, 250, 0.12);
+}
+.comp-card:nth-child(3):hover {
+  border-color: rgba(6, 182, 212, 0.4);
+  background: rgba(6, 182, 212, 0.06);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25), 0 0 30px rgba(6, 182, 212, 0.12);
+}
+.comp-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  margin-bottom: 16px;
+  transition: transform var(--wf-transition), box-shadow var(--wf-transition);
+}
+.comp-card:hover .comp-icon {
+  transform: scale(1.08);
+}
+.comp-icon-violet {
+  background: rgba(167, 139, 250, 0.15);
+  color: var(--wf-violet);
+}
+.comp-icon-blue {
+  background: rgba(96, 165, 250, 0.15);
+  color: var(--wf-blue);
+}
+.comp-icon-cyan {
+  background: rgba(6, 182, 212, 0.15);
+  color: var(--wf-cyan);
+}
+.comp-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #f1f5f9;
+  margin: 0 0 14px;
+  line-height: 1.35;
+  transition: color var(--wf-transition);
+}
+.comp-card:first-child:hover .comp-title { color: var(--wf-violet); }
+.comp-card:nth-child(2):hover .comp-title { color: var(--wf-blue); }
+.comp-card:nth-child(3):hover .comp-title { color: var(--wf-cyan); }
+.comp-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 13px;
+  color: var(--wf-muted);
+  line-height: 1.85;
+  font-weight: 300;
+}
+.comp-list li {
+  position: relative;
+  padding-left: 14px;
+  margin-bottom: 6px;
+}
+.comp-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--wf-dim);
+  transition: background var(--wf-transition);
+}
+.comp-card:first-child:hover .comp-list li::before { background: var(--wf-violet); }
+.comp-card:nth-child(2):hover .comp-list li::before { background: var(--wf-blue); }
+.comp-card:nth-child(3):hover .comp-list li::before { background: var(--wf-cyan); }
+.comp-list li:last-child {
+  margin-bottom: 0;
+}
+@media (max-width: 768px) {
+  .comp-cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* HERO */
+.workflow-content .page-hero {
+  margin-bottom: 48px;
+  opacity: 0;
+  animation: wfFadeUp 0.8s ease 0.1s forwards;
+}
+.workflow-content .eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: var(--wf-violet);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.workflow-content .eyebrow::before {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 1px;
+  background: var(--wf-violet);
+  opacity: 0.5;
+}
+.workflow-content .page-hero h1 {
+  font-family: 'Gowun Batang', serif;
+  font-size: clamp(28px, 5vw, 48px);
+  font-weight: 700;
+  line-height: 1.25;
+  margin-bottom: 14px;
+  color: #f1f5f9;
+}
+.workflow-content .page-hero h1 em {
+  font-style: normal;
+  color: var(--wf-violet);
+}
+.workflow-content .page-hero .sub {
+  font-size: 15px;
+  color: var(--wf-muted);
+  font-weight: 300;
+  max-width: 560px;
+  line-height: 1.75;
+}
+
+/* 범례 */
+.workflow-content .legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 24px;
+  margin-bottom: 40px;
+  opacity: 0;
+  animation: wfFadeUp 0.6s ease 0.2s forwards;
+}
+.workflow-content .legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: var(--wf-muted);
+}
+.workflow-content .legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.workflow-content .legend-violet { background: var(--wf-violet); }
+.workflow-content .legend-cyan { background: var(--wf-cyan); }
+.workflow-content .legend-blue { background: var(--wf-blue); }
+.workflow-content .legend-gray { background: var(--wf-gray); }
+
+/* 섹션 라벨 — 가독성 강화 (글자 키움, 흰색) */
+.workflow-content .section-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 16px;
+  font-weight: 500;
+  color: #ffffff;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 28px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  opacity: 0;
+  animation: wfFadeUp 0.6s ease 0.25s forwards;
+}
+.workflow-content .skills-section .section-label {
+  font-size: 16px;
+  font-weight: 500;
+  color: #ffffff;
+  border-bottom-color: rgba(255, 255, 255, 0.15);
+}
+
+/* 플로우 */
+.workflow-content .flow {
+  display: flex;
+  flex-direction: column;
+}
+
+.workflow-content .step {
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  gap: 0 20px;
+  opacity: 0;
+}
+.workflow-content .step:nth-child(1)  { animation: wfFadeUp 0.5s ease 0.3s forwards; }
+.workflow-content .step:nth-child(2)  { animation: wfFadeUp 0.5s ease 0.36s forwards; }
+.workflow-content .step:nth-child(3)  { animation: wfFadeUp 0.5s ease 0.42s forwards; }
+.workflow-content .step:nth-child(4)  { animation: wfFadeUp 0.5s ease 0.48s forwards; }
+.workflow-content .step:nth-child(5)  { animation: wfFadeUp 0.5s ease 0.54s forwards; }
+.workflow-content .step:nth-child(6)  { animation: wfFadeUp 0.5s ease 0.6s forwards; }
+.workflow-content .step:nth-child(7)  { animation: wfFadeUp 0.5s ease 0.66s forwards; }
+.workflow-content .step:nth-child(8)  { animation: wfFadeUp 0.5s ease 0.72s forwards; }
+.workflow-content .step:nth-child(9)  { animation: wfFadeUp 0.5s ease 0.78s forwards; }
+.workflow-content .step:nth-child(10) { animation: wfFadeUp 0.5s ease 0.84s forwards; }
+.workflow-content .step:nth-child(11) { animation: wfFadeUp 0.5s ease 0.9s forwards; }
+
+.workflow-content .timeline {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.workflow-content .step-num {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  font-weight: 500;
+  flex-shrink: 0;
+  transition: transform var(--wf-transition), box-shadow var(--wf-transition);
+  position: relative;
+  z-index: 1;
+}
+.workflow-content .step:hover .step-num {
+  transform: scale(1.06);
+}
+.workflow-content .num-violet {
+  background: rgba(167, 139, 250, 0.15);
+  border: 1px solid rgba(167, 139, 250, 0.4);
+  color: var(--wf-violet);
+}
+.workflow-content .num-cyan {
+  background: rgba(6, 182, 212, 0.15);
+  border: 1px solid rgba(6, 182, 212, 0.4);
+  color: var(--wf-cyan);
+}
+.workflow-content .num-blue {
+  background: rgba(96, 165, 250, 0.15);
+  border: 1px solid rgba(96, 165, 250, 0.4);
+  color: var(--wf-blue);
+}
+.workflow-content .num-gray {
+  background: var(--wf-surface);
+  border: 1px solid var(--wf-border);
+  color: var(--wf-dim);
+}
+.workflow-content .num-sub {
+  width: 34px;
+  height: 34px;
+  font-size: 10px;
+  background: var(--wf-surface);
+  border: 1px dashed var(--wf-border);
+  color: var(--wf-dim);
+}
+
+.workflow-content .connector {
+  width: 1px;
+  flex: 1;
+  min-height: 16px;
+  background: var(--wf-border);
+}
+.workflow-content .connector.dashed {
+  background: repeating-linear-gradient(
+    to bottom,
+    var(--wf-border) 0,
+    var(--wf-border) 4px,
+    transparent 4px,
+    transparent 9px
+  );
+}
+.workflow-content .step:last-child .connector {
+  display: none;
+}
+
+/* 카드 — 글래스 톤 (고용24 glass-card와 유사) */
+.workflow-content .card {
+  background: var(--wf-surface);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--wf-border);
+  border-radius: var(--wf-radius);
+  padding: 20px 22px;
+  margin-bottom: 14px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color var(--wf-transition), background var(--wf-transition), transform var(--wf-transition);
+}
+.workflow-content .step-violet:hover .card {
+  border-color: rgba(167, 139, 250, 0.3);
+  background: rgba(167, 139, 250, 0.05);
+  transform: translateX(4px);
+}
+.workflow-content .step-cyan:hover .card {
+  border-color: rgba(6, 182, 212, 0.3);
+  background: rgba(6, 182, 212, 0.05);
+  transform: translateX(4px);
+}
+.workflow-content .step-blue:hover .card {
+  border-color: rgba(96, 165, 250, 0.3);
+  background: rgba(96, 165, 250, 0.05);
+  transform: translateX(4px);
+}
+.workflow-content .step-gray:hover .card,
+.workflow-content .sub-step:hover .card {
+  border-color: rgba(255, 255, 255, 0.12);
+  transform: translateX(4px);
+}
+
+.workflow-content .core-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: var(--wf-cyan);
+  background: rgba(6, 182, 212, 0.12);
+  border: 1px solid rgba(6, 182, 212, 0.25);
+  border-radius: 20px;
+  padding: 3px 10px;
+  margin-bottom: 10px;
+}
+
+.workflow-content .card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+.workflow-content .card-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--wf-text);
+  line-height: 1.45;
+}
+.workflow-content .title-violet { color: var(--wf-violet); }
+.workflow-content .title-cyan { color: var(--wf-cyan); }
+.workflow-content .title-blue { color: var(--wf-blue); }
+
+.workflow-content .card-badge {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  padding: 3px 8px;
+  border-radius: 20px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.workflow-content .badge-violet {
+  background: rgba(167, 139, 250, 0.15);
+  color: var(--wf-violet);
+  border: 1px solid rgba(167, 139, 250, 0.2);
+}
+.workflow-content .badge-cyan {
+  background: rgba(6, 182, 212, 0.15);
+  color: var(--wf-cyan);
+  border: 1px solid rgba(6, 182, 212, 0.2);
+}
+.workflow-content .badge-blue {
+  background: rgba(96, 165, 250, 0.15);
+  color: var(--wf-blue);
+  border: 1px solid rgba(96, 165, 250, 0.2);
+}
+.workflow-content .badge-gray {
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--wf-muted);
+  border: 1px solid var(--wf-border);
+}
+
+.workflow-content .card-desc {
+  font-size: 13px;
+  color: var(--wf-muted);
+  line-height: 1.75;
+  font-weight: 300;
+  margin-bottom: 12px;
+}
+
+.workflow-content .card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.workflow-content .tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  padding: 3px 9px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--wf-border);
+  border-radius: 5px;
+  color: var(--wf-dim);
+  transition: color var(--wf-transition), border-color var(--wf-transition);
+}
+.workflow-content .step-violet:hover .tag {
+  color: rgba(167, 139, 250, 0.8);
+  border-color: rgba(167, 139, 250, 0.15);
+}
+.workflow-content .step-cyan:hover .tag {
+  color: rgba(6, 182, 212, 0.8);
+  border-color: rgba(6, 182, 212, 0.15);
+}
+.workflow-content .step-blue:hover .tag {
+  color: rgba(96, 165, 250, 0.8);
+  border-color: rgba(96, 165, 250, 0.15);
+}
+
+/* 기술 스택 섹션 */
+.workflow-content .skills-section {
+  margin-top: 64px;
+  opacity: 0;
+  animation: wfFadeUp 0.6s ease 0.92s forwards;
+}
+.workflow-content .skills-section .section-label {
+  margin-bottom: 28px;
+  animation: none;
+  opacity: 1;
+}
+
+.workflow-content .skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+}
+.workflow-content .skill-card {
+  background: var(--wf-surface);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--wf-border);
+  border-radius: var(--wf-radius);
+  padding: 20px 22px;
+  transition: border-color var(--wf-transition), background var(--wf-transition), transform var(--wf-transition);
+}
+.workflow-content .skill-card:hover {
+  border-color: rgba(167, 139, 250, 0.25);
+  background: rgba(167, 139, 250, 0.04);
+  transform: translateY(-3px);
+}
+.workflow-content .skill-card-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.workflow-content .skill-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+.workflow-content .icon-violet { background: rgba(167, 139, 250, 0.15); }
+.workflow-content .icon-cyan { background: rgba(6, 182, 212, 0.15); }
+.workflow-content .icon-blue { background: rgba(96, 165, 250, 0.15); }
+.workflow-content .icon-gray { background: rgba(255, 255, 255, 0.06); }
+
+.workflow-content .skill-cat {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+.workflow-content .cat-violet { color: var(--wf-violet); }
+.workflow-content .cat-cyan { color: var(--wf-cyan); }
+.workflow-content .cat-blue { color: var(--wf-blue); }
+.workflow-content .cat-gray { color: var(--wf-muted); }
+
+.workflow-content .skill-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.workflow-content .skill-pill {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  padding: 4px 10px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--wf-border);
+  border-radius: 6px;
+  color: var(--wf-muted);
+  transition: color var(--wf-transition), border-color var(--wf-transition), background var(--wf-transition);
+}
+.workflow-content .skill-card:hover .skill-pill {
+  color: var(--wf-text);
+  border-color: rgba(167, 139, 250, 0.15);
+  background: rgba(167, 139, 250, 0.04);
+}
+
+/* 돌아가기 CTA */
+.workflow-content .back-cta {
+  margin-top: 64px;
+  padding-top: 36px;
+  border-top: 1px solid var(--wf-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  opacity: 0;
+  animation: wfFadeUp 0.6s ease 1s forwards;
+}
+.workflow-content .back-cta-left {
+  font-family: 'Gowun Batang', serif;
+  font-size: 15px;
+  color: var(--wf-muted);
+}
+.workflow-content .back-cta-left span {
+  color: var(--wf-violet);
+}
+.workflow-content .back-cta-left small {
+  font-size: 12px;
+  font-family: 'DM Mono', monospace;
+  color: var(--wf-dim);
+}
+.workflow-content .back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  color: var(--wf-muted);
+  text-decoration: none;
+  padding: 10px 20px;
+  border: 1px solid var(--wf-border);
+  border-radius: 8px;
+  background: var(--wf-surface);
+  transition: color var(--wf-transition), border-color var(--wf-transition), background var(--wf-transition);
+}
+.workflow-content .back-btn:hover {
+  color: var(--wf-violet);
+  border-color: rgba(167, 139, 250, 0.4);
+  background: rgba(167, 139, 250, 0.08);
+}
+
+@keyframes wfFadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 640px) {
+  .workflow-content .step {
+    grid-template-columns: 56px 1fr;
+    gap: 0 14px;
+  }
+  .workflow-content .skills-grid {
+    grid-template-columns: 1fr;
+  }
+  .workflow-content .back-cta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

@@ -918,6 +918,34 @@ html.motion .hero .badge:nth-child(4) { animation: heroFadeUp 0.9s ease 0.42s fo
   letter-spacing: .02em;
 }
 
+/* SYSTEM 섹션 — 워크플로우 링크 */
+.lxe-workflow-cta{
+  text-align: center;
+  margin-top: 32px;
+  position: relative;
+  z-index: 1;
+}
+.lxe-workflow-btn{
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 14px 24px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(135deg, #7c3aed 0%, #06b6d4 100%);
+  border-radius: 999px;
+  text-decoration: none;
+  letter-spacing: .02em;
+  box-shadow: 0 4px 20px rgba(124,58,237,.35);
+  transition: transform .25s ease, box-shadow .25s ease, filter .25s ease;
+}
+.lxe-workflow-btn:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(124,58,237,.45);
+  filter: brightness(1.08);
+}
+
 /* 다이어그램 컨테이너 — 3D perspective */
 .lxe-diagram{
   position: relative;
