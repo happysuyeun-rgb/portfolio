@@ -33,32 +33,42 @@
   <nav class="gnb" id="gnb">
     <a href="../index.html" class="gnb-logo">SEOAH</a>
     <ul class="gnb-menu">
-      <li><a href="../index.html#strengths">IDENTITY</a></li>
-      <li><a href="../index.html#personal-projects">PROJECTS</a></li>
-      <li><a href="../index.html#lxe">SYSTEM</a></li>
-      <li><a href="../index.html#more">MORE</a></li>
-      <li><a href="../index.html#contact">CONNECT</a></li>
+      <li><a href="../index.html#strengths" data-i18n="nav_identity">IDENTITY</a></li>
+      <li><a href="../index.html#personal-projects" data-i18n="nav_projects">PROJECTS</a></li>
+      <li><a href="../index.html#lxe" data-i18n="nav_system">SYSTEM</a></li>
+      <li><a href="../index.html#more" data-i18n="nav_more">MORE</a></li>
+      <li><a href="../index.html#contact" data-i18n="nav_contact">CONNECT</a></li>
     </ul>
+    <div class="lang-switch" aria-label="Language switch">
+      <button class="lang-current" type="button" aria-haspopup="true" aria-expanded="false">
+        <span class="lang-icon">🌐</span>
+        <span class="lang-label">KO</span>
+      </button>
+      <ul class="lang-menu" aria-label="Language options">
+        <li><button type="button" data-lang="ko">한글</button></li>
+        <li><button type="button" data-lang="en">English</button></li>
+      </ul>
+    </div>
     <button class="gnb__toggle" aria-label="메뉴 열기" aria-controls="gnb-dropdown" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
     <ul id="gnb-dropdown" class="gnb-dropdown" role="menu" aria-hidden="true">
-      <li><a href="../index.html#strengths" role="menuitem">IDENTITY</a></li>
-      <li><a href="../index.html#personal-projects" role="menuitem">PROJECTS</a></li>
-      <li><a href="../index.html#lxe" role="menuitem">SYSTEM</a></li>
-      <li><a href="../index.html#more" role="menuitem">MORE</a></li>
-      <li><a href="../index.html#contact" role="menuitem">CONNECT</a></li>
+      <li><a href="../index.html#strengths" role="menuitem" data-i18n="nav_identity">IDENTITY</a></li>
+      <li><a href="../index.html#personal-projects" role="menuitem" data-i18n="nav_projects">PROJECTS</a></li>
+      <li><a href="../index.html#lxe" role="menuitem" data-i18n="nav_system">SYSTEM</a></li>
+      <li><a href="../index.html#more" role="menuitem" data-i18n="nav_more">MORE</a></li>
+      <li><a href="../index.html#contact" role="menuitem" data-i18n="nav_contact">CONNECT</a></li>
     </ul>
   </nav>
 
   <main>
     <!-- Hero — SEOAH WORKFLOW (타이핑 효과) -->
     <header class="project-hero workflow-hero js-typed-section" data-typed-plain="SEOAH WORKFLOW" data-typed-highlight="WORKFLOW">
-      <span class="kicker">Workflow · 업무 흐름도</span>
+      <span class="kicker" data-i18n="workflow_hero_kicker">Workflow · 업무 흐름도</span>
       <h1 class="section-title-typed">
         <span class="typed-target"></span>
       </h1>
-      <p class="lead">기획부터 배포까지 혼자 완주하는 구조.<br>UX 기획 · 서비스 설계 · AI 기반 구현이 하나의 흐름으로 연결됩니다.</p>
+      <p class="lead" data-i18n="workflow_hero_lead">기획부터 배포까지 혼자 완주하는 구조.<br>UX 기획 · 서비스 설계 · AI 기반 구현이 하나의 흐름으로 연결됩니다.</p>
     </header>
 
     <!-- 워크플로우 콘텐츠 -->
@@ -66,46 +76,46 @@
       <div class="workflow-wrap">
         <!-- CORE COMPETENCIES -->
         <div class="core-competencies">
-          <h2 class="core-competencies-title">CORE COMPETENCIES</h2>
+          <h2 class="core-competencies-title" data-i18n="workflow_core_title">CORE COMPETENCIES</h2>
           <div class="comp-cards">
             <div class="comp-card">
               <div class="comp-icon comp-icon-violet">▣</div>
-              <h3 class="comp-title">서비스 구조 설계</h3>
+              <h3 class="comp-title" data-i18n="workflow_core_card1_title">서비스 구조 설계</h3>
               <ul class="comp-list">
-                <li>IA·플로우·정책 정의</li>
-                <li>사용자 유형별 분기 설계</li>
-                <li>권한 체계·RLS·접근성(WCAG)</li>
+                <li data-i18n="workflow_core_card1_li1">IA·플로우·정책 정의</li>
+                <li data-i18n="workflow_core_card1_li2">사용자 유형별 분기 설계</li>
+                <li data-i18n="workflow_core_card1_li3">권한 체계·RLS·접근성(WCAG)</li>
               </ul>
             </div>
             <div class="comp-card">
               <div class="comp-icon comp-icon-blue">◈</div>
-              <h3 class="comp-title">UX/UI 설계·디자인</h3>
+              <h3 class="comp-title" data-i18n="workflow_core_card2_title">UX/UI 설계·디자인</h3>
               <ul class="comp-list">
-                <li>화면설계서·기능정의서</li>
-                <li>Figma 컴포넌트·상태 정의</li>
-                <li>디자인 시스템 구축</li>
+                <li data-i18n="workflow_core_card2_li1">화면설계서·기능정의서</li>
+                <li data-i18n="workflow_core_card2_li2">Figma 컴포넌트·상태 정의</li>
+                <li data-i18n="workflow_core_card2_li3">디자인 시스템 구축</li>
               </ul>
             </div>
             <div class="comp-card">
               <div class="comp-icon comp-icon-cyan">⚡</div>
-              <h3 class="comp-title">AI 기반 직접 구현</h3>
+              <h3 class="comp-title" data-i18n="workflow_core_card3_title">AI 기반 직접 구현</h3>
               <ul class="comp-list">
-                <li>Cursor AI·React·Next.js</li>
-                <li>Supabase·Vercel 배포</li>
-                <li>동작 프로토타입 → 실서비스</li>
+                <li data-i18n="workflow_core_card3_li1">Cursor AI·React·Next.js</li>
+                <li data-i18n="workflow_core_card3_li2">Supabase·Vercel 배포</li>
+                <li data-i18n="workflow_core_card3_li3">동작 프로토타입 → 실서비스</li>
               </ul>
             </div>
           </div>
         </div>
 
         <div class="legend">
-          <div class="legend-item"><div class="legend-dot legend-violet"></div>기획 · 설계</div>
-          <div class="legend-item"><div class="legend-dot legend-cyan"></div>AI 구현 · 검증</div>
-          <div class="legend-item"><div class="legend-dot legend-blue"></div>디자인 · 협업</div>
-          <div class="legend-item"><div class="legend-dot legend-gray"></div>문서 · 정책</div>
+          <div class="legend-item"><div class="legend-dot legend-violet"></div><span data-i18n="workflow_legend_plan">기획 · 설계</span></div>
+          <div class="legend-item"><div class="legend-dot legend-cyan"></div><span data-i18n="workflow_legend_ai">AI 구현 · 검증</span></div>
+          <div class="legend-item"><div class="legend-dot legend-blue"></div><span data-i18n="workflow_legend_design">디자인 · 협업</span></div>
+          <div class="legend-item"><div class="legend-dot legend-gray"></div><span data-i18n="workflow_legend_docs">문서 · 정책</span></div>
         </div>
 
-        <div class="section-label">Process — 8 Steps</div>
+        <div class="section-label" data-i18n="workflow_process_label">Process — 8 Steps</div>
 
         <div class="flow">
           <div class="step step-violet">

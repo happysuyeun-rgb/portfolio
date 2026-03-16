@@ -29,32 +29,42 @@
   <nav class="gnb" id="gnb">
     <a href="../index.html" class="gnb-logo">SEOAH</a>
     <ul class="gnb-menu">
-      <li><a href="../index.html#strengths">IDENTITY</a></li>
-      <li><a href="../index.html#personal-projects">PROJECTS</a></li>
-      <li><a href="../index.html#lxe">SYSTEM</a></li>
-      <li><a href="../index.html#more">MORE</a></li>
-      <li><a href="../index.html#contact">CONNECT</a></li>
+      <li><a href="../index.html#strengths" data-i18n="nav_identity">IDENTITY</a></li>
+      <li><a href="../index.html#personal-projects" data-i18n="nav_projects">PROJECTS</a></li>
+      <li><a href="../index.html#lxe" data-i18n="nav_system">SYSTEM</a></li>
+      <li><a href="../index.html#more" data-i18n="nav_more">MORE</a></li>
+      <li><a href="../index.html#contact" data-i18n="nav_contact">CONNECT</a></li>
       </ul>
+    <div class="lang-switch" aria-label="Language switch">
+      <button class="lang-current" type="button" aria-haspopup="true" aria-expanded="false">
+        <span class="lang-icon">🌐</span>
+        <span class="lang-label">KO</span>
+      </button>
+      <ul class="lang-menu" aria-label="Language options">
+        <li><button type="button" data-lang="ko">한글</button></li>
+        <li><button type="button" data-lang="en">English</button></li>
+      </ul>
+    </div>
     <button class="gnb__toggle" aria-label="메뉴 열기" aria-controls="gnb-dropdown" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
     <ul id="gnb-dropdown" class="gnb-dropdown" role="menu" aria-hidden="true">
-      <li><a href="../index.html#strengths" role="menuitem">IDENTITY</a></li>
-      <li><a href="../index.html#personal-projects" role="menuitem">PROJECTS</a></li>
-      <li><a href="../index.html#lxe" role="menuitem">SYSTEM</a></li>
-      <li><a href="../index.html#more" role="menuitem">MORE</a></li>
-      <li><a href="../index.html#contact" role="menuitem">CONNECT</a></li>
+      <li><a href="../index.html#strengths" role="menuitem" data-i18n="nav_identity">IDENTITY</a></li>
+      <li><a href="../index.html#personal-projects" role="menuitem" data-i18n="nav_projects">PROJECTS</a></li>
+      <li><a href="../index.html#lxe" role="menuitem" data-i18n="nav_system">SYSTEM</a></li>
+      <li><a href="../index.html#more" role="menuitem" data-i18n="nav_more">MORE</a></li>
+      <li><a href="../index.html#contact" role="menuitem" data-i18n="nav_contact">CONNECT</a></li>
         </ul>
   </nav>
 
   <main>
     <!-- A. Hero — Cinematic Intro -->
     <header class="project-hero js-typed-section" data-typed-plain="PASS 모바일지갑 × 고용24" data-typed-highlight="고용24">
-      <span class="kicker">공공서비스 UX 기획 · PASS 모바일지갑 · 단독 기획</span>
+      <span class="kicker" data-i18n="goyong_hero_kicker">공공서비스 UX 기획 · PASS 모바일지갑 · 단독 기획</span>
       <h1 class="section-title-typed">
         <span class="typed-target"></span>
       </h1>
-      <p class="lead">취업준비생이 면접 당일, 스마트폰 하나로 경력증명 배지를 꺼내<br>기업 담당자에게 바로 제출할 수 있도록 —<br>PASS 모바일지갑 내 고용24 서비스의 전체 UX를<br>IA 설계부터 서비스 정책 정의, 화면설계서 작성까지 단독으로 기획했습니다.</p>
+      <p class="lead" data-i18n="goyong_hero_lead">취업준비생이 면접 당일, 스마트폰 하나로 경력증명 배지를 꺼내<br>기업 담당자에게 바로 제출할 수 있도록 —<br>PASS 모바일지갑 내 고용24 서비스의 전체 UX를<br>IA 설계부터 서비스 정책 정의, 화면설계서 작성까지 단독으로 기획했습니다.</p>
       <!-- Store Link Bar -->
       <div class="store-link-bar">
         <a href="https://apps.apple.com/kr/app/pass-by-skt/id1141258007" target="_blank" rel="noopener" class="store-link" aria-label="App Store에서 PASS 다운로드">
@@ -67,11 +77,11 @@
         </a>
       </div>
       <div class="badges">
-        <span class="badge">#UX 기획 · 단독</span>
-        <span class="badge">#IA 설계</span>
-        <span class="badge">#서비스 정책 정의</span>
-        <span class="badge">#화면설계서</span>
-        <span class="badge">#공공서비스</span>
+        <span class="badge" data-i18n="goyong_badge1">#UX 기획 · 단독</span>
+        <span class="badge" data-i18n="goyong_badge2">#IA 설계</span>
+        <span class="badge" data-i18n="goyong_badge3">#서비스 정책 정의</span>
+        <span class="badge" data-i18n="goyong_badge4">#화면설계서</span>
+        <span class="badge" data-i18n="goyong_badge5">#공공서비스</span>
       </div>
       <div class="mockup-wrap">
         <div class="mockup-inner js-tilt" data-tilt>
@@ -86,38 +96,38 @@
       <div class="project-meta-bar">
         <div class="meta-item">
           <span class="meta-label">Role</span>
-          <span class="meta-value">UX 기획 · 서비스 정책 정의 · 화면설계서 작성 · 단독</span>
+          <span class="meta-value" data-i18n="goyong_meta_role">UX 기획 · 서비스 정책 정의 · 화면설계서 작성 · 단독</span>
         </div>
         <div class="meta-item">
           <span class="meta-label">Period</span>
-          <span class="meta-value">2024.11 — 2025.04 (약 5개월)</span>
+          <span class="meta-value" data-i18n="goyong_meta_period">2024.11 — 2025.04 (약 5개월)</span>
         </div>
         <div class="meta-item">
           <span class="meta-label">Platform</span>
-          <span class="meta-value">PASS 모바일지갑 (SKT) · iOS / Android</span>
+          <span class="meta-value" data-i18n="goyong_meta_platform">PASS 모바일지갑 (SKT) · iOS / Android</span>
         </div>
         <div class="meta-item">
           <span class="meta-label">Tools</span>
-          <span class="meta-value">Figma · FigJam · 화면설계서(PPT)</span>
+          <span class="meta-value" data-i18n="goyong_meta_tools">Figma · FigJam · 화면설계서(PPT)</span>
         </div>
       </div>
       <div class="overview-grid">
         <div class="glass-card" id="challenge">
           <h3>The Challenge</h3>
-          <p class="glass-card-desc">배경 및 문제점</p>
+          <p class="glass-card-desc" data-i18n="goyong_challenge_desc">배경 및 문제점</p>
           <ul>
-            <li>고용24는 취업지원 핵심 공공 서비스이지만 <strong>PC 웹 중심 구조</strong>로 모바일 접근성이 낮아 실제 사용률이 제한적이었음</li>
-            <li>경력증명·일증명·직업훈련 등 배지를 취업 현장에서 <strong>즉시 꺼내 제출할 수 있는 모바일 경로</strong>가 없었음</li>
-            <li>미가입자·실명인증 누락자 등 <strong>다양한 사용자 케이스</strong>를 수용하면서도 진입 장벽을 낮춰야 하는 설계 과제</li>
+            <li data-i18n="goyong_challenge_li1">고용24는 취업지원 핵심 공공 서비스이지만 <strong>PC 웹 중심 구조</strong>로 모바일 접근성이 낮아 실제 사용률이 제한적이었음</li>
+            <li data-i18n="goyong_challenge_li2">경력증명·일증명·직업훈련 등 배지를 취업 현장에서 <strong>즉시 꺼내 제출할 수 있는 모바일 경로</strong>가 없었음</li>
+            <li data-i18n="goyong_challenge_li3">미가입자·실명인증 누락자 등 <strong>다양한 사용자 케이스</strong>를 수용하면서도 진입 장벽을 낮춰야 하는 설계 과제</li>
       </ul>
     </div>
         <div class="glass-card" id="solution">
           <h3>The Solution</h3>
-          <p class="glass-card-desc">핵심 해결 방향</p>
+          <p class="glass-card-desc" data-i18n="goyong_solution_desc">핵심 해결 방향</p>
           <ul>
-            <li><strong>기능 이식이 아닌 구조 재설계</strong> — 기존 고용24 웹의 복잡한 구조를 모바일 중심으로 단순화, IA 단계에서부터 최단 경로를 설계</li>
-            <li><strong>서비스 정책 직접 정의</strong> — 미가입자/가입자/실명인증 누락자 3개 케이스 분기, 배지·이력서 독립 VC 데이터 정책 수립</li>
-            <li><strong>운영 유연성 확보</strong> — 서비스 목록·아이콘·해시태그를 어드민에서 제어 가능하도록 설계해 개발 배포 없이 운영 수정 가능한 구조 구현</li>
+            <li data-i18n="goyong_solution_li1"><strong>기능 이식이 아닌 구조 재설계</strong> — 기존 고용24 웹의 복잡한 구조를 모바일 중심으로 단순화, IA 단계에서부터 최단 경로를 설계</li>
+            <li data-i18n="goyong_solution_li2"><strong>서비스 정책 직접 정의</strong> — 미가입자/가입자/실명인증 누락자 3개 케이스 분기, 배지·이력서 독립 VC 데이터 정책 수립</li>
+            <li data-i18n="goyong_solution_li3"><strong>운영 유연성 확보</strong> — 서비스 목록·아이콘·해시태그를 어드민에서 제어 가능하도록 설계해 개발 배포 없이 운영 수정 가능한 구조 구현</li>
       </ul>
     </div>
       </div>
@@ -125,8 +135,8 @@
 
     <!-- C. IA 구조도 — Information Architecture -->
     <section class="project-ia container" id="ia">
-      <h2 class="section-title">구조 설계 — Information Architecture</h2>
-      <p class="ia-desc">화면 설계에 앞서 서비스의 전체 정보 구조를 먼저 정의했습니다.<br>모바일지갑 내 진입 경로부터 배지 발급까지의 계층 구조와 이동 흐름을 설계하고, 각 화면의 Page ID와 연결 경로를 문서화해 개발팀과의 커뮤니케이션 기준을 마련했습니다.</p>
+      <h2 class="section-title" data-i18n="goyong_ia_title">구조 설계 — Information Architecture</h2>
+      <p class="ia-desc" data-i18n="goyong_ia_desc">화면 설계에 앞서 서비스의 전체 정보 구조를 먼저 정의했습니다.<br>모바일지갑 내 진입 경로부터 배지 발급까지의 계층 구조와 이동 흐름을 설계하고, 각 화면의 Page ID와 연결 경로를 문서화해 개발팀과의 커뮤니케이션 기준을 마련했습니다.</p>
       <div class="ia-embed-wrap">
         <iframe
           src="../assets/ia/goyo24-ia.html"
@@ -142,25 +152,25 @@
 
     <!-- D. 핵심 의사결정 — Why this structure? -->
     <section class="project-decision container" id="decision">
-      <h2 class="section-title">핵심 의사결정 — Why this structure?</h2>
+      <h2 class="section-title" data-i18n="goyong_decision_title">핵심 의사결정 — Why this structure?</h2>
       <div class="decision-grid">
 
         <div class="decision-card">
           <div class="decision-num">01</div>
-          <h3>사용자 유형별 진입 분기 설계</h3>
-          <p>고용24 미가입자, 가입자, 실명인증 누락자 — 동일한 진입점을 공유하는 3개 케이스를 하나의 플로우로 수용하되, 케이스별 안내 팝업과 이탈 경로를 명확히 정의했습니다. 서비스 이용 불가 상황에서도 사용자가 다음 행동을 스스로 인지할 수 있도록 설계했습니다.</p>
+          <h3 data-i18n="goyong_decision1_title">사용자 유형별 진입 분기 설계</h3>
+          <p data-i18n="goyong_decision1_body">고용24 미가입자, 가입자, 실명인증 누락자 — 동일한 진입점을 공유하는 3개 케이스를 하나의 플로우로 수용하되, 케이스별 안내 팝업과 이탈 경로를 명확히 정의했습니다. 서비스 이용 불가 상황에서도 사용자가 다음 행동을 스스로 인지할 수 있도록 설계했습니다.</p>
         </div>
 
         <div class="decision-card">
           <div class="decision-num">02</div>
-          <h3>배지·이력서 독립 VC 데이터 정책</h3>
-          <p>배지 삭제 시 이미 발급된 이력서가 함께 변경되지 않도록 배지와 이력서를 독립된 VC(Verifiable Credential)로 관리하는 데이터 정책을 직접 수립했습니다. 이력서는 발급 시점의 정보를 스냅샷으로 저장하는 구조로, 사용자 데이터의 안정성과 신뢰성을 확보했습니다.</p>
+          <h3 data-i18n="goyong_decision2_title">배지·이력서 독립 VC 데이터 정책</h3>
+          <p data-i18n="goyong_decision2_body">배지 삭제 시 이미 발급된 이력서가 함께 변경되지 않도록 배지와 이력서를 독립된 VC(Verifiable Credential)로 관리하는 데이터 정책을 직접 수립했습니다. 이력서는 발급 시점의 정보를 스냅샷으로 저장하는 구조로, 사용자 데이터의 안정성과 신뢰성을 확보했습니다.</p>
   </div>
 
         <div class="decision-card">
           <div class="decision-num">03</div>
-          <h3>어드민 연동 기반 운영 유연성</h3>
-          <p>서비스 목록 순서·아이콘·해시태그·배너 등 운영 단계에서 변경이 잦은 요소를 모두 어드민에서 제어 가능하도록 기획했습니다. 개발 배포 없이도 서비스 운영·수정이 가능한 구조로, 실무 운영 효율을 고려한 설계 결정이었습니다.</p>
+          <h3 data-i18n="goyong_decision3_title">어드민 연동 기반 운영 유연성</h3>
+          <p data-i18n="goyong_decision3_body">서비스 목록 순서·아이콘·해시태그·배너 등 운영 단계에서 변경이 잦은 요소를 모두 어드민에서 제어 가능하도록 기획했습니다. 개발 배포 없이도 서비스 운영·수정이 가능한 구조로, 실무 운영 효율을 고려한 설계 결정이었습니다.</p>
         </div>
 
       </div>
@@ -172,18 +182,18 @@
         <div class="features-text">
           <div class="feature-step" data-step="0">
             <h3>Step 01</h3>
-            <h2>구조 설계 — IA & Flow</h2>
-            <p>모바일지갑 내 8개 서비스 탭 중 고용24를 중심으로, 사용자가 배지 발급부터 기업 제출까지 <strong>최소한의 뎁스로 도달</strong>할 수 있는 IA를 설계했습니다. 각 화면의 Page ID와 이동 경로를 문서화해 개발팀과의 커뮤니케이션 기준을 마련했습니다.</p>
+            <h2 data-i18n="goyong_feature1_title">구조 설계 — IA & Flow</h2>
+            <p data-i18n="goyong_feature1_body">모바일지갑 내 8개 서비스 탭 중 고용24를 중심으로, 사용자가 배지 발급부터 기업 제출까지 <strong>최소한의 뎁스로 도달</strong>할 수 있는 IA를 설계했습니다. 각 화면의 Page ID와 이동 경로를 문서화해 개발팀과의 커뮤니케이션 기준을 마련했습니다.</p>
           </div>
           <div class="feature-step" data-step="1">
             <h3>Step 02</h3>
-            <h2>화면 설계 — 배지 & 이력서</h2>
-            <p>디지털 배지 목록·상세, 이력서 목록·페이지네이션 등 핵심 화면을 설계했습니다. 발급 전·후 배지 상태를 시각적으로 구분하고, <strong>경력증명·일증명·직업훈련 3개 카테고리</strong>의 메타데이터 가독성을 개선했습니다.</p>
+            <h2 data-i18n="goyong_feature2_title">화면 설계 — 배지 & 이력서</h2>
+            <p data-i18n="goyong_feature2_body">디지털 배지 목록·상세, 이력서 목록·페이지네이션 등 핵심 화면을 설계했습니다. 발급 전·후 배지 상태를 시각적으로 구분하고, <strong>경력증명·일증명·직업훈련 3개 카테고리</strong>의 메타데이터 가독성을 개선했습니다.</p>
           </div>
           <div class="feature-step" data-step="2">
             <h3>Step 03</h3>
-            <h2>제출 & 내역 관리</h2>
-            <p>배지·이력서 제출부터 이용내역·제출내역 관리까지 <strong>end-to-end 플로우</strong>를 완결했습니다. 발급·제출 성공/오류 상태 피드백 패턴을 정립하고, 사용자가 제출 이력을 한 곳에서 확인할 수 있는 구조를 설계했습니다.</p>
+            <h2 data-i18n="goyong_feature3_title">제출 & 내역 관리</h2>
+            <p data-i18n="goyong_feature3_body">배지·이력서 제출부터 이용내역·제출내역 관리까지 <strong>end-to-end 플로우</strong>를 완결했습니다. 발급·제출 성공/오류 상태 피드백 패턴을 정립하고, 사용자가 제출 이력을 한 곳에서 확인할 수 있는 구조를 설계했습니다.</p>
           </div>
         </div>
         <div class="features-visual">
@@ -207,19 +217,19 @@
 
     <!-- D. Result & Impact — Bento Grid (주요 성과) -->
     <section class="project-result container" id="impact">
-      <h2 class="section-title">Impact & 프로젝트 규모</h2>
+      <h2 class="section-title" data-i18n="goyong_result_title">Impact & 프로젝트 규모</h2>
       <div class="bento-grid">
         <div class="bento-card">
-          <h4>5개월 · 20+ 버전 · 단독 기획</h4>
-          <p>v0.1(2024.11)부터 v3.0(2025.04)까지 약 5개월간 20개 이상의 버전을 단독으로 관리하며 기획·설계·정책 정의를 완수했습니다.</p>
+          <h4 data-i18n="goyong_result1_title">5개월 · 20+ 버전 · 단독 기획</h4>
+          <p data-i18n="goyong_result1_body">v0.1(2024.11)부터 v3.0(2025.04)까지 약 5개월간 20개 이상의 버전을 단독으로 관리하며 기획·설계·정책 정의를 완수했습니다.</p>
         </div>
         <div class="bento-card">
-          <h4>3개 사용자 케이스 완전 정의</h4>
-          <p>미가입자·가입자·실명인증 누락자 — 공공 서비스 특성의 복잡한 엣지 케이스를 서비스 정책으로 문서화하고 각 분기 플로우를 설계했습니다.</p>
+          <h4 data-i18n="goyong_result2_title">3개 사용자 케이스 완전 정의</h4>
+          <p data-i18n="goyong_result2_body">미가입자·가입자·실명인증 누락자 — 공공 서비스 특성의 복잡한 엣지 케이스를 서비스 정책으로 문서화하고 각 분기 플로우를 설계했습니다.</p>
         </div>
         <div class="bento-card">
-          <h4>발급→보관→제출 통합 구조</h4>
-          <p>단일 앱 내에서 디지털 배지와 이력서의 발급·보관·제출 플로우를 end-to-end로 완결. 국세청·관세청 등 공공기관 연동 기반을 마련했습니다.</p>
+          <h4 data-i18n="goyong_result3_title">발급→보관→제출 통합 구조</h4>
+          <p data-i18n="goyong_result3_body">단일 앱 내에서 디지털 배지와 이력서의 발급·보관·제출 플로우를 end-to-end로 완결. 국세청·관세청 등 공공기관 연동 기반을 마련했습니다.</p>
         </div>
       </div>
     </section>
@@ -228,15 +238,15 @@
     <section class="project-next">
       <a href="kist-trad.html" class="next-card next-card-aurora">
         <span>Ready to Build Impact?</span>
-        <strong>다음 프로젝트: KIST TRAD →</strong>
+        <strong data-i18n="goyong_next_label">다음 프로젝트: KIST TRAD →</strong>
       </a>
     </section>
 
     <!-- Footer -->
     <footer class="footer-cta" id="contact" role="contentinfo" aria-label="Contact">
       <div class="container">
-        <h2 class="footer-title">함께 만들고 싶은 서비스가 있으신가요?</h2>
-        <p class="footer-desc">복잡한 서비스 구조도, 사용자 중심으로 단순하게 설계합니다. 언제든 연락 주세요.</p>
+        <h2 class="footer-title" data-i18n="goyong_footer_title">함께 만들고 싶은 서비스가 있으신가요?</h2>
+        <p class="footer-desc" data-i18n="goyong_footer_desc">복잡한 서비스 구조도, 사용자 중심으로 단순하게 설계합니다. 언제든 연락 주세요.</p>
         <div class="footer-actions">
           <a class="footer-email-btn" href="mailto:seoah.lab@gmail.com" aria-label="이메일 보내기">seoah.lab@gmail.com</a>
           <div class="footer-icons">

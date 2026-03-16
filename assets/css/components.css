@@ -234,6 +234,9 @@ html.motion .hero-profile-full{
 /* 반응형 */
 /* Hero 반응형: 768px 이하 모바일 */
 @media (max-width:768px){
+  header.hero{
+    padding-top: 88px; /* 고정 GNB 아래로 여유 확보 */
+  }
   .hero-inner{
     flex-direction: column;
     align-items: center;
@@ -271,6 +274,10 @@ html.motion .hero-profile-full{
   .hero .eyebrow{ font-size:16px; }
   .hero .title .line1{ font-size:36px; }
   .hero .title .line2{ font-size:42px; }
+}
+@media (max-width:480px){
+  .hero .title .line1{ font-size:30px; }
+  .hero .title .line2{ font-size:34px; }
 }
 
 /* 메인 타이틀과 배지 사이 간격 조정 */
@@ -349,7 +356,23 @@ html.motion .hero .badge:nth-child(4) { animation: heroFadeUp 0.9s ease 0.42s fo
   .hero .badge:hover { transform: none; }
 }
 
-
+/* 공통 별 파티클 (footer download 등) */
+.star-particle{
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  background: radial-gradient(circle, #fef9c3 0%, #a855f7 40%, transparent 75%);
+  box-shadow: 0 0 16px rgba(248, 250, 252, 0.7);
+  pointer-events: none;
+  z-index: 9999;
+  animation: starBurst 1s ease-out forwards;
+}
+@keyframes starBurst{
+  0%{ opacity:1; transform:translate(0,0) scale(0.85); }
+  60%{ opacity:1; }
+  100%{ opacity:0; transform:translate(var(--dx), var(--dy)) scale(0); }
+}
 
 /* =========================================================
    FLOW — The Iconic Typography (Aurora & Glass)
@@ -921,7 +944,7 @@ html.motion .hero .badge:nth-child(4) { animation: heroFadeUp 0.9s ease 0.42s fo
 /* SYSTEM 섹션 — 워크플로우 링크 */
 .lxe-workflow-cta{
   text-align: center;
-  margin-top: 32px;
+  margin-top: 48px; /* 모바일에서 다이어그램과 버튼 간 간격 확보 */
   position: relative;
   z-index: 1;
 }
@@ -1328,7 +1351,7 @@ html.motion .hero .badge:nth-child(4) { animation: heroFadeUp 0.9s ease 0.42s fo
 .timeline::before{
   content: "";
   position: absolute;
-  left: 59px;
+  left: 60px; /* 기준 축 */
   top: 12px;
   bottom: 12px;
   width: 1px;
@@ -1361,10 +1384,11 @@ html.motion .hero .badge:nth-child(4) { animation: heroFadeUp 0.9s ease 0.42s fo
 }
 .timeline-dot{
   position: absolute;
-  left: 54px;
-  top: 6px;
-  width: 12px;
-  height: 12px;
+  left: 60px;              /* 세로선과 같은 x좌표 */
+  transform: translateX(-50%); /* 동그라미 중심을 선에 맞추기 */
+  top: 4px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
   background: #6b7280;
   border: 2px solid #fff;
@@ -1379,7 +1403,7 @@ html.motion .hero .badge:nth-child(4) { animation: heroFadeUp 0.9s ease 0.42s fo
   text-align: right;
 }
 .timeline .yearbox .year{
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 800;
   line-height: 1;
   color: #111;

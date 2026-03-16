@@ -46,12 +46,24 @@
 
    <!-- 데스크톱 메뉴 (Director Mode) -->
   <ul class="gnb-menu">
-    <li><a href="#strengths">IDENTITY</a></li>
-    <li><a href="#personal-projects">PROJECTS</a></li>
-    <li><a href="#lxe">SYSTEM</a></li>
-    <li><a href="#more">MORE</a></li>
-    <li><a href="#contact">CONNECT</a></li>
+    <li><a href="#strengths" data-i18n="nav_identity">IDENTITY</a></li>
+    <li><a href="#personal-projects" data-i18n="nav_projects">PROJECTS</a></li>
+    <li><a href="#lxe" data-i18n="nav_system">SYSTEM</a></li>
+    <li><a href="#more" data-i18n="nav_more">MORE</a></li>
+    <li><a href="#contact" data-i18n="nav_contact">CONNECT</a></li>
   </ul>
+
+  <!-- 언어 스위치 -->
+  <div class="lang-switch" aria-label="Language switch">
+    <button class="lang-current" type="button" aria-haspopup="true" aria-expanded="false">
+      <span class="lang-icon">🌐</span>
+      <span class="lang-label">KO</span>
+    </button>
+    <ul class="lang-menu" aria-label="Language options">
+      <li><button type="button" data-lang="ko">한글</button></li>
+      <li><button type="button" data-lang="en">English</button></li>
+    </ul>
+  </div>
 
    <!-- 모바일 햄버거 버튼 -->
   <button class="gnb__toggle" aria-label="메뉴 열기" aria-controls="gnb-dropdown" aria-expanded="false">
@@ -60,11 +72,11 @@
 
   <!-- 모바일 드롭다운 -->
   <ul id="gnb-dropdown" class="gnb-dropdown" role="menu" aria-hidden="true">
-    <li><a href="#strengths" role="menuitem">IDENTITY</a></li>
-    <li><a href="#personal-projects" role="menuitem">PROJECTS</a></li>
-    <li><a href="#lxe" role="menuitem">SYSTEM</a></li>
-    <li><a href="#more" role="menuitem">MORE</a></li>
-    <li><a href="#contact" role="menuitem">CONNECT</a></li>
+    <li><a href="#strengths" role="menuitem" data-i18n="nav_identity">IDENTITY</a></li>
+    <li><a href="#personal-projects" role="menuitem" data-i18n="nav_projects">PROJECTS</a></li>
+    <li><a href="#lxe" role="menuitem" data-i18n="nav_system">SYSTEM</a></li>
+    <li><a href="#more" role="menuitem" data-i18n="nav_more">MORE</a></li>
+    <li><a href="#contact" role="menuitem" data-i18n="nav_contact">CONNECT</a></li>
   </ul>
 </nav>
 
@@ -79,7 +91,7 @@
     <div class="hero-overlay" aria-hidden="true"></div>
     <div class="hero-inner container">
       <div class="hero-text">
-        <div class="eyebrow">공공·모바일 서비스의 구조를 설계합니다</div>
+        <div class="eyebrow" data-i18n="hero_eyebrow">공공·모바일 서비스의 구조를 설계합니다</div>
         <h1 class="title">
           <span class="line1 typewriter-line">
             <span class="typewriter-text" aria-live="polite"></span>
@@ -87,12 +99,12 @@
           </span>
           <span class="line2">& Service Designer</span>
         </h1>
-        <p class="desc">서비스 구조를 설계하고, 정책을 정의하고, 직접 만들어 검증하는<br><strong>이서아(Seoah Lee)</strong>입니다.<br>공공·모바일 플랫폼 UX 기획 실무와 0→1 제품 런칭 경험을 보유하고 있습니다.</p>
+        <p class="desc" data-i18n="hero_desc">서비스 구조를 설계하고, 정책을 정의하고, 직접 만들어 검증하는<br><strong>이서아(Seoah Lee)</strong>입니다.<br>공공·모바일 플랫폼 UX 기획 실무와 0→1 제품 런칭 경험을 보유하고 있습니다.</p>
         <div class="badges">
-          <span class="badge badge-product">#UX 기획</span>
-          <span class="badge badge-ux">#IA 설계</span>
-          <span class="badge badge-brand">#공공서비스</span>
-          <span class="badge badge-endtoend">#서비스 정책 정의</span>
+          <span class="badge badge-product" data-i18n="badge_ux">#UX 기획</span>
+          <span class="badge badge-ux" data-i18n="badge_ia">#IA 설계</span>
+          <span class="badge badge-brand" data-i18n="badge_public">#공공서비스</span>
+          <span class="badge badge-endtoend" data-i18n="badge_policy">#서비스 정책 정의</span>
         </div>
       </div>
       <div class="hero-image">
@@ -113,7 +125,7 @@
         <span class="typed-target"></span>
         <span class="dot" aria-hidden="true"></span>
       </h2>
-      <p class="lead">공공기관·모바일 플랫폼·B2B까지, UX 기획과 서비스 설계를 주도한 프로젝트입니다.</p>
+      <p class="lead" data-i18n="careers_lead">공공기관·모바일 플랫폼·B2B까지, UX 기획과 서비스 설계를 주도한 프로젝트입니다.</p>
     </div>
   </div>
 
@@ -130,9 +142,9 @@
                 <img src="assets/img/pass-goyong24-thumb.png"
                      alt="PASS지갑-고용24 서비스 미리보기">
               </div>
-              <div class="role-badge">UX 기획 · 서비스 정책 · 화면설계 · 단독</div>
-              <h3>PASS 모바일지갑 × 고용24</h3>
-              <p>취업지원 디지털 배지 발급·보관·제출 서비스 — 구조 설계부터 서비스 정책 정의까지 단독 기획</p>
+              <div class="role-badge" data-i18n="careers_card1_role">UX 기획 · 서비스 정책 · 화면설계 · 단독</div>
+              <h3 data-i18n="careers_card1_title">PASS 모바일지갑 × 고용24</h3>
+              <p data-i18n="careers_card1_desc">취업지원 디지털 배지 발급·보관·제출 서비스 — 구조 설계부터 서비스 정책 정의까지 단독 기획</p>
               <div class="chips">
                 <span class="chip">#UX 기획</span>
                 <span class="chip">#서비스 정책</span>
@@ -141,7 +153,7 @@
               </div>
             </div>
             <div class="foot">
-              <span class="cta">자세히보기 〉</span>
+              <span class="cta" data-i18n="careers_cta">자세히보기 〉</span>
             </div>
           </article>
         </a>
@@ -154,9 +166,9 @@
                 <img src="assets/img/kist-trad-thumb.png"
                      alt="KIST 전통문화혁신 플랫폼 미리보기">
               </div>
-              <div class="role-badge">UX 기획 · IA 설계 · UI 디자인</div>
-              <h3>KIST 전통문화혁신 플랫폼</h3>
-              <p>전통문화와 관련된 사람과 데이터를 연결하는 온라인 플랫폼</p>
+              <div class="role-badge" data-i18n="careers_card2_role">UX 기획 · IA 설계 · UI 디자인</div>
+              <h3 data-i18n="careers_card2_title">KIST 전통문화혁신 플랫폼</h3>
+              <p data-i18n="careers_card2_desc">전통문화와 관련된 사람과 데이터를 연결하는 온라인 플랫폼</p>
               <div class="chips">
                 <span class="chip">#UX 기획</span>
                 <span class="chip">#IA 설계</span>
@@ -164,7 +176,7 @@
               </div>
             </div>
             <div class="foot">
-              <span class="cta">자세히보기 〉</span>
+              <span class="cta" data-i18n="careers_cta">자세히보기 〉</span>
             </div>
           </article>
         </a>
@@ -177,9 +189,9 @@
                 <img src="assets/img/nldb-thumb.png"
                      alt="국립중앙도서관 국가서지 링크드 오픈데이터 미리보기">
               </div>
-              <div class="role-badge">브랜딩 · UI 디자인</div>
-              <h3>국립중앙도서관 국가서지 링크드 오픈데이터</h3>
-              <p>공공 데이터를 개방하고, 지식과 정보의 흐름을 연결하는 플랫폼</p>
+              <div class="role-badge" data-i18n="careers_card3_role">브랜딩 · UI 디자인</div>
+              <h3 data-i18n="careers_card3_title">국립중앙도서관 국가서지 링크드 오픈데이터</h3>
+              <p data-i18n="careers_card3_desc">공공 데이터를 개방하고, 지식과 정보의 흐름을 연결하는 플랫폼</p>
               <div class="chips">
                 <span class="chip">#브랜딩</span>
                 <span class="chip">#UI 디자인</span>
@@ -187,7 +199,7 @@
               </div>
             </div>
             <div class="foot">
-              <span class="cta">자세히보기 〉</span>
+              <span class="cta" data-i18n="careers_cta">자세히보기 〉</span>
             </div>
           </article>
         </a>
@@ -205,7 +217,7 @@
           <span class="typed-target"></span>
           <span class="dot" aria-hidden="true"></span>
         </h2>
-        <p class="lead">기획·개발·런칭까지 단독으로 실행한 사이드 프로젝트입니다. AI 활용과 0→1 실행력을 확인할 수 있습니다.</p>
+        <p class="lead" data-i18n="personal_lead">기획·개발·런칭까지 단독으로 실행한 사이드 프로젝트입니다. AI 활용과 0→1 실행력을 확인할 수 있습니다.</p>
       </div>
     </div>
 
@@ -220,8 +232,8 @@
                 <div class="thumb image-container">
                   <img src="assets/img/mamssi-thumb.png" alt="마음씨 프로젝트 미리보기">
                 </div>
-                <h3>마음씨 (Mamssi)</h3>
-                <p>감정 기록 및 성장 루틴 관리 앱 (Web/App)</p>
+                <h3 data-i18n="personal_card1_title">마음씨 (Mamssi)</h3>
+                <p data-i18n="personal_card1_desc">감정 기록 및 성장 루틴 관리 앱 (Web/App)</p>
                 <div class="chips">
                   <span class="chip">#ProductDirector</span>
                   <span class="chip">#AI-Native</span>
@@ -230,7 +242,7 @@
                 </div>
               </div>
               <div class="foot">
-                <span class="cta">자세히보기 〉</span>
+                <span class="cta" data-i18n="personal_cta">자세히보기 〉</span>
               </div>
             </article>
           </a>
@@ -242,8 +254,8 @@
                 <div class="thumb image-container">
                   <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200'%3E%3Cdefs%3E%3ClinearGradient id='g2' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23e8f5e9'/%3E%3Cstop offset='100%25' stop-color='%23c8e6c9'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect fill='url(%23g2)' width='400' height='200'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='28' font-weight='600' fill='%232e7d32'%3EItday%3C/text%3E%3C/svg%3E" alt="잇데이 프로젝트 미리보기">
                 </div>
-                <h3>잇데이 (Itday)</h3>
-                <p>AI 기반 칼로리 계산 및 식단 관리 솔루션 (MVP)</p>
+                <h3 data-i18n="personal_card2_title">잇데이 (Itday)</h3>
+                <p data-i18n="personal_card2_desc">AI 기반 칼로리 계산 및 식단 관리 솔루션 (MVP)</p>
                 <div class="chips">
                   <span class="chip">#AI-Vision</span>
                   <span class="chip">#Health-Tech</span>
@@ -252,7 +264,7 @@
                 </div>
               </div>
               <div class="foot">
-                <span class="cta cta-placeholder" aria-label="링크 준비 중">준비 중 〉</span>
+                <span class="cta cta-placeholder" data-i18n="personal_comingsoon" aria-label="링크 준비 중">준비 중 〉</span>
               </div>
             </article>
           </div>
@@ -264,8 +276,8 @@
                 <div class="thumb image-container">
                   <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200'%3E%3Cdefs%3E%3ClinearGradient id='g3' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23f0f0f5'/%3E%3Cstop offset='100%25' stop-color='%23e8e8f0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect fill='url(%23g3)' width='400' height='200'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='24' font-weight='600' fill='%238080a0'%3EBLANK%3C/text%3E%3C/svg%3E" alt="블랭크 프로젝트 미리보기">
                 </div>
-                <h3>블랭크 (BLANK)</h3>
-                <p>블록체인 기반 신원 인증 및 결혼 증명 서비스 (B2B)</p>
+                <h3 data-i18n="personal_card3_title">블랭크 (BLANK)</h3>
+                <p data-i18n="personal_card3_desc">블록체인 기반 신원 인증 및 결혼 증명 서비스 (B2B)</p>
                 <div class="chips">
                   <span class="chip">#Blockchain</span>
                   <span class="chip">#B2B솔루션</span>
@@ -274,7 +286,7 @@
                 </div>
               </div>
               <div class="foot">
-                <span class="cta cta-placeholder" aria-label="링크 준비 중">준비 중 〉</span>
+                <span class="cta cta-placeholder" data-i18n="personal_comingsoon" aria-label="링크 준비 중">준비 중 〉</span>
               </div>
             </article>
           </div>
@@ -288,22 +300,22 @@
   <section class="section flow" id="strengths">
     <div class="flow-grid scroll-reveal-stagger">
       <div class="tile scroll-reveal-item">
-        <div class="reveal"><h3>Full-Cycle</h3><p>기획 → 설계 → 검증까지. 화면설계서 작성부터 실제 제품 런칭까지 end-to-end로 실행합니다.</p></div>
+        <div class="reveal"><h3>Full-Cycle</h3><p data-i18n="flow_tile1">기획 → 설계 → 검증까지. 화면설계서 작성부터 실제 제품 런칭까지 end-to-end로 실행합니다.</p></div>
         <div class="big" aria-hidden="true">F</div>
         <div class="tile-label">Full-Cycle</div>
       </div>
       <div class="tile scroll-reveal-item">
-        <div class="reveal"><h3>Leadership</h3><p>개발자·디자이너·PO의 언어를 동시에 이해하고, 요구사항을 구조로 번역합니다.</p></div>
+        <div class="reveal"><h3>Leadership</h3><p data-i18n="flow_tile2">개발자·디자이너·PO의 언어를 동시에 이해하고, 요구사항을 구조로 번역합니다.</p></div>
         <div class="big" aria-hidden="true">L</div>
         <div class="tile-label">Leadership</div>
       </div>
       <div class="tile scroll-reveal-item">
-        <div class="reveal"><h3>Omnidomain</h3><p>공공·모바일·B2B·플랫폼. 도메인이 달라도 사용자와 구조 중심으로 문제를 정의합니다.</p></div>
+        <div class="reveal"><h3>Omnidomain</h3><p data-i18n="flow_tile3">공공·모바일·B2B·플랫폼. 도메인이 달라도 사용자와 구조 중심으로 문제를 정의합니다.</p></div>
         <div class="big" aria-hidden="true">O</div>
         <div class="tile-label">Omnidomain</div>
       </div>
       <div class="tile scroll-reveal-item">
-        <div class="reveal"><h3>Woven Brand</h3><p>브랜딩과 UX를 분리하지 않습니다. 서비스의 첫 인상부터 마지막 인터랙션까지 하나의 흐름으로 설계합니다.</p></div>
+        <div class="reveal"><h3>Woven Brand</h3><p data-i18n="flow_tile4">브랜딩과 UX를 분리하지 않습니다. 서비스의 첫 인상부터 마지막 인터랙션까지 하나의 흐름으로 설계합니다.</p></div>
         <div class="big" aria-hidden="true">W</div>
         <div class="tile-label">Woven Brand</div>
       </div>
@@ -318,7 +330,7 @@
       <h2 class="section-title-typed">
         <span class="typed-target"></span>
       </h2>
-      <p class="lxe-desc">기획의 논리(Logic)와 디자인의 감성(Emotion)을 AI 기술로 연결하여, 압도적인 속도로 제품을 완성합니다.</p>
+      <p class="lxe-desc" data-i18n="system_desc">기획의 논리(Logic)와 디자인의 감성(Emotion)을 AI 기술로 연결하여, 압도적인 속도로 제품을 완성합니다.</p>
     </div>
 
     <div class="lxe-diagram scroll-reveal" data-lxe-diagram>
@@ -419,7 +431,7 @@
     <div class="container">
       <div class="head scroll-reveal">
         <h2>MORE PROJECT <span class="dot"></span></h2>
-        <p class="lead">브랜딩부터 UX/UI 디자인까지 총괄한 프로젝트입니다.</p>
+        <p class="lead" data-i18n="more_lead">브랜딩부터 UX/UI 디자인까지 총괄한 프로젝트입니다.</p>
       </div>
 
       <div class="timeline scroll-reveal-stagger">
@@ -430,12 +442,12 @@
             <span class="timeline-dot" aria-hidden="true"></span>
             <div class="yearbox">
               <div class="year">2025</div>
-              <div class="pill">공공 UX 혁신</div>
+              <div class="pill" data-i18n="more_2025_pill">공공 UX 혁신</div>
             </div>
           </div>
           <div class="timeline-right">
-            <h3>PASS 지갑 내 전자고지 서비스</h3>
-            <p class="desc">PASS 앱 내에서 각종 고지서(건강보험, 세금, 범칙금 등)의 수신·열람·결제까지 연결하는 서비스.</p>
+            <h3 data-i18n="more_2025_title">PASS 지갑 내 전자고지 서비스</h3>
+            <p class="desc" data-i18n="more_2025_desc">PASS 앱 내에서 각종 고지서(건강보험, 세금, 범칙금 등)의 수신·열람·결제까지 연결하는 서비스.</p>
             <div class="kws">
               <span class="kw">#모바일UX</span>
               <span class="kw">#Product Design</span>
@@ -451,12 +463,12 @@
             <span class="timeline-dot" aria-hidden="true"></span>
             <div class="yearbox">
               <div class="year">2024</div>
-              <div class="pill">생성형 AI와의 협업</div>
+              <div class="pill" data-i18n="more_2024_pill">생성형 AI 협업</div>
             </div>
           </div>
           <div class="timeline-right">
-            <h3>GPT기반 인공지능 토탈 솔루션 메스와이저</h3>
-            <p class="desc">On-premise 생성형 AI를 적용, 근거가 보이는 답변과 거버넌스를 동시에 제공하는 업무 도우미.</p>
+            <h3 data-i18n="more_2024_title">GPT기반 인공지능 토탈 솔루션 메스와이저</h3>
+            <p class="desc" data-i18n="more_2024_desc">On-premise 생성형 AI를 적용, 근거가 보이는 답변과 거버넌스를 동시에 제공하는 업무 도우미.</p>
             <div class="kws">
               <span class="kw">#챗봇</span>
               <span class="kw">#Prompt Engineering</span>
@@ -472,12 +484,12 @@
             <span class="timeline-dot" aria-hidden="true"></span>
             <div class="yearbox">
               <div class="year">2023</div>
-              <div class="pill">참여형 플랫폼의 경험 디자인</div>
+              <div class="pill" data-i18n="more_2023_pill">참여형 플랫폼의 경험 디자인</div>
             </div>
           </div>
           <div class="timeline-right">
-            <h3>위치기반 정보 공유 플랫폼 - 제보서비스</h3>
-            <p class="desc">시민이 직접 정보를 제보하고, 실시간으로 소통하는 생활 밀착형 정보 플랫폼.</p>
+            <h3 data-i18n="more_2023_title">위치기반 정보 공유 플랫폼 - 제보서비스</h3>
+            <p class="desc" data-i18n="more_2023_desc">시민이 직접 정보를 제보하고, 실시간으로 소통하는 생활 밀착형 정보 플랫폼.</p>
             <div class="kws">
               <span class="kw">#서비스 브랜딩</span>
               <span class="kw">#Product Design</span>
@@ -496,7 +508,7 @@
     <div class="container">
       <div class="identity-head scroll-reveal">
         <h2>CAPABILITY & DNA <span class="dot"></span></h2>
-        <p class="identity-declaration">
+        <p class="identity-declaration" data-i18n="identity_desc">
           I don't just write specs; I design structures that work.<br>
           <span class="identity-declaration-ko">화면만 그리는 기획자가 아닙니다. 서비스의 뼈대를 설계하고, 정책을 정의하고, 직접 만들어 검증합니다.</span>
         </p>
@@ -514,9 +526,9 @@
         <!-- Row 2: 오른쪽으로 흐름, Solid Color -->
         <div class="marquee-row marquee-right" aria-hidden="true">
           <div class="marquee-track">
-            <span class="marquee-text marquee-solid">공공서비스 UX • 모바일 플랫폼 • 브랜딩 • AI 협업 • 0→1 런칭 • </span>
-            <span class="marquee-text marquee-solid">공공서비스 UX • 모바일 플랫폼 • 브랜딩 • AI 협업 • 0→1 런칭 • </span>
-            <span class="marquee-text marquee-solid">공공서비스 UX • 모바일 플랫폼 • 브랜딩 • AI 협업 • 0→1 런칭 • </span>
+            <span class="marquee-text marquee-solid" data-i18n="identity_marquee">공공서비스 UX • 모바일 플랫폼 • 브랜딩 • AI 협업 • 0→1 런칭 • </span>
+            <span class="marquee-text marquee-solid" data-i18n="identity_marquee">공공서비스 UX • 모바일 플랫폼 • 브랜딩 • AI 협업 • 0→1 런칭 • </span>
+            <span class="marquee-text marquee-solid" data-i18n="identity_marquee">공공서비스 UX • 모바일 플랫폼 • 브랜딩 • AI 협업 • 0→1 런칭 • </span>
           </div>
         </div>
       </div>
@@ -535,6 +547,9 @@
         <a class="footer-email-btn" href="mailto:seoah.lab@gmail.com" id="footerEmailBtn" aria-label="이메일 복사 또는 메일 보내기">
           seoah.lab@gmail.com
         </a>
+        <button type="button" class="footer-download-btn" id="footerDownloadBtn">
+          포트폴리오 다운받기
+        </button>
         <div class="footer-icons">
           <a class="footer-icon" href="mailto:seoah.lab@gmail.com" aria-label="Send email">
             <svg width="22" height="22" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
@@ -556,6 +571,28 @@
     <div id="footerToast" class="footer-toast" aria-live="polite" aria-atomic="true">이메일 주소가 복사되었습니다</div>
   </footer>
 
+  <!-- 포트폴리오 미리보기 모달 -->
+  <div class="pdf-modal" id="pdfModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="pdfModalTitle">
+    <div class="pdf-modal-backdrop" data-pdf-close></div>
+    <div class="pdf-modal-dialog">
+      <button type="button" class="pdf-modal-close" data-pdf-close aria-label="닫기">×</button>
+      <h3 class="pdf-modal-title" id="pdfModalTitle">포트폴리오 미리보기</h3>
+      <p class="pdf-modal-sub">아래에서 PDF를 훑어본 뒤, 전체 파일을 다운로드하실 수 있어요.</p>
+      <div class="pdf-modal-body">
+        <iframe
+          src="assets/pdf/26-portfolio-seoah-v2.pdf"
+          title="포트폴리오 PDF 미리보기"
+          loading="lazy"
+        ></iframe>
+      </div>
+      <div class="pdf-modal-actions">
+        <a href="assets/pdf/26-portfolio-seoah-v2.pdf" download class="pdf-modal-download">
+          전체 PDF 다운로드
+        </a>
+      </div>
+    </div>
+  </div>
+
 
 
 <!-- Holographic Glass Booster (Scroll-To-Top) -->
@@ -570,6 +607,7 @@
 <script src="assets/js/cursor.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js" integrity="sha512-wC1P84CGzvLEZiSfCnijJgkkYgV5bD2b1xQ0IBxEDyBUqLLbDxvfqE7ueZ/3V+EhG+i50OvSSG6nDO8egoIkg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.1.0/typed.umd.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="assets/js/main.js"></script>
 <!-- 스크립트 (공통으로 쓰고 싶으면 assets/js/toTop.js로 분리해도 OK) -->
 <script>
   (function () {
