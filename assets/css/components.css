@@ -374,6 +374,33 @@ html.motion .hero .badge:nth-child(4) { animation: heroFadeUp 0.9s ease 0.42s fo
   100%{ opacity:0; transform:translate(var(--dx), var(--dy)) scale(0); }
 }
 
+/* 헤더 영역 플로팅 "포트폴리오 다운받기" 버튼 */
+.hero-download-fab{
+  display: none; /* 현재는 숨김 처리 */
+  position: absolute;
+  left: 50%;
+  bottom: 32px;
+  transform: translateX(-50%);
+  z-index: 5;
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: none;
+  background: linear-gradient(135deg,#a78bfa,#38bdf8);
+  color:#0f172a;
+  font-size: 13px;
+  font-weight:600;
+  letter-spacing:.03em;
+  box-shadow:0 16px 40px rgba(15,23,42,0.3);
+  cursor:pointer;
+}
+@media (max-width:768px){
+  .hero-download-fab{
+    bottom: 20px;
+    padding: 10px 16px;
+    font-size: 12px;
+  }
+}
+
 /* =========================================================
    FLOW — The Iconic Typography (Aurora & Glass)
    ========================================================= */
@@ -833,6 +860,15 @@ html.motion .hero .badge:nth-child(4) { animation: heroFadeUp 0.9s ease 0.42s fo
 .personal-projects .card-wrapper:hover .thumb img{
   transform: scale(1.1);
   filter: grayscale(0%);
+}
+
+/* 해시태그: 2줄 이상일 때 행 간 여백 */
+.personal-projects .card .chips{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  column-gap: 8px;
+  row-gap: 12px;
 }
 
 /* 태그: Glass 스타일 통일 */

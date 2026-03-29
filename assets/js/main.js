@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
         personal_card1_title: '마음씨 (Mamssi)',
         personal_card1_desc: '감정 기록 및 성장 루틴 관리 앱 (Web/App)',
         personal_card2_title: '잇데이 (Itday)',
-        personal_card2_desc: 'AI 기반 칼로리 계산 및 식단 관리 솔루션 (MVP)',
+        personal_card2_desc: 'AI 기반 칼로리 계산 및 식단 관리 솔루션',
         personal_card3_title: '블랭크 (BLANK)',
         personal_card3_desc: '블록체인 기반 신원 인증 및 결혼 증명 서비스 (B2B)',
         personal_cta: '자세히보기 〉',
@@ -423,7 +423,7 @@ document.addEventListener('DOMContentLoaded', () => {
         personal_card1_title: 'Mamssi',
         personal_card1_desc: 'Emotion journaling and growth routine app (Web/App).',
         personal_card2_title: 'Itday',
-        personal_card2_desc: 'AI-powered calorie tracking and meal planning solution (MVP).',
+        personal_card2_desc: 'AI-powered calorie tracking and meal planning solution.',
         personal_card3_title: 'BLANK',
         personal_card3_desc: 'Blockchain-based identity and marriage certificate service (B2B).',
         personal_cta: 'View details 〉',
@@ -766,11 +766,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   })();
 
-  // Footer: 포트폴리오 다운로드 모달 + 별 파티클
+  // Footer & Hero: 포트폴리오 다운로드 모달 + 별 파티클
   (function(){
-    const btn = document.getElementById('footerDownloadBtn');
+    const triggers = [
+      document.getElementById('footerDownloadBtn'),
+      document.getElementById('heroDownloadBtn'),
+    ].filter(Boolean);
+
     const modal = document.getElementById('pdfModal');
-    if (!btn || !modal) return;
+    if (!triggers.length || !modal) return;
 
     const backdropEls = modal.querySelectorAll('[data-pdf-close]');
     const closeEls = modal.querySelectorAll('.pdf-modal-close,[data-pdf-close]');
@@ -790,12 +794,10 @@ document.addEventListener('DOMContentLoaded', () => {
       if (e.key === 'Escape' && modal.classList.contains('show')) closeModal();
     });
 
-    btn.addEventListener('click',(e)=>{
-      const rect = btn.getBoundingClientRect();
-      const cx = rect.left + rect.width / 2;
-      const cy = rect.top + rect.height / 2;
-      spawnStars(cx, cy + window.scrollY);
-      openModal();
+    triggers.forEach(btn => {
+      btn.addEventListener('click', () => {
+        openModal();
+      });
     });
   })();
 
