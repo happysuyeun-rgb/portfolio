@@ -92,9 +92,6 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 .hero-typewriter-cursor{opacity:1;animation:heroCursorBlink 1s step-end infinite;}
 .hero-ttl.typed .hero-typewriter-cursor{display:none;}
 @keyframes heroCursorBlink{50%{opacity:0;}}
-.hero-cta-btns{display:none !important;}
-#cta .cta-btns{display:none !important;}
-
 .hero-en{
   font-size:11px;letter-spacing:.3em;text-transform:uppercase;
   color:var(--cream-30);font-weight:300;
@@ -407,6 +404,14 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 .btn-f:hover{background:#f0cc84;transform:translateY(-2px);box-shadow:0 10px 28px rgba(226,185,111,.28);}
 .btn-o{display:inline-flex;align-items:center;gap:8px;padding:14px 30px;border:1px solid rgba(226,185,111,.28);color:var(--cream-60);font-size:13px;font-family:var(--sans);border-radius:100px;text-decoration:none;letter-spacing:.04em;transition:all .3s;}
 .btn-o:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px);}
+/* 마음씨: 스토어로 가는 단일 CTA — 가로 폭 확대 */
+.hero-cta-btns .btn-mamssi-store-cta,
+#cta .cta-btns .btn-mamssi-store-cta{
+  min-width:min(100%,300px);
+  justify-content:center;
+  padding:15px 40px;
+  font-size:14px;
+}
 
 /* ANIMATIONS */
 @keyframes fadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
@@ -487,11 +492,10 @@ body.mamssi-detail .gnb.gnb-scrolled .gnb__toggle span{ background:#0f172a; }
       <span class="chip" data-i18n="mamssi_hero_chip3">소셜 힐링</span>
       <span class="chip" data-i18n="mamssi_hero_chip4">감정 시각화</span>
       <span class="chip" data-i18n="mamssi_hero_chip5">Cursor AI 협업</span>
-      <span class="chip" data-i18n="mamssi_hero_chip6" style="border-color:rgba(82,183,136,.4);color:#52b788;">● 스토어 등록 준비 중</span>
+      <span class="chip" data-i18n="mamssi_hero_chip6" style="border-color:rgba(82,183,136,.4);color:#52b788;">● 스토어 등록 완료</span>
     </div>
     <div class="hero-cta-btns" style="display:flex;gap:10px;margin-top:36px;opacity:0;animation:fadeUp .8s ease 1.3s forwards;flex-wrap:wrap;">
-      <a href="https://mamssi-app.vercel.app" target="_blank" class="btn-f" style="font-size:13px;padding:13px 26px;">🌱 앱 체험하기</a>
-      <a href="https://mamssi.vercel.app" target="_blank" class="btn-o" style="font-size:13px;padding:13px 26px;">홈페이지 보기 →</a>
+      <a href="https://play.google.com/store/apps/details?id=app.vercel.mamssi_app.twa&amp;pcampaignid=web_share" target="_blank" rel="noopener noreferrer" class="btn-f btn-mamssi-store-cta" aria-label="Google Play에서 마음씨 앱 체험하기"><span data-i18n="mamssi_store_cta">🌱 앱 체험하기</span></a>
     </div>
   </div>
 
@@ -529,7 +533,7 @@ body.mamssi-detail .gnb.gnb-scrolled .gnb__toggle span{ background:#0f172a; }
         <h2 class="ov-h r" data-i18n="mamssi_overview_title">감정일기 앱은 많습니다.<br/>하지만 <em>공감받으면 꽃이 피는</em><br/>앱은 없었습니다.</h2>
         <p class="ov-b r r1" data-i18n="mamssi_overview_body">고립감과 공감 결핍이 심화되는 시대에, 기존 감정 일기 앱들은 기록은 있어도 연결이 없었습니다. 마음,씨는 감정을 씨앗으로 시각화하고, 타인의 공감으로 성장시키며, 100일의 여정 끝에 세상에 단 하나뿐인 감정꽃으로 피워내는 '감정 플랜팅' 구조를 고안했습니다. B2C 구독 모델과 B2B 정서 데이터 SaaS를 함께 설계한 1인 기획·디자인·PM 프로젝트입니다.</p>
         <div class="chips r r2">
-          <span class="chip" data-i18n="mamssi_overview_chip1">소셜 힐링</span><span class="chip" data-i18n="mamssi_overview_chip2">MZ세대 타깃</span><span class="chip" data-i18n="mamssi_overview_chip3">디지털 웰니스</span><span class="chip" data-i18n="mamssi_overview_chip4">B2C · B2B</span><span class="chip" data-i18n="mamssi_overview_chip5">1인 프로젝트</span><span class="chip" data-i18n="mamssi_overview_chip6">스토어 출시 예정</span>
+          <span class="chip" data-i18n="mamssi_overview_chip1">소셜 힐링</span><span class="chip" data-i18n="mamssi_overview_chip2">MZ세대 타깃</span><span class="chip" data-i18n="mamssi_overview_chip3">디지털 웰니스</span><span class="chip" data-i18n="mamssi_overview_chip4">B2C · B2B</span><span class="chip" data-i18n="mamssi_overview_chip5">1인 프로젝트</span><span class="chip" data-i18n="mamssi_overview_chip6">Google Play 등록 완료</span>
         </div>
       </div>
     </div>
@@ -547,7 +551,7 @@ body.mamssi-detail .gnb.gnb-scrolled .gnb__toggle span{ background:#0f172a; }
         <div class="rc"><div class="rc-ico">🧠</div><div class="rc-name" data-i18n="mamssi_role1_name">서비스 기획</div><div class="rc-desc" data-i18n="mamssi_role1_desc">문제 정의, 타깃 분석, 수익 모델(B2C/B2B) 설계, 단계별 목표 수립, Task Flow</div></div>
         <div class="rc"><div class="rc-ico">🎨</div><div class="rc-name" data-i18n="mamssi_role2_name">UX/UI 디자인</div><div class="rc-desc" data-i18n="mamssi_role2_desc">브랜드 아이덴티티, 앱 전체 화면 설계, 감정꽃 성장 시각화 시스템 구축</div></div>
         <div class="rc"><div class="rc-ico">📐</div><div class="rc-name" data-i18n="mamssi_role3_name">구조 설계</div><div class="rc-desc" data-i18n="mamssi_role3_desc">정보구조(IA), 공감숲 소셜 네트워크 구조, 성장 로직 및 데이터 흐름 설계</div></div>
-        <div class="rc"><div class="rc-ico">🚀</div><div class="rc-name" data-i18n="mamssi_role4_name">PM · 런칭</div><div class="rc-desc" data-i18n="mamssi_role4_desc">Cursor AI 개발 협업, Vercel 배포, 사업소개서 작성, 스토어 등록 준비</div></div>
+        <div class="rc"><div class="rc-ico">🚀</div><div class="rc-name" data-i18n="mamssi_role4_name">PM · 런칭</div><div class="rc-desc" data-i18n="mamssi_role4_desc">Cursor AI 개발 협업, Vercel 배포, 사업소개서 작성, Google Play 스토어 등록 완료</div></div>
       </div>
     </div>
   </div>
@@ -961,10 +965,9 @@ body.mamssi-detail .gnb.gnb-scrolled .gnb__toggle span{ background:#0f172a; }
 <section id="cta">
   <div class="wrap">
     <p class="cta-t r" data-i18n="mamssi_cta_title">씨앗 하나, 감정 하나.<br/><em>매일 나를 키워요.</em></p>
-    <p class="cta-s r r1" data-i18n="mamssi_cta_sub">스토어 등록을 앞두고 있습니다. 지금 웹에서 먼저 만나보세요.</p>
+    <p class="cta-s r r1" data-i18n="mamssi_cta_sub">Google Play에 등록되었습니다. 아래에서 바로 앱을 만나보세요.</p>
     <div class="cta-btns r r2">
-      <a href="https://mamssi-app.vercel.app" target="_blank" class="btn-f">🌱 앱 체험하기</a>
-      <a href="https://mamssi.vercel.app" target="_blank" class="btn-o">홈페이지 보기 →</a>
+      <a href="https://play.google.com/store/apps/details?id=app.vercel.mamssi_app.twa&amp;pcampaignid=web_share" target="_blank" rel="noopener noreferrer" class="btn-f btn-mamssi-store-cta" aria-label="Google Play에서 마음씨 앱 체험하기"><span data-i18n="mamssi_store_cta">🌱 앱 체험하기</span></a>
     </div>
   </div>
 </section>
