@@ -11,11 +11,15 @@ nav.gnb{
   left: 0;
   right: 0;
   height: 64px;
-  padding: 0 48px;
+  padding: 0 clamp(16px, 3vw, 48px);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 16px;
   z-index: 50;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
   /* Top: 완전 투명, 테두리 없음 */
   background: transparent;
   border-bottom: 1px solid transparent;
@@ -23,6 +27,13 @@ nav.gnb{
               backdrop-filter 0.3s ease,
               -webkit-backdrop-filter 0.3s ease,
               border-color 0.3s ease;
+}
+/* 와이드: 콘텐츠 폭에 맞춰 GNB 안쪽 정렬감 유지 */
+@media (min-width: 1440px){
+  nav.gnb{
+    padding-left: max(48px, calc((100vw - var(--container, 1180px)) / 2));
+    padding-right: max(48px, calc((100vw - var(--container, 1180px)) / 2));
+  }
 }
 /* 스크롤 후: 반투명 흰색 유리 + 경계선 */
 nav.gnb.gnb-scrolled{
@@ -48,8 +59,10 @@ nav.gnb .gnb-logo:hover{
 /* 가로 메뉴 — 텍스트만, 배경 효과 전부 제거 */
 nav.gnb .gnb-menu{
   display: flex;
-  gap: 40px;
+  flex-wrap: nowrap;
+  gap: clamp(16px, 2.4vw, 40px);
   align-items: center;
+  margin-left: auto;
 }
 nav.gnb .gnb-menu li a{
   display: inline-block;

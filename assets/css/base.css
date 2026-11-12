@@ -11,7 +11,7 @@
   --coral: #FA6262;
 
   --container: 1180px;
-  --gutter: 22px;
+  --gutter: clamp(16px, 3vw, 48px);
 
   --font: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
           "Apple SD Gothic Neo", "Noto Sans KR", "맑은 고딕", Arial, sans-serif;
@@ -71,8 +71,13 @@ a{
 #lxe,
 #more,
 #identity{
-  padding-top: 120px;
-  padding-bottom: 120px;
+  padding-top: clamp(72px, 10vw, 120px);
+  padding-bottom: clamp(72px, 10vw, 120px);
+}
+
+/* 와이드 모니터: 컨테이너만 중앙 유지, 콘텐츠 과도한 늘어짐 방지 */
+@media (min-width: 1440px){
+  :root{ --container: 1240px; }
 }
 
 /* =========================================================
@@ -86,7 +91,7 @@ a{
 }
 .flow .flow-grid{
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   min-height: 540px;
   position: relative;
   z-index: 1;
@@ -95,6 +100,10 @@ a{
   position: relative;
   min-height: 400px;
   overflow: hidden;
+}
+@media (max-width: 1200px) and (min-width: 981px){
+  .flow .flow-grid{ min-height: 480px; }
+  .flow .tile{ min-height: 360px; }
 }
 @media (prefers-reduced-motion: reduce){
   .flow .tile:hover{ transform: none; }
