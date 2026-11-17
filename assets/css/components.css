@@ -828,27 +828,103 @@ html.motion .hero .badge:nth-child(4) { animation: heroFadeUp 0.9s ease 0.42s fo
 
 /* =========================================================
    AI-NATIVE PROJECTS (personal-projects) — Immersive & 3D
+   실무 프로젝트와 동일 카드 폭(3열) + 좌우 화살표 캐러셀
    ========================================================= */
-.personal-projects-rail{ position: relative; }
-.personal-projects-rail > .container{ position: relative; z-index: 1; }
-
-/* 카드 그리드: 1열 (모바일) / 2열 (태블릿) / 3열 (PC), Equal Height */
-.personal-projects-cards{
+.personal-projects-rail{
+  position: relative;
+}
+.personal-projects-carousel{
   position: relative;
   z-index: 1;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 32px;
+}
+.personal-projects-viewport{
+  overflow: hidden;
+  width: 100%;
+  min-width: 0;
+  padding: 8px 2px 16px;
+}
+.personal-projects-track{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
   align-items: stretch;
+  gap: var(--pp-gap, 32px);
+  width: max-content;
+  transform: translate3d(0, 0, 0);
+  transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform;
 }
-@media (min-width: 641px) and (max-width: 980px){
-  .personal-projects-cards{
-    grid-template-columns: repeat(2, 1fr);
+.personal-projects-track > .card-wrapper{
+  flex: 0 0 var(--pp-card-w, 33.333%);
+  width: var(--pp-card-w, 33.333%);
+  min-width: var(--pp-card-w, 33.333%);
+  max-width: var(--pp-card-w, 33.333%);
+  height: var(--pp-card-h, auto);
+  display: flex;
+  box-sizing: border-box;
+}
+.personal-projects-track > .card-wrapper > .card{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.pp-nav{
+  position: absolute;
+  top: 50%;
+  z-index: 3;
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  border: 1px solid #e5e7eb;
+  background: rgba(255, 255, 255, 0.95);
+  color: #0f172a;
+  font-size: 28px;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.12);
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease, opacity 0.2s ease;
+}
+.pp-nav-prev{
+  left: 0;
+  transform: translate(-30%, -50%);
+}
+.pp-nav-next{
+  right: 0;
+  transform: translate(30%, -50%);
+}
+.pp-nav:hover{
+  background: #fff;
+  border-color: #c7d2fe;
+  color: #4f46e5;
+}
+.pp-nav-prev:hover{ transform: translate(-30%, -50%) scale(1.05); }
+.pp-nav-next:hover{ transform: translate(30%, -50%) scale(1.05); }
+.pp-nav:disabled{
+  opacity: 0.35;
+  cursor: default;
+}
+.pp-nav-prev:disabled{ transform: translate(-30%, -50%); }
+.pp-nav-next:disabled{ transform: translate(30%, -50%); }
+@media (max-width: 640px){
+  .pp-nav{
+    width: 38px;
+    height: 38px;
+    font-size: 24px;
   }
+  .pp-nav-prev{ transform: translate(-10%, -50%); }
+  .pp-nav-next{ transform: translate(10%, -50%); }
+  .pp-nav-prev:hover{ transform: translate(-10%, -50%) scale(1.05); }
+  .pp-nav-next:hover{ transform: translate(10%, -50%) scale(1.05); }
+  .pp-nav-prev:disabled{ transform: translate(-10%, -50%); }
+  .pp-nav-next:disabled{ transform: translate(10%, -50%); }
 }
-@media (min-width: 981px){
-  .personal-projects-cards{
-    grid-template-columns: repeat(3, 1fr);
+@media (prefers-reduced-motion: reduce){
+  .personal-projects-track{
+    transition: none;
   }
 }
 
@@ -896,13 +972,22 @@ html.motion .hero .badge:nth-child(4) { animation: heroFadeUp 0.9s ease 0.42s fo
     0 25px 50px -12px rgba(99, 102, 241, 0.2);
 }
 
-/* Content: flex-1로 남은 공간 차지 → 버튼 하단 고정 */
+/* Content: flex-1로 남은 공간 차지 → 버튼 하단 고정 (마음씨 기준 동일 행 높이) */
 .personal-projects .card .inner{
   flex: 1;
   display: flex;
   flex-direction: column;
   padding: 32px;
   min-height: 0;
+}
+.personal-projects .card .inner > p{
+  flex: 1 1 auto;
+  margin: 0 0 14px;
+  min-height: 48px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 /* 썸네일: overflow hidden + scale 1.1 + grayscale→color */
@@ -912,6 +997,7 @@ html.motion .hero .badge:nth-child(4) { animation: heroFadeUp 0.9s ease 0.42s fo
 .personal-projects .card .thumb{
   width: 100%;
   height: 180px;
+  flex: 0 0 180px;
   background: #f1f5f9;
   border-radius: 12px;
   margin-bottom: 20px;
@@ -929,6 +1015,7 @@ html.motion .hero .badge:nth-child(4) { animation: heroFadeUp 0.9s ease 0.42s fo
   justify-content: space-between;
   gap: 8px 12px;
   margin: 0 0 10px;
+  min-height: 40px;
 }
 .personal-projects .card-title-with-badge h3{
   margin: 0;
@@ -939,63 +1026,81 @@ html.motion .hero .badge:nth-child(4) { animation: heroFadeUp 0.9s ease 0.42s fo
 .personal-projects .card .inner > h3{
   margin: 0 0 10px;
   line-height: 1.25;
+  min-height: 40px;
 }
 
-/* 출시 완료 뱃지 — 제목 옆, 대비 강화 */
+/* 출시 완료 뱃지 — soft mint glass */
 .personal-projects .card-launch-badge{
+  position: relative;
   flex-shrink: 0;
   margin-left: auto;
   display: inline-flex;
   align-items: center;
-  gap: 7px;
-  padding: 8px 14px 8px 12px;
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 0.05em;
+  gap: 6px;
+  padding: 7px 12px 7px 10px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
   line-height: 1;
   white-space: nowrap;
-  color: #fff;
-  text-shadow: 0 1px 3px rgba(6, 78, 59, 0.45);
+  color: #047857;
   border-radius: 999px;
-  background: linear-gradient(145deg, #10b981 0%, #059669 40%, #047857 100%);
-  border: 2px solid rgba(255, 255, 255, 0.85);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.72) 0%, rgba(236,253,245,0.9) 100%);
+  border: 1px solid rgba(16, 185, 129, 0.28);
   box-shadow:
-    0 2px 0 rgba(255, 255, 255, 0.35) inset,
-    0 4px 0 rgba(4, 120, 87, 0.35),
-    0 10px 24px rgba(5, 150, 105, 0.45),
-    0 0 0 1px rgba(15, 23, 42, 0.08);
+    0 1px 0 rgba(255, 255, 255, 0.9) inset,
+    0 6px 16px rgba(16, 185, 129, 0.14);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  overflow: hidden;
   pointer-events: none;
-  transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-    box-shadow 0.35s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
-.personal-projects .card-launch-badge__glow{
+.personal-projects .card-launch-badge::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 35%,
+    rgba(255, 255, 255, 0.55) 50%,
+    transparent 65%
+  );
+  transform: translateX(-120%);
+  animation: card-badge-shine 3.6s ease-in-out infinite;
+  pointer-events: none;
+}
+.personal-projects .card-launch-badge__icon{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  color: #059669;
+  background: rgba(16, 185, 129, 0.12);
   flex-shrink: 0;
-  width: 8px;
-  height: 8px;
-  border-radius: 999px;
-  background: #fff;
-  box-shadow:
-    0 0 0 2px rgba(255, 255, 255, 0.9),
-    0 0 14px 4px rgba(110, 231, 183, 1);
-  animation: card-badge-pulse 2.2s ease-in-out infinite;
+}
+.personal-projects .card-launch-badge__icon svg{
+  display: block;
+}
+@keyframes card-badge-shine{
+  0%, 55%{ transform: translateX(-120%); }
+  75%{ transform: translateX(120%); }
+  100%{ transform: translateX(120%); }
 }
 @media (prefers-reduced-motion: reduce){
-  .personal-projects .card-launch-badge__glow{
+  .personal-projects .card-launch-badge::before{
     animation: none;
-    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.85), 0 0 10px rgba(110, 231, 183, 0.85);
   }
 }
-@keyframes card-badge-pulse{
-  0%, 100%{ opacity: 1; transform: scale(1); }
-  50%{ opacity: 0.88; transform: scale(0.9); }
-}
 .personal-projects .card-wrapper:hover .card-launch-badge{
-  transform: scale(1.05);
+  transform: translateY(-1px);
+  border-color: rgba(16, 185, 129, 0.45);
   box-shadow:
-    0 2px 0 rgba(255, 255, 255, 0.4) inset,
-    0 4px 0 rgba(4, 120, 87, 0.4),
-    0 12px 28px rgba(5, 150, 105, 0.55),
-    0 0 0 1px rgba(15, 23, 42, 0.1);
+    0 1px 0 rgba(255, 255, 255, 0.95) inset,
+    0 10px 22px rgba(16, 185, 129, 0.2);
 }
 .personal-projects .card .thumb img{
   width: 100%;
@@ -1018,6 +1123,20 @@ html.motion .hero .badge:nth-child(4) { animation: heroFadeUp 0.9s ease 0.42s fo
   align-items: flex-start;
   column-gap: 8px;
   row-gap: 12px;
+  min-height: 64px;
+  margin-top: auto;
+}
+.personal-projects .personal-role{
+  margin-top: 10px;
+  min-height: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #64748b;
+  letter-spacing: 0.01em;
+  line-height: 1.4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* 태그: Glass 스타일 통일 */
