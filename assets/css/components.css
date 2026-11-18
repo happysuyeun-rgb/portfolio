@@ -1102,6 +1102,27 @@ html.motion .hero .badge:nth-child(4) { animation: heroFadeUp 0.9s ease 0.42s fo
     0 1px 0 rgba(255, 255, 255, 0.95) inset,
     0 10px 22px rgba(16, 185, 129, 0.2);
 }
+
+/* 출시준비중 뱃지 — soft amber glass */
+.personal-projects .card-launch-badge--prep{
+  color: #b45309;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.72) 0%, rgba(255,251,235,0.92) 100%);
+  border-color: rgba(245, 158, 11, 0.32);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.9) inset,
+    0 6px 16px rgba(245, 158, 11, 0.14);
+}
+.personal-projects .card-launch-badge--prep .card-launch-badge__icon{
+  color: #d97706;
+  background: rgba(245, 158, 11, 0.14);
+}
+.personal-projects .card-wrapper:hover .card-launch-badge--prep{
+  border-color: rgba(245, 158, 11, 0.5);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.95) inset,
+    0 10px 22px rgba(245, 158, 11, 0.2);
+}
 .personal-projects .card .thumb img{
   width: 100%;
   height: 100%;
