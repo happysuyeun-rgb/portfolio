@@ -1145,14 +1145,26 @@ html.motion .hero .badge:nth-child(4) { animation: heroFadeUp 0.9s ease 0.42s fo
     0 10px 22px rgba(99, 102, 241, 0.2);
 }
 
+/* 뱃지 2개 이상: 제목 아래 왼쪽 정렬 (오른쪽에 혼자 뜨지 않게) */
+.personal-projects .card-title-with-badge:has(.card-launch-badge-group){
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 10px;
+  min-height: 0;
+}
+.personal-projects .card-title-with-badge:has(.card-launch-badge-group) h3{
+  flex: 0 1 auto;
+  width: 100%;
+}
 .personal-projects .card-launch-badge-group{
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-end;
+  justify-content: flex-start;
+  align-items: center;
   gap: 6px;
-  margin-left: auto;
-  flex-shrink: 0;
-  max-width: 100%;
+  margin-left: 0;
+  width: 100%;
 }
 .personal-projects .card-launch-badge-group .card-launch-badge{
   margin-left: 0;
