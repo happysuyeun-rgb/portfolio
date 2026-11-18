@@ -1144,6 +1144,70 @@ html.motion .hero .badge:nth-child(4) { animation: heroFadeUp 0.9s ease 0.42s fo
     0 1px 0 rgba(255, 255, 255, 0.95) inset,
     0 10px 22px rgba(99, 102, 241, 0.2);
 }
+
+.personal-projects .card-launch-badge-group{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 6px;
+  margin-left: auto;
+  flex-shrink: 0;
+  max-width: 100%;
+}
+.personal-projects .card-launch-badge-group .card-launch-badge{
+  margin-left: 0;
+}
+
+/* 해커톤 참여중 뱃지 — solid orange (개발중 indigo glass와 명확히 대비) */
+.personal-projects .card-launch-badge.card-launch-badge--hack{
+  color: #fff7ed !important;
+  background: linear-gradient(135deg, #ea580c 0%, #f97316 45%, #fb923c 100%) !important;
+  border: 1px solid rgba(249, 115, 22, 0.65) !important;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.28) inset,
+    0 6px 18px rgba(234, 88, 12, 0.35) !important;
+}
+.personal-projects .card-launch-badge.card-launch-badge--hack::before{
+  background: linear-gradient(
+    105deg,
+    transparent 35%,
+    rgba(255, 255, 255, 0.4) 50%,
+    transparent 65%
+  );
+}
+.personal-projects .card-launch-badge.card-launch-badge--hack .card-launch-badge__icon{
+  color: #fff7ed !important;
+  background: rgba(255, 255, 255, 0.22) !important;
+  position: relative;
+}
+.personal-projects .card-launch-badge.card-launch-badge--hack .card-launch-badge__icon::after{
+  content: "";
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #fef08a;
+  box-shadow: 0 0 0 0 rgba(254, 240, 138, 0.75);
+  animation: card-hack-pulse 1.6s ease-out infinite;
+}
+@keyframes card-hack-pulse{
+  0%{ box-shadow: 0 0 0 0 rgba(254, 240, 138, 0.75); }
+  70%{ box-shadow: 0 0 0 7px rgba(254, 240, 138, 0); }
+  100%{ box-shadow: 0 0 0 0 rgba(254, 240, 138, 0); }
+}
+@media (prefers-reduced-motion: reduce){
+  .personal-projects .card-launch-badge.card-launch-badge--hack .card-launch-badge__icon::after{
+    animation: none;
+  }
+}
+.personal-projects .card-wrapper:hover .card-launch-badge.card-launch-badge--hack{
+  border-color: rgba(251, 146, 60, 0.9) !important;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.35) inset,
+    0 10px 24px rgba(234, 88, 12, 0.45) !important;
+}
 .personal-projects .card .thumb img{
   width: 100%;
   height: 100%;
