@@ -4,25 +4,965 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>마이챕터 (MyChapter) — AI 개인 출판 플랫폼 | Seoah Lee</title>
-  <meta name="description" content="AI와 함께 일상의 기록을 한 권의 책으로 완성하는 개인 출판 플랫폼 마이챕터 프로젝트.">
+  <meta name="description" content="하루를 기록하고, 삶을 한 권으로. MY CHAPTER는 당신의 이야기를 책으로 만들어주는 기록 서비스입니다.">
   <link rel="canonical" href="https://happysuyeun-rgb.github.io/portfolio/projects/mychapter.html">
-
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&family=Noto+Serif+KR:wght@700;900&family=Noto+Serif:wght@700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/base.css">
   <link rel="stylesheet" href="../assets/css/gnb.css">
-  <link rel="stylesheet" href="../assets/css/components.css">
   <link rel="stylesheet" href="../assets/css/footer.css">
-  <link rel="stylesheet" href="../assets/css/cursor.css">
-  <link rel="stylesheet" href="../assets/css/project-detail.css">
+  <style>
+    :root{
+      --mc-bg: #FCF8EE;
+      --mc-bg-soft: #f3eee4;
+      --mc-surface: #fffdf8;
+      --mc-ink: #332F29;
+      --mc-muted: #5c574f;
+      --mc-line: rgba(36, 48, 36, 0.12);
+      --mc-green: #355338;
+      --mc-green-soft: #4f6b4c;
+      --mc-sage: #6d8568;
+      --mc-leaf: #5f7a58;
+      --mc-sans: "Noto Sans KR", sans-serif;
+      --mc-serif: "Noto Serif KR", "Noto Serif", Georgia, serif;
+      --mc-focus: #2f6b3a;
+    }
+
+    *{ box-sizing: border-box; }
+    html{ scroll-behavior: smooth; }
+    body.mc-page{
+      margin: 0;
+      background: var(--mc-bg);
+      color: var(--mc-ink);
+      font-family: var(--mc-sans);
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      word-break: keep-all;
+      overflow-wrap: break-word;
+      cursor: auto;
+    }
+    body.mc-page::before{
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background:
+        radial-gradient(ellipse 70% 45% at 85% 8%, rgba(143,169,138,0.10), transparent 60%),
+        radial-gradient(ellipse 55% 40% at 10% 30%, rgba(255,253,248,0.7), transparent 55%),
+        linear-gradient(180deg, #FCF8EE 0%, #FCF8EE 100%);
+    }
+    body.mc-page > *{ position: relative; z-index: 1; }
+    a:focus-visible,
+    button:focus-visible{
+      outline: 2px solid var(--mc-focus);
+      outline-offset: 3px;
+    }
+
+    /* GNB — light override */
+    body.mc-page nav.gnb{
+      background: transparent;
+      color: var(--mc-ink);
+    }
+    body.mc-page nav.gnb .gnb-logo,
+    body.mc-page nav.gnb .gnb-menu li a,
+    body.mc-page nav.gnb .lang-label,
+    body.mc-page nav.gnb .lang-icon{
+      color: var(--mc-ink);
+    }
+    body.mc-page nav.gnb .gnb-menu li a:hover{ color: var(--mc-green); }
+    body.mc-page nav.gnb.gnb-scrolled{
+      background: rgba(252, 248, 238, 0.94);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--mc-line);
+    }
+    body.mc-page .gnb__toggle span{ background: var(--mc-ink); }
+    body.mc-page #gnb-dropdown{
+      background: var(--mc-surface);
+      border: 1px solid var(--mc-line);
+    }
+    body.mc-page #gnb-dropdown a{ color: var(--mc-ink); }
+
+    .mc-wrap{
+      width: min(1080px, calc(100% - 48px));
+      margin: 0 auto;
+    }
+    @media (max-width: 640px){
+      .mc-wrap{ width: calc(100% - 28px); }
+    }
+
+    /* Hero */
+    .mc-hero{
+      padding: 140px 0 140px;
+    }
+    .mc-hero-grid{
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+      gap: 72px;
+      align-items: center;
+    }
+    @media (max-width: 900px){
+      .mc-hero{ padding: 120px 0 100px; }
+      .mc-hero-grid{ grid-template-columns: 1fr; gap: 40px; }
+    }
+    .mc-hero-kicker{
+      margin: 0 0 18px;
+      font-size: 28px;
+      font-weight: 500;
+      line-height: 1.5;
+      letter-spacing: 0.04em;
+      color: var(--mc-muted);
+    }
+    @media (max-width: 640px){
+      .mc-hero-kicker{ font-size: 20px; }
+    }
+    .mc-hero h1{
+      margin: 0 0 14px;
+      font-family: var(--mc-serif);
+      font-size: clamp(2.85rem, 5.6vw, 4.2rem);
+      font-weight: 900;
+      line-height: 1.15;
+      letter-spacing: 0.04em;
+      color: var(--mc-ink);
+      white-space: nowrap;
+    }
+    .mc-hero-tagline{
+      margin: 0 0 28px;
+      font-family: var(--mc-serif);
+      font-size: clamp(2.85rem, 5.6vw, 4.2rem);
+      font-weight: 900;
+      line-height: 1.25;
+      letter-spacing: -0.03em;
+      color: var(--mc-ink);
+    }
+    .mc-hero-tagline .mc-accent{
+      color: #C87959;
+    }
+    .mc-typed-cursor{
+      display: inline-block;
+      width: 0.08em;
+      margin-left: 0.06em;
+      background: currentColor;
+      animation: mcCursorBlink 1s step-end infinite;
+      vertical-align: -0.05em;
+      height: 0.85em;
+    }
+    .mc-hero h1 .mc-typed-cursor{ background: var(--mc-ink); }
+    .mc-hero-tagline .mc-typed-cursor{ background: #C87959; }
+    @keyframes mcCursorBlink{
+      50%{ opacity: 0; }
+    }
+    .mc-hero h1.is-typing,
+    .mc-hero-tagline.is-typing{
+      min-height: 1.15em;
+    }
+    .mc-hero .lead{
+      margin: 0 0 40px;
+      max-width: 30em;
+      font-size: clamp(0.95rem, 1.4vw, 1.05rem);
+      font-weight: 400;
+      line-height: 1.95;
+      color: var(--mc-muted);
+    }
+    .mc-cta-row{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .mc-btn{
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 52px;
+      padding: 0 24px;
+      border-radius: 999px;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      text-decoration: none;
+      border: 1px solid transparent;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+    .mc-btn:hover{ transform: translateY(-1px); }
+    .mc-btn-primary{
+      background: #FFE5A3;
+      color: #332F29;
+      box-shadow: none;
+    }
+    .mc-btn-primary:hover{
+      background: #332F29;
+      color: #FCF8EE;
+      box-shadow: none;
+    }
+    .mc-btn-wide{
+      width: 100%;
+      max-width: 360px;
+      padding: 0 36px;
+    }
+
+    .mc-placeholder{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      min-height: 200px;
+      padding: 28px;
+      border-radius: 24px;
+      border: 1.5px dashed rgba(95, 122, 88, 0.32);
+      background: linear-gradient(160deg, #fffdf8, #f5f0e4);
+      color: var(--mc-sage);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      text-align: center;
+      line-height: 1.5;
+    }
+    .mc-hero-visual{
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .mc-hero-visual img{
+      display: block;
+      width: 100%;
+      max-width: 560px;
+      height: auto;
+      object-fit: contain;
+      background: transparent;
+    }
+    @media (max-width: 900px){
+      .mc-hero-visual img{ max-width: 420px; }
+    }
+
+    /* Sections */
+    .mc-sec{
+      padding: 128px 0;
+    }
+    .mc-sec.mc-journey{
+      padding: 140px 0 130px;
+    }
+    .mc-sec-title{
+      margin: 0;
+      text-align: center;
+      font-size: clamp(2.15rem, 3.8vw, 2.85rem);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      line-height: 1.45;
+      color: var(--mc-ink);
+    }
+    .mc-sec-head{
+      margin: 0 auto 72px;
+    }
+    .mc-journey .mc-sec-head{
+      margin-bottom: 88px;
+    }
+    .mc-sec-head .mc-sec-title{ margin: 0; }
+    .mc-sec-title-nowrap{
+      white-space: nowrap;
+    }
+    .mc-sec-title .mc-typed-cursor{
+      display: inline-block;
+      width: 0.08em;
+      margin-left: 0.04em;
+      height: 0.9em;
+      background: currentColor;
+      vertical-align: -0.08em;
+      animation: mcCursorBlink 1s step-end infinite;
+    }
+    @media (max-width: 640px){
+      .mc-sec-title-nowrap{
+        white-space: normal;
+        font-size: clamp(1.55rem, 6.2vw, 2.15rem);
+      }
+    }
+
+    /* Journey */
+    .mc-journey{
+      background: transparent;
+    }
+    .mc-steps{
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 28px 28px;
+      align-items: stretch;
+    }
+    @media (max-width: 1100px){
+      .mc-steps{ grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 48px 32px; }
+    }
+    @media (max-width: 720px){
+      .mc-steps{ grid-template-columns: 1fr; gap: 40px; }
+    }
+    .mc-step{
+      position: relative;
+      display: grid;
+      grid-template-rows: 120px auto auto;
+      row-gap: 8px;
+      justify-items: center;
+      align-content: start;
+      text-align: center;
+      padding: 0;
+      opacity: 0;
+      transform: translateX(-24px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .mc-step.is-visible{
+      opacity: 1;
+      transform: translateX(0);
+    }
+    @media (prefers-reduced-motion: reduce){
+      .mc-step{
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+    }
+    .mc-step:not(:last-child)::after{
+      content: "›";
+      position: absolute;
+      top: 42px;
+      right: -20px;
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      font-weight: 400;
+      line-height: 1;
+      color: rgba(51, 47, 41, 0.35);
+      pointer-events: none;
+      z-index: 2;
+    }
+    @media (max-width: 1100px){
+      .mc-step:not(:last-child)::after{ display: none; }
+    }
+    @media (max-width: 720px){
+      .mc-step{
+        grid-template-columns: 88px 1fr;
+        grid-template-rows: auto auto auto;
+        gap: 4px 16px;
+        justify-items: start;
+        text-align: left;
+        transform: translateY(16px);
+      }
+      .mc-step.is-visible{ transform: translateY(0); }
+      .mc-step-icon{
+        grid-row: 1 / span 2;
+        grid-column: 1;
+        width: 88px;
+        height: 88px;
+        margin: 0;
+      }
+      .mc-step-icon img{ width: 100%; height: 100%; }
+      .mc-step h3,
+      .mc-step p{
+        grid-column: 2;
+        width: auto;
+        max-width: none;
+        text-align: left;
+        min-height: 0;
+        justify-self: start;
+      }
+    }
+    .mc-step-icon{
+      width: 112px;
+      height: 112px;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+      background: transparent;
+      border: 0;
+    }
+    .mc-step-icon img{
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center bottom;
+      display: block;
+    }
+    .mc-step h3{
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      width: 100%;
+      margin: 0;
+      padding: 0 2px;
+      font-size: 17px;
+      font-weight: 700;
+      line-height: 1.35;
+      color: var(--mc-ink);
+      letter-spacing: -0.02em;
+      text-align: center;
+      word-break: keep-all;
+      overflow-wrap: break-word;
+    }
+    @media (max-width: 720px){
+      .mc-step h3{ font-size: 18px; }
+    }
+    .mc-step p{
+      width: 100%;
+      margin: 0;
+      padding: 0 4px;
+      max-width: none;
+      font-size: 12.5px;
+      line-height: 1.65;
+      color: var(--mc-muted);
+      text-align: center;
+      word-break: keep-all;
+    }
+
+    /* Moments */
+    .mc-moments{
+      padding: 80px 0;
+      background: #EDDFCE;
+    }
+    .mc-moments-grid{
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      gap: 96px;
+      align-items: center;
+    }
+    @media (max-width: 900px){
+      .mc-moments-grid{ grid-template-columns: 1fr; gap: 48px; }
+    }
+    .mc-moments-kicker{
+      margin: 0 0 16px;
+      font-size: 15px;
+      font-weight: 600;
+      line-height: 1.5;
+      letter-spacing: -0.01em;
+      color: var(--mc-muted);
+    }
+    .mc-moments-copy h2{
+      margin: 0 0 36px;
+      font-size: clamp(1.85rem, 3.4vw, 2.55rem);
+      font-weight: 700;
+      line-height: 1.45;
+      letter-spacing: -0.03em;
+      color: var(--mc-ink);
+    }
+    @media (max-width: 900px){
+      .mc-moments-copy h2{
+        font-size: clamp(1.55rem, 6vw, 2.1rem);
+      }
+    }
+    .mc-moments-list{
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .mc-moments-list li{
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      font-size: 15.5px;
+      line-height: 1.75;
+      color: var(--mc-ink);
+      letter-spacing: -0.01em;
+    }
+    .mc-moments-check{
+      width: 22px;
+      height: 22px;
+      margin-top: 2px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      display: grid;
+      place-items: center;
+      background: #332F29;
+      color: #FCF8EE;
+    }
+    .mc-moments-check svg{
+      width: 12px;
+      height: 12px;
+      display: block;
+    }
+    .mc-moments-visual{
+      position: relative;
+      overflow: visible;
+    }
+    .mc-moments-visual img{
+      display: block;
+      width: 150%;
+      max-width: none;
+      height: auto;
+      margin-left: 0;
+      object-fit: contain;
+      background: transparent;
+      border-radius: 0;
+    }
+    @media (max-width: 900px){
+      .mc-moments-visual img{
+        width: 100%;
+        margin-left: 0;
+      }
+    }
+    .mc-moments-badge{
+      position: absolute;
+      right: 8%;
+      bottom: 10%;
+      width: 118px;
+      height: 118px;
+      border-radius: 50%;
+      background: #332F29;
+      color: #FCF8EE;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 16px;
+      font-size: 12.5px;
+      font-weight: 700;
+      line-height: 1.45;
+      letter-spacing: -0.02em;
+      box-shadow: 0 12px 28px rgba(51, 47, 41, 0.22);
+    }
+    @media (max-width: 640px){
+      .mc-moments-badge{
+        width: 96px;
+        height: 96px;
+        font-size: 11px;
+        right: 12px;
+        bottom: 14px;
+      }
+    }
+
+    /* Features */
+    .mc-features-grid{
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+      gap: 48px;
+      align-items: center;
+    }
+    @media (max-width: 900px){
+      .mc-features-grid{
+        grid-template-columns: 1fr;
+        gap: 36px;
+        align-items: stretch;
+      }
+    }
+    .mc-feature-list{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 48px;
+      min-height: 100%;
+    }
+    .mc-feature{
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: 16px;
+      align-items: start;
+      padding: 0;
+      background: transparent;
+      border: 0;
+      border-radius: 0;
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .mc-feature.is-visible{
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .mc-feature-num{
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: rgba(95, 122, 88, 0.12);
+      color: var(--mc-green);
+      flex-shrink: 0;
+    }
+    .mc-feature-num svg{
+      width: 22px;
+      height: 22px;
+      display: block;
+    }
+    .mc-feature h3{
+      margin: 2px 0 12px;
+      font-size: 26px;
+      font-weight: 700;
+      line-height: 1.35;
+      letter-spacing: -0.02em;
+      color: var(--mc-ink);
+    }
+    @media (max-width: 900px){
+      .mc-feature h3{ font-size: 22px; }
+      .mc-feature-list{ gap: 36px; }
+    }
+    .mc-feature p{
+      margin: 0;
+      font-size: 14.5px;
+      line-height: 1.85;
+      color: var(--mc-muted);
+    }
+    @media (prefers-reduced-motion: reduce){
+      .mc-feature{
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+    }
+    .mc-feature-visuals{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      align-self: center;
+    }
+    .mc-screen-swap{
+      position: relative;
+      width: min(100%, 300px);
+      aspect-ratio: 9 / 19.2;
+      margin: 0;
+    }
+    .mc-screen-swap img{
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      opacity: 0;
+      transition: opacity 0.35s ease;
+      pointer-events: none;
+      user-select: none;
+    }
+    .mc-screen-swap img.is-active{
+      opacity: 1;
+    }
+    @media (max-width: 900px){
+      .mc-feature-visuals{ position: static; }
+      .mc-screen-swap{ width: min(100%, 280px); }
+    }
+
+    /* Reviews */
+    .mc-reviews{
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+    @media (max-width: 900px){
+      .mc-reviews{ grid-template-columns: 1fr; }
+    }
+    .mc-review{
+      display: flex;
+      flex-direction: column;
+      background: #fff;
+      border: 1px solid rgba(51, 47, 41, 0.12);
+      border-radius: 14px;
+      padding: 28px 26px 24px;
+      min-height: 100%;
+      box-shadow: none;
+    }
+    .mc-review-head{
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+    .mc-review-avatar{
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      background: #EDDFCE;
+      display: block;
+      overflow: hidden;
+    }
+    .mc-review-avatar img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+    .mc-review-meta{
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      min-width: 0;
+    }
+    .mc-review-name{
+      font-size: 15px;
+      font-weight: 700;
+      color: #332F29;
+      letter-spacing: -0.02em;
+      line-height: 1.3;
+    }
+    .mc-review-stars{
+      display: flex;
+      gap: 2px;
+      color: #E2B84A;
+      font-size: 13px;
+      line-height: 1;
+      letter-spacing: 0.02em;
+    }
+    .mc-review-body{
+      flex: 1;
+      margin: 0 0 22px;
+      font-size: 14.5px;
+      line-height: 1.85;
+      color: #332F29;
+      letter-spacing: -0.01em;
+    }
+    .mc-review-status{
+      margin: 0;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 500;
+      color: #8a847a;
+      letter-spacing: -0.01em;
+    }
+
+    .mc-final-cta{
+      margin-top: 48px;
+      background: linear-gradient(165deg, #466747, #334f36);
+      color: #fff;
+      border-radius: 22px;
+      padding: 40px 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      justify-content: center;
+    }
+    .mc-final-cta h3{
+      margin: 0 0 16px;
+      font-size: clamp(1.25rem, 2vw, 1.5rem);
+      line-height: 1.5;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    .mc-final-cta > p{
+      margin: 0 0 28px;
+      font-size: 14.5px;
+      line-height: 1.85;
+      color: rgba(255,255,255,0.88);
+    }
+    .mc-final-cta .mc-btn-primary{
+      background: #FFE5A3;
+      color: #332F29;
+      box-shadow: none;
+      width: 100%;
+      max-width: 320px;
+    }
+    .mc-final-cta .mc-btn-primary:hover{
+      background: #332F29;
+      color: #FCF8EE;
+    }
+
+    /* Promise banner (above footer) */
+    .mc-promise{
+      position: relative;
+      margin-top: 48px;
+      background: #4A5D45;
+      color: #FCF8EE;
+      padding: 96px 0 88px;
+    }
+    .mc-promise-edge{
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: -28px;
+      width: 100%;
+      height: 30px;
+      display: block;
+      pointer-events: none;
+      color: #FCF8EE;
+    }
+    .mc-promise-grid{
+      display: grid;
+      grid-template-columns: 1.15fr 1fr 1fr 1fr;
+      gap: 0;
+      align-items: center;
+    }
+    .mc-promise-item{
+      position: relative;
+      padding: 8px 28px;
+      text-align: center;
+    }
+    .mc-promise-item:not(:first-child)::before{
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 12%;
+      bottom: 12%;
+      border-left: 1.5px dotted rgba(252, 248, 238, 0.35);
+    }
+    .mc-promise-lead{
+      text-align: left;
+      padding-left: 8px;
+      padding-right: 20px;
+    }
+    .mc-promise-quote{
+      display: block;
+      margin-bottom: 10px;
+      font-size: 28px;
+      line-height: 1;
+      color: rgba(252, 248, 238, 0.55);
+      font-family: Georgia, serif;
+    }
+    .mc-promise-lead h3{
+      margin: 0 0 12px;
+      font-size: clamp(1.15rem, 1.6vw, 1.35rem);
+      font-weight: 700;
+      line-height: 1.55;
+      letter-spacing: -0.02em;
+      color: #FCF8EE;
+    }
+    .mc-promise-lead p{
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.6;
+      color: rgba(252, 248, 238, 0.78);
+    }
+    .mc-promise-leaf{
+      display: inline-block;
+      margin-top: 14px;
+      color: #E8C56B;
+    }
+    .mc-promise-icon{
+      width: 36px;
+      height: 36px;
+      margin: 0 auto 14px;
+      color: rgba(252, 248, 238, 0.92);
+    }
+    .mc-promise-icon svg{
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+    .mc-promise-item h3{
+      margin: 0 0 10px;
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.4;
+      letter-spacing: -0.02em;
+      white-space: nowrap;
+      color: #FCF8EE;
+    }
+    .mc-promise-item p{
+      margin: 0 auto;
+      max-width: 16em;
+      font-size: 13px;
+      line-height: 1.7;
+      color: rgba(252, 248, 238, 0.78);
+    }
+    @media (max-width: 980px){
+      .mc-promise{ padding: 56px 0 48px; }
+      .mc-promise-grid{ grid-template-columns: 1fr 1fr; gap: 28px 0; }
+      .mc-promise-item:nth-child(3)::before{ display: none; }
+      .mc-promise-lead{ grid-column: 1 / -1; text-align: center; padding: 0 16px 8px; }
+      .mc-promise-quote{ margin-left: auto; margin-right: auto; }
+      .mc-promise-item h3{ white-space: normal; }
+    }
+    @media (max-width: 640px){
+      .mc-promise-grid{ grid-template-columns: 1fr; gap: 24px; }
+      .mc-promise-item:not(:first-child)::before{ display: none; }
+      .mc-promise-item{
+        padding: 0 8px 20px;
+        border-bottom: 1.5px dotted rgba(252, 248, 238, 0.25);
+      }
+      .mc-promise-item:last-child{ border-bottom: 0; padding-bottom: 0; }
+    }
+
+    /* Next + footer */
+    .mc-next{
+      padding: 48px 0 64px;
+    }
+    .mc-next a{
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 26px 24px;
+      border-radius: 18px;
+      background: var(--mc-surface);
+      border: 1px solid var(--mc-line);
+      text-decoration: none;
+      color: var(--mc-ink);
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .mc-next a:hover{
+      border-color: rgba(95, 122, 88, 0.45);
+      transform: translateY(-2px);
+    }
+    .mc-next span{
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--mc-muted);
+      font-weight: 600;
+    }
+    .mc-next strong{
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    body.mc-page .footer-cta{
+      background: #243024;
+      color: rgba(255,255,255,0.88);
+    }
+    body.mc-page .footer-cta .footer-title{ color: #fff; }
+    body.mc-page .footer-cta .footer-desc{ color: rgba(255,255,255,0.72); }
+
+    body.mc-page .to-top{
+      position: fixed;
+      right: 24px;
+      bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+      width: 52px;
+      height: 52px;
+      border: 1px solid rgba(51, 47, 41, 0.12);
+      border-radius: 50%;
+      background: #332F29;
+      color: #FCF8EE;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.25s ease, visibility 0.25s ease, background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+      z-index: 9999;
+    }
+    body.mc-page .to-top.show{
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+    body.mc-page .to-top:hover{
+      background: #FFE5A3;
+      color: #332F29;
+      transform: translateY(-3px);
+    }
+    body.mc-page .to-top-arrow{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    @media (max-width: 640px){
+      body.mc-page .to-top{
+        right: 16px;
+        bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+        width: 46px;
+        height: 46px;
+      }
+    }
+  </style>
 </head>
-<body class="project-detail project-mychapter">
-  <div id="custom-cursor" class="custom-cursor" aria-hidden="true"></div>
-
-  <div class="project-detail-bg" aria-hidden="true">
-    <div class="aurora-orb aurora-orb-1"></div>
-    <div class="aurora-orb aurora-orb-2"></div>
-    <div class="aurora-orb aurora-orb-3"></div>
-  </div>
-
+<body class="mc-page">
   <nav class="gnb" id="gnb">
     <a href="../index.html" class="gnb-logo">SEOAH</a>
     <ul class="gnb-menu">
@@ -55,152 +995,303 @@
   </nav>
 
   <main>
-    <!-- A. Hero -->
-    <header class="project-hero js-typed-section" data-typed-plain="마이챕터 (MyChapter)" data-typed-highlight="MyChapter">
-      <span class="kicker">사이드 프로젝트 · AI-Native · 1인 풀사이클</span>
-      <h1 class="section-title-typed">
-        <span class="typed-target"></span>
-      </h1>
-      <p class="lead">
-        하루를 기록하고, 삶을 한 권으로.<br>
-        AI와 함께 일상의 기록을 정리하고, 개인 출판물로 완성하는<br>
-        마이챕터의 서비스 구조를 기획부터 배포까지 더미 콘텐츠로 정리한 상세 페이지입니다.
-      </p>
-      <div class="badges">
-        <span class="badge">#AI-Native</span>
-        <span class="badge">#ProductDesign</span>
-        <span class="badge">#FullStack</span>
-        <span class="badge">#1인개발</span>
-      </div>
-      <div class="mockup-wrap">
-        <div class="mockup-inner js-tilt" data-tilt>
-          <img src="../assets/img/mychapter-thumb.jpg" alt="마이챕터 서비스 미리보기">
+    <!-- Hero -->
+    <section class="mc-hero">
+      <div class="mc-wrap mc-hero-grid">
+        <div class="mc-hero-copy" id="top">
+          <p class="mc-hero-kicker">하루를 기록하고, 삶을 한 권으로.</p>
+          <h1 class="js-mc-typed-title" aria-label="MY CHAPTER,"><span class="mc-typed-text"></span><span class="mc-typed-cursor" aria-hidden="true"></span></h1>
+          <p class="mc-hero-tagline js-mc-typed-tagline" aria-label="당신의 이야기를 책으로"><span class="mc-typed-text"></span><span class="mc-typed-cursor" aria-hidden="true" hidden></span></p>
+          <p class="lead">AI가 당신의 기록을 정리하고, 세상에 하나뿐인 전자책으로 완성해 드립니다.</p>
+          <div class="mc-cta-row">
+            <a class="mc-btn mc-btn-primary mc-btn-wide" href="https://my-chapter.vercel.app/splash" target="_blank" rel="noopener">체험하기</a>
+          </div>
         </div>
-      </div>
-    </header>
-
-    <!-- B. Overview -->
-    <section class="project-overview container" id="overview">
-      <h2 class="section-title">Project Overview</h2>
-      <div class="project-meta-bar">
-        <div class="meta-item">
-          <span class="meta-label">Role</span>
-          <span class="meta-value">기획 · UX/UI 디자인 · 프론트엔드 · 백엔드 · 배포</span>
-        </div>
-        <div class="meta-item">
-          <span class="meta-label">Period</span>
-          <span class="meta-value">2025 — 진행 중 (더미)</span>
-        </div>
-        <div class="meta-item">
-          <span class="meta-label">Platform</span>
-          <span class="meta-value">Web · Mobile Web</span>
-        </div>
-        <div class="meta-item">
-          <span class="meta-label">Tools</span>
-          <span class="meta-value">Figma · Cursor AI · Next.js · Supabase</span>
-        </div>
-      </div>
-      <div class="overview-grid">
-        <div class="glass-card" id="challenge">
-          <h3>The Challenge</h3>
-          <p class="glass-card-desc">배경 및 문제점</p>
-          <ul>
-            <li>일기를 써도 <strong>기록이 흩어지고</strong>, 시간이 지나면 의미를 되찾기 어렵다.</li>
-            <li>기존 기록 앱은 저장 중심이라 <strong>이야기 구조로 재구성</strong>해주는 경험이 부족하다.</li>
-            <li>개인 출판까지 가려면 편집·교정·레이아웃 비용이 커 <strong>진입 장벽이 높다</strong>.</li>
-          </ul>
-        </div>
-        <div class="glass-card" id="solution">
-          <h3>The Solution</h3>
-          <p class="glass-card-desc">핵심 해결 방향</p>
-          <ul>
-            <li><strong>기록하고</strong> — 하루의 짧은 기록을 부담 없이 남기는 루틴 UX</li>
-            <li><strong>AI가 정리하고</strong> — 감정·주제·타임라인을 자동으로 묶어 챕터화</li>
-            <li><strong>책으로 완성해요</strong> — 개인 출판 가능한 결과물로 연결되는 end-to-end 플로우</li>
-          </ul>
+        <div class="mc-hero-visual">
+          <img src="../assets/img/mychapter-hero.png" alt="MY CHAPTER 앱 화면과 마스코트">
         </div>
       </div>
     </section>
 
-    <!-- C. Decision -->
-    <section class="project-decision container" id="decision">
-      <h2 class="section-title">핵심 의사결정 — Why this structure?</h2>
-      <div class="decision-grid">
-        <div class="decision-card">
-          <div class="decision-num">01</div>
-          <h3>짧은 기록이 쌓여도 압도되지 않는 IA</h3>
-          <p>더미 텍스트입니다. 사용자는 매일 짧게 쓰고, 시스템은 주/월 단위로 챕터를 제안해 ‘써야 할 부담’보다 ‘쌓이는 성취’를 우선하도록 구조를 잡았습니다.</p>
+    <!-- Journey -->
+    <section class="mc-sec mc-journey" id="journey">
+      <div class="mc-wrap">
+        <div class="mc-sec-head">
+          <h2 class="mc-sec-title mc-sec-title-nowrap js-mc-sec-typed" data-typed-text="기록부터 발행까지, 모든 과정이 쉽고 아름답습니다." aria-label="기록부터 발행까지, 모든 과정이 쉽고 아름답습니다."><span class="mc-typed-text"></span><span class="mc-typed-cursor" aria-hidden="true"></span></h2>
         </div>
-        <div class="decision-card">
-          <div class="decision-num">02</div>
-          <h3>AI 정리 결과를 사용자가 통제</h3>
-          <p>더미 텍스트입니다. AI가 초안을 만들되, 사용자가 챕터 제목·순서·공개 범위를 직접 수정할 수 있는 편집 레이어를 두어 신뢰와 통제감을 확보했습니다.</p>
-        </div>
-        <div class="decision-card">
-          <div class="decision-num">03</div>
-          <h3>출판 결과물까지의 명확한 완료 지점</h3>
-          <p>더미 텍스트입니다. 기록이 ‘저장’에서 끝나지 않도록, 미리보기·내보내기·인쇄용 레이아웃까지 이어지는 완료 경험을 제품의 핵심 가치로 정의했습니다.</p>
+        <div class="mc-steps" id="mcSteps">
+          <article class="mc-step">
+            <div class="mc-step-icon">
+              <img src="../assets/img/mychapter/journey/01.png" alt="">
+            </div>
+            <h3>기록하기</h3>
+            <p>AI 질문 또는 자유 기록으로 오늘의 이야기를 남겨요.</p>
+          </article>
+          <article class="mc-step">
+            <div class="mc-step-icon">
+              <img src="../assets/img/mychapter/journey/02.png" alt="">
+            </div>
+            <h3>AI 정리</h3>
+            <p>AI가 당신의 기록을 분석하고 의미있는 스토리를 찾아요.</p>
+          </article>
+          <article class="mc-step">
+            <div class="mc-step-icon">
+              <img src="../assets/img/mychapter/journey/03.png" alt="">
+            </div>
+            <h3>챕터 구성</h3>
+            <p>주제별 챕터를 만들고 구성을 다듬어요.</p>
+          </article>
+          <article class="mc-step">
+            <div class="mc-step-icon">
+              <img src="../assets/img/mychapter/journey/04.png" alt="">
+            </div>
+            <h3>원고 완성</h3>
+            <p>AI가 원고를 작성하고 당신의 문체로 다듬어요.</p>
+          </article>
+          <article class="mc-step">
+            <div class="mc-step-icon">
+              <img src="../assets/img/mychapter/journey/05.png" alt="">
+            </div>
+            <h3>표지 &amp; 목차</h3>
+            <p>AI 표지와 목차를 만들고 최종 구성을 확인해요.</p>
+          </article>
+          <article class="mc-step">
+            <div class="mc-step-icon">
+              <img src="../assets/img/mychapter/journey/06.png" alt="">
+            </div>
+            <h3>전자책 발행</h3>
+            <p>PDF / EPUB로 발행하고 당신의 책을 완성해요.</p>
+          </article>
         </div>
       </div>
     </section>
 
-    <!-- D. Features (간소화) -->
-    <section class="project-features" id="features">
-      <div class="features-inner">
-        <div class="features-text">
-          <div class="feature-step" data-step="0">
-            <h3>Step 01</h3>
-            <h2>기록하기 — Daily Capture</h2>
-            <p>더미 텍스트입니다. 감정 태그, 짧은 문장, 사진 한 장으로도 하루를 남길 수 있게 입력 마찰을 최소화했습니다. <strong>기록의 시작</strong>이 서비스의 첫 성공 경험입니다.</p>
-          </div>
-          <div class="feature-step" data-step="1">
-            <h3>Step 02</h3>
-            <h2>AI 정리 — Chaptering</h2>
-            <p>더미 텍스트입니다. AI가 기록 묶음을 주제·감정·기간 기준으로 챕터 초안을 만들고, 사용자는 드래그로 순서를 바꾸거나 제외할 수 있습니다.</p>
-          </div>
-          <div class="feature-step" data-step="2">
-            <h3>Step 03</h3>
-            <h2>책으로 완성 — Publish</h2>
-            <p>더미 텍스트입니다. 표지 프리셋, 본문 레이아웃, PDF/인쇄용 내보내기까지 연결해 ‘한 권의 책’으로 끝나는 경험을 설계했습니다.</p>
-          </div>
+    <!-- Moments -->
+    <section class="mc-moments" id="moments">
+      <div class="mc-wrap mc-moments-grid">
+        <div class="mc-moments-copy">
+          <h2>당신의 모든 순간이<br>의미 있는 이야기가 됩니다.</h2>
+          <ul class="mc-moments-list">
+            <li>
+              <span class="mc-moments-check" aria-hidden="true">
+                <svg viewBox="0 0 12 12" fill="none"><path d="M2.2 6.2 L4.8 8.8 L9.8 3.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+              일기, 여행, 육아, 커리어, 가족 이야기
+            </li>
+            <li>
+              <span class="mc-moments-check" aria-hidden="true">
+                <svg viewBox="0 0 12 12" fill="none"><path d="M2.2 6.2 L4.8 8.8 L9.8 3.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+              꿈과 목표, 감사 일기, 나의 도전
+            </li>
+            <li>
+              <span class="mc-moments-check" aria-hidden="true">
+                <svg viewBox="0 0 12 12" fill="none"><path d="M2.2 6.2 L4.8 8.8 L9.8 3.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+              관계와 사랑, 특별한 기억들
+            </li>
+            <li>
+              <span class="mc-moments-check" aria-hidden="true">
+                <svg viewBox="0 0 12 12" fill="none"><path d="M2.2 6.2 L4.8 8.8 L9.8 3.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+              세상에 단 하나뿐인 나만의 책
+            </li>
+          </ul>
         </div>
-        <div class="features-visual">
-          <div class="phone-mockup">
-            <div class="screen">
-              <img src="../assets/img/mychapter-thumb.jpg" alt="기록하기" class="feature-img active" data-step="0">
-              <img src="../assets/img/mychapter-thumb.jpg" alt="AI 정리" class="feature-img" data-step="1">
-              <img src="../assets/img/mychapter-thumb.jpg" alt="책으로 완성" class="feature-img" data-step="2">
+        <div class="mc-moments-visual">
+          <img src="../assets/img/mychapter-books.png" alt="MY CHAPTER 테마 도서 목업 — 성장, 여행, 인생, 가족 기록">
+          <div class="mc-moments-badge">세상에 단 하나뿐인<br>당신의 책</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section class="mc-sec" id="features">
+      <div class="mc-wrap">
+        <div class="mc-sec-head">
+          <h2 class="mc-sec-title mc-sec-title-nowrap js-mc-sec-typed" data-typed-text="기록부터 발행까지, 모든 과정을 함께해요" aria-label="기록부터 발행까지, 모든 과정을 함께해요"><span class="mc-typed-text"></span><span class="mc-typed-cursor" aria-hidden="true"></span></h2>
+        </div>
+        <div class="mc-features-grid">
+          <div class="mc-feature-list" id="mcFeatureList">
+            <article class="mc-feature">
+              <div class="mc-feature-num" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"/>
+                  <path d="M9.5 10h.01M12.5 10h.01M15.5 10h.01"/>
+                </svg>
+              </div>
+              <div>
+                <h3>AI 질문으로 더 깊이 있는 기록</h3>
+                <p>매일 맞춤형 질문을 제공해, 놓치기 쉬운 기억과 감정을 자연스럽게 꺼내도록 돕습니다.</p>
+              </div>
+            </article>
+            <article class="mc-feature">
+              <div class="mc-feature-num" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                  <path d="M4 4.5A2.5 2.5 0 0 1 6.5 7H20v13H6.5A2.5 2.5 0 0 1 4 17.5z"/>
+                  <path d="M8 11h8M8 15h5"/>
+                </svg>
+              </div>
+              <div>
+                <h3>자동 챕터 구성과 원고 정리</h3>
+                <p>흩어진 기록을 AI가 주제별로 묶어, 읽기 좋은 책 원고 형태로 자동 정리합니다.</p>
+              </div>
+            </article>
+            <article class="mc-feature">
+              <div class="mc-feature-num" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="4" y="3" width="16" height="18" rx="2"/>
+                  <path d="M8 8h8M8 12h5"/>
+                  <path d="M12 16c0-1.5 1.2-2.5 1.2-2.5S14.5 14.5 14.5 16a1.5 1.5 0 1 1-3 0z"/>
+                </svg>
+              </div>
+              <div>
+                <h3>표지, 목차, 디자인까지 손쉽게</h3>
+                <p>전문가가 아니어도 표지·목차·본문 구성까지 갖춘 완성도 있는 책을 만들 수 있어요.</p>
+              </div>
+            </article>
+            <article class="mc-feature">
+              <div class="mc-feature-num" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7"/>
+                  <path d="M12 3v12"/>
+                  <path d="M7 8l5-5 5 5"/>
+                </svg>
+              </div>
+              <div>
+                <h3>전자책 발행으로 간직하고 공유</h3>
+                <p>PDF / ePub으로 발행해 나만의 책으로 간직하거나, 소중한 사람과 공유할 수 있습니다.</p>
+              </div>
+            </article>
+          </div>
+          <div class="mc-feature-visuals">
+            <div class="mc-screen-swap" id="mcScreenSwap" aria-label="홈과 기록 화면 전환">
+              <img src="../assets/img/mychapter-home.png" alt="MY CHAPTER 홈 화면" class="is-active" data-screen="home">
+              <img src="../assets/img/mychapter-write.png" alt="MY CHAPTER 기록 화면" data-screen="write">
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- E. Result -->
-    <section class="project-result container" id="impact">
-      <h2 class="section-title">Impact & 프로젝트 규모</h2>
-      <div class="bento-grid">
-        <div class="bento-card">
-          <h4>1인 풀사이클</h4>
-          <p>더미 텍스트입니다. 기획·디자인·구현·배포를 한 흐름으로 묶어, AI 협업 기반의 실행 속도를 검증하는 사이드 프로젝트입니다.</p>
+    <!-- Reviews + CTA -->
+    <section class="mc-sec" id="reviews">
+      <div class="mc-wrap">
+        <div class="mc-sec-head">
+          <h2 class="mc-sec-title mc-sec-title-nowrap js-mc-sec-typed" data-typed-text="사용자들이 전하는 이야기" aria-label="사용자들이 전하는 이야기"><span class="mc-typed-text"></span><span class="mc-typed-cursor" aria-hidden="true"></span></h2>
         </div>
-        <div class="bento-card">
-          <h4>기록 → 정리 → 출판</h4>
-          <p>더미 텍스트입니다. 단순 CRUD가 아니라, 사용자의 기록이 챕터와 책으로 ‘완성’되는 가치 사슬을 제품 구조의 중심으로 두었습니다.</p>
+        <div class="mc-reviews">
+          <article class="mc-review">
+            <div class="mc-review-head">
+              <div class="mc-review-avatar">
+                <img src="../assets/img/mychapter/reviews/SU-01.png" alt="김수연 님">
+              </div>
+              <div class="mc-review-meta">
+                <div class="mc-review-name">김수연 님</div>
+                <div class="mc-review-stars" aria-label="별점 5점">★★★★★</div>
+              </div>
+            </div>
+            <p class="mc-review-body">매일 기록하는 게 습관이 되었어요. 제 인생이 한 권의 책이 된다는 게 정말 특별해요.</p>
+            <p class="mc-review-status">여행 기록 중</p>
+          </article>
+          <article class="mc-review">
+            <div class="mc-review-head">
+              <div class="mc-review-avatar">
+                <img src="../assets/img/mychapter/reviews/SU-02.png" alt="이민지 님">
+              </div>
+              <div class="mc-review-meta">
+                <div class="mc-review-name">이민지 님</div>
+                <div class="mc-review-stars" aria-label="별점 5점">★★★★★</div>
+              </div>
+            </div>
+            <p class="mc-review-body">아이의 성장 기록을 책으로 남겼더니 나중에 정말 큰 선물이 될 것 같아요.</p>
+            <p class="mc-review-status">육아 기록 중</p>
+          </article>
+          <article class="mc-review">
+            <div class="mc-review-head">
+              <div class="mc-review-avatar">
+                <img src="../assets/img/mychapter/reviews/SU-03.png" alt="박준호 님">
+              </div>
+              <div class="mc-review-meta">
+                <div class="mc-review-name">박준호 님</div>
+                <div class="mc-review-stars" aria-label="별점 5점">★★★★★</div>
+              </div>
+            </div>
+            <p class="mc-review-body">바쁜 일상 속에서도 소중한 순간들을 다시 돌아보고 감사하게 되었어요.</p>
+            <p class="mc-review-status">일상 기록 중</p>
+          </article>
         </div>
-        <div class="bento-card">
-          <h4>확장 가능한 콘텐츠 모델</h4>
-          <p>더미 텍스트입니다. 개인 출판을 시작으로, 시즌별 테마북·선물용 에디션 등 B2C 확장 시나리오를 염두에 둔 데이터 모델을 가정했습니다.</p>
-        </div>
+        <aside class="mc-final-cta" id="cta">
+          <h3>지금, 당신의 첫 챕터를 시작해보세요.</h3>
+          <p>지금 바로 체험하고, 언제든 이어갈 수 있어요.</p>
+          <a class="mc-btn mc-btn-primary" href="https://my-chapter.vercel.app/splash" target="_blank" rel="noopener">체험하기</a>
+        </aside>
       </div>
     </section>
 
-    <!-- F. Next -->
-    <section class="project-next">
-      <a href="mamssi.html" class="next-card next-card-aurora">
-        <span>Ready to Build Impact?</span>
-        <strong>다음 프로젝트: 마음씨 (Mamssi) →</strong>
-      </a>
+    <section class="mc-next">
+      <div class="mc-wrap">
+        <a href="mamssi.html">
+          <span>Next Project</span>
+          <strong>다음 프로젝트: 마음씨 (Mamssi) →</strong>
+        </a>
+      </div>
+    </section>
+
+    <section class="mc-promise" aria-label="MY CHAPTER 약속">
+      <svg class="mc-promise-edge" viewBox="0 0 1440 30" preserveAspectRatio="none" aria-hidden="true">
+        <path fill="currentColor" d="M0,18 C40,4 70,26 110,12 C150,-2 190,24 240,10 C290,-4 330,22 380,14 C430,6 470,26 520,12 C570,-2 610,24 660,16 C710,8 750,26 800,12 C850,-2 890,22 940,14 C990,6 1030,26 1080,12 C1130,-2 1170,24 1220,14 C1270,4 1310,26 1360,12 C1390,4 1420,18 1440,10 L1440,30 L0,30 Z"></path>
+      </svg>
+      <div class="mc-wrap mc-promise-grid">
+        <div class="mc-promise-item mc-promise-lead">
+          <span class="mc-promise-quote" aria-hidden="true">“</span>
+          <h3>누구에게나 책이 될 만한<br>삶의 이야기가 있습니다.</h3>
+          <p>MY CHAPTER가 함께할게요.</p>
+          <span class="mc-promise-leaf" aria-hidden="true">
+            <svg width="28" height="16" viewBox="0 0 28 16" fill="none">
+              <path d="M2 12 C8 12 10 4 14 4 C18 4 20 12 26 12" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+              <path d="M14 4 C13 8 12 11 11 14" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+              <path d="M14 4 C15.5 7 17 10 18 13" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+            </svg>
+          </span>
+        </div>
+        <div class="mc-promise-item">
+          <div class="mc-promise-icon" aria-hidden="true">
+            <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 5 L28 9 V17 C28 24 23.5 28.5 18 31 C12.5 28.5 8 24 8 17 V9 Z"/>
+              <path d="M14 18 L17 21 L23 14"/>
+            </svg>
+          </div>
+          <h3>안심하고 기록하세요</h3>
+          <p>모든 기록은 안전하게 보호되며 오직 나만 볼 수 있어요.</p>
+        </div>
+        <div class="mc-promise-item">
+          <div class="mc-promise-icon" aria-hidden="true">
+            <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="8" y="10" width="20" height="18" rx="2"/>
+              <path d="M12 8 V12 M24 8 V12 M8 16 H28"/>
+              <path d="M14 22 L16.5 24.5 L22 19"/>
+            </svg>
+          </div>
+          <h3>작은 습관이 큰 변화를</h3>
+          <p>하루 5분의 기록이 당신의 인생을 바꿉니다.</p>
+        </div>
+        <div class="mc-promise-item">
+          <div class="mc-promise-icon" aria-hidden="true">
+            <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="18" cy="12" r="3.2"/>
+              <circle cx="10" cy="14" r="2.6"/>
+              <circle cx="26" cy="14" r="2.6"/>
+              <path d="M12 26 C12 22.5 14.5 20 18 20 C21.5 20 24 22.5 24 26"/>
+              <path d="M7 27 C7 24.2 8.8 22.2 11.2 21.6"/>
+              <path d="M29 27 C29 24.2 27.2 22.2 24.8 21.6"/>
+            </svg>
+          </div>
+          <h3>당신의 이야기를 응원해요</h3>
+          <p>PAGE가 당신의 기록 여정을 함께 지켜보고 응원할게요.</p>
+        </div>
+      </div>
     </section>
 
     <footer class="footer-cta" id="contact" role="contentinfo" aria-label="Contact">
@@ -209,137 +1300,452 @@
         <p class="footer-desc">복잡한 서비스 구조도, 사용자 중심으로 단순하게 설계합니다. 언제든 연락 주세요.</p>
         <div class="footer-actions">
           <a class="footer-email-btn" href="mailto:seoah.lab@gmail.com" aria-label="이메일 보내기">seoah.lab@gmail.com</a>
-          <div class="footer-icons">
-            <a class="footer-icon" href="mailto:seoah.lab@gmail.com" aria-label="Send email">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.09 0 2-.9 2-2V6c0-1.1-.91-2-2-2zm0 4-8 5L4 8V6l8 5 8-5v2z"/></svg>
-            </a>
-            <a class="footer-icon" href="https://www.linkedin.com/in/seoah-ux/" target="_blank" rel="noopener" aria-label="LinkedIn">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-            </a>
-          </div>
         </div>
         <p class="footer-copyright">© 2026 Seoah Lee. All Rights Reserved. Designed & <span class="footer-built">Built by Seoah</span>.</p>
       </div>
     </footer>
   </main>
 
-  <button id="toTop" class="to-top" aria-label="맨 위로 가기">
+  <button id="toTop" class="to-top" type="button" aria-label="맨 위로 가기">
     <span class="to-top-arrow" aria-hidden="true">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 19V5M5 12l7-7 7 7"/>
+      </svg>
     </span>
   </button>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.1.0/typed.umd.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="../assets/js/main.js"></script>
-  <script src="../assets/js/cursor.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js" integrity="sha512-wC1P84CGzvLEZiSfCnijJgkkYgV5bD2b1xQ0IBxEDyBUqLLbDxvfqE7ueZ/3V+EhG+i50OvSSG6nDO8egoIkg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script>
     (function(){
       const gnb = document.getElementById('gnb');
       if (!gnb) return;
-      function check() { gnb.classList.toggle('gnb-scrolled', window.scrollY > 60); }
+      function check(){ gnb.classList.toggle('gnb-scrolled', window.scrollY > 40); }
       window.addEventListener('scroll', check, { passive: true });
       check();
     })();
-
-    if (typeof VanillaTilt !== 'undefined' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      const tiltEl = document.querySelector('.project-hero .mockup-inner.js-tilt');
-      if (tiltEl) VanillaTilt.init(tiltEl, { max: 8, speed: 400, glare: true, 'max-glare': 0.2, perspective: 1000 });
-    }
-
-    (function(){
-      const section = document.querySelector('.project-features');
-      const steps = document.querySelectorAll('.feature-step');
-      const imgs = document.querySelectorAll('.feature-img');
-      if (!section || !steps.length || !imgs.length) return;
-
-      function getActiveStep() {
-        const vh = window.innerHeight;
-        const viewportCenter = window.scrollY + vh * 0.5;
-        const sectionTop = section.offsetTop;
-        const sectionBottom = sectionTop + section.offsetHeight;
-        if (viewportCenter < sectionTop) return 0;
-        if (viewportCenter > sectionBottom) return steps.length - 1;
-        let active = 0;
-        steps.forEach((step, i) => {
-          const rect = step.getBoundingClientRect();
-          const stepTop = rect.top + window.scrollY;
-          const stepBottom = stepTop + rect.height;
-          const stepCenter = stepTop + rect.height * 0.5;
-          if (viewportCenter >= stepTop && viewportCenter <= stepBottom) active = i;
-          else if (viewportCenter > stepCenter) active = Math.max(active, i);
-        });
-        return active;
-      }
-
-      function updateActive() {
-        const active = getActiveStep();
-        imgs.forEach(img => {
-          img.classList.toggle('active', parseInt(img.dataset.step, 10) === active);
-        });
-      }
-
-      let ticking = false;
-      window.addEventListener('scroll', () => {
-        if (!ticking) {
-          requestAnimationFrame(() => { updateActive(); ticking = false; });
-          ticking = true;
-        }
-      }, { passive: true });
-      window.addEventListener('resize', updateActive);
-      updateActive();
-    })();
-
     (function(){
       const btn = document.getElementById('toTop');
       if (!btn) return;
-      btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-      window.addEventListener('scroll', () => { btn.classList.toggle('show', window.scrollY > 400); }, { passive: true });
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      function getY(){
+        return window.scrollY || document.documentElement.scrollTop || 0;
+      }
+      function update(){
+        btn.classList.toggle('show', getY() > 200);
+      }
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: prefersReduced ? 'auto' : 'smooth' });
+      });
+      window.addEventListener('scroll', update, { passive: true });
+      window.addEventListener('resize', update, { passive: true });
+      update();
     })();
 
     (function(){
+      const hero = document.querySelector('.mc-hero');
+      const titleEl = document.querySelector('.js-mc-typed-title');
+      const taglineEl = document.querySelector('.js-mc-typed-tagline');
+      if (!hero || !titleEl || !taglineEl) return;
+
       const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      const section = document.querySelector('.project-hero.js-typed-section');
-      const targetEl = section ? section.querySelector('.typed-target') : null;
-      const plain = section ? section.dataset.typedPlain : null;
-      const highlight = section ? section.dataset.typedHighlight : null;
-      if (!targetEl || !plain) return;
+      const titleText = 'MY CHAPTER,';
+      const taglineBefore = '당신의 이야기를 ';
+      const taglineAccent = '책으로';
 
-      function buildHtml(p, h) {
-        if (!h || !p.includes(h)) return p;
-        return p.replace(h, '<span class="highlight-aurora">' + h + '</span>');
-      }
-      function setFallback() {
-        targetEl.innerHTML = buildHtml(plain, highlight);
+      const titleTarget = titleEl.querySelector('.mc-typed-text');
+      const taglineTarget = taglineEl.querySelector('.mc-typed-text');
+      const titleCursor = titleEl.querySelector('.mc-typed-cursor');
+      const taglineCursor = taglineEl.querySelector('.mc-typed-cursor');
+
+      let timers = [];
+      let waitResolvers = [];
+      let running = false;
+      let inView = false;
+
+      function clearTimers(){
+        timers.forEach(clearTimeout);
+        timers = [];
+        const resolvers = waitResolvers.splice(0);
+        resolvers.forEach((resolve) => resolve());
       }
 
-      if (prefersReduced || typeof Typed === 'undefined') {
-        setFallback();
+      function wait(ms){
+        return new Promise((resolve) => {
+          const id = setTimeout(() => {
+            timers = timers.filter((t) => t !== id);
+            waitResolvers = waitResolvers.filter((r) => r !== resolve);
+            resolve();
+          }, ms);
+          timers.push(id);
+          waitResolvers.push(resolve);
+        });
+      }
+
+      function setStatic(){
+        titleTarget.textContent = titleText;
+        taglineTarget.innerHTML = taglineBefore + '<span class="mc-accent">' + taglineAccent + '</span>';
+        titleCursor.hidden = true;
+        taglineCursor.hidden = true;
+        titleEl.classList.remove('is-typing');
+        taglineEl.classList.remove('is-typing');
+      }
+
+      function resetText(){
+        titleTarget.textContent = '';
+        taglineTarget.textContent = '';
+        titleCursor.hidden = false;
+        taglineCursor.hidden = true;
+        titleEl.classList.add('is-typing');
+        taglineEl.classList.add('is-typing');
+      }
+
+      async function typeChars(target, text, speed){
+        for (let i = 1; i <= text.length; i++){
+          if (!inView) return false;
+          target.textContent = text.slice(0, i);
+          await wait(speed);
+        }
+        return true;
+      }
+
+      async function runCycle(){
+        if (running || !inView) return;
+        running = true;
+
+        while (inView){
+          resetText();
+
+          const okTitle = await typeChars(titleTarget, titleText, 70);
+          if (!okTitle || !inView) break;
+
+          await wait(280);
+          if (!inView) break;
+
+          titleCursor.hidden = true;
+          taglineCursor.hidden = false;
+
+          const okBefore = await typeChars(taglineTarget, taglineBefore, 55);
+          if (!okBefore || !inView) break;
+
+          for (let i = 1; i <= taglineAccent.length; i++){
+            if (!inView) break;
+            taglineTarget.innerHTML =
+              taglineBefore +
+              '<span class="mc-accent">' + taglineAccent.slice(0, i) + '</span>';
+            await wait(70);
+          }
+          if (!inView) break;
+
+          await wait(2200);
+          if (!inView) break;
+        }
+
+        running = false;
+        if (inView){
+          runCycle();
+        } else {
+          titleTarget.textContent = '';
+          taglineTarget.textContent = '';
+          titleCursor.hidden = true;
+          taglineCursor.hidden = true;
+        }
+      }
+
+      if (prefersReduced){
+        setStatic();
         return;
       }
 
       const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          observer.unobserve(entry.target);
-          try {
-            new Typed(targetEl, {
-              strings: [plain],
-              typeSpeed: 50,
-              showCursor: true,
-              cursorChar: '|',
-              contentType: 'text',
-              onComplete: function(self) {
-                if (self && self.cursor) self.cursor.style.display = 'none';
-                setFallback();
-              }
-            });
-          } catch (e) {
-            setFallback();
+          if (entry.isIntersecting){
+            inView = true;
+            if (!running) runCycle();
+          } else {
+            inView = false;
+            clearTimers();
+            titleTarget.textContent = '';
+            taglineTarget.textContent = '';
+            titleCursor.hidden = true;
+            taglineCursor.hidden = true;
           }
         });
-      }, { threshold: 0.2 });
-      observer.observe(section);
+      }, { threshold: 0.35 });
+
+      observer.observe(hero);
+    })();
+
+    (function(){
+      const swap = document.getElementById('mcScreenSwap');
+      if (!swap) return;
+      const frames = Array.from(swap.querySelectorAll('img'));
+      if (frames.length < 2) return;
+
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      let index = 0;
+      let timer = null;
+
+      function show(i){
+        frames.forEach((img, n) => img.classList.toggle('is-active', n === i));
+      }
+
+      function start(){
+        if (timer || prefersReduced) return;
+        timer = setInterval(() => {
+          index = (index + 1) % frames.length;
+          show(index);
+        }, 1400);
+      }
+
+      function stop(){
+        if (!timer) return;
+        clearInterval(timer);
+        timer = null;
+      }
+
+      if (prefersReduced){
+        show(0);
+        return;
+      }
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) start();
+          else stop();
+        });
+      }, { threshold: 0.25 });
+
+      show(0);
+      observer.observe(swap);
+    })();
+
+    (function(){
+      const stepsWrap = document.getElementById('mcSteps');
+      if (!stepsWrap) return;
+      const steps = Array.from(stepsWrap.querySelectorAll('.mc-step'));
+      if (!steps.length) return;
+
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (prefersReduced){
+        steps.forEach((el) => el.classList.add('is-visible'));
+        return;
+      }
+
+      let timers = [];
+      let loopTimer = null;
+      let running = false;
+      let inView = false;
+      const stepDelay = 180;
+      const holdMs = 2200;
+      const hideMs = 350;
+
+      function clearTimers(){
+        timers.forEach(clearTimeout);
+        timers = [];
+        if (loopTimer){
+          clearTimeout(loopTimer);
+          loopTimer = null;
+        }
+      }
+
+      function hideAll(){
+        steps.forEach((el) => el.classList.remove('is-visible'));
+      }
+
+      function revealLeftToRight(){
+        // 왼쪽(첫 번째)부터 순서대로
+        steps.forEach((el, i) => {
+          const id = setTimeout(() => {
+            if (!inView) return;
+            el.classList.add('is-visible');
+          }, i * stepDelay);
+          timers.push(id);
+        });
+      }
+
+      function runCycle(){
+        if (!inView || running) return;
+        running = true;
+        hideAll();
+
+        const startId = setTimeout(() => {
+          if (!inView){
+            running = false;
+            return;
+          }
+          revealLeftToRight();
+          const totalReveal = steps.length * stepDelay + 500;
+          loopTimer = setTimeout(() => {
+            if (!inView){
+              running = false;
+              return;
+            }
+            hideAll();
+            loopTimer = setTimeout(() => {
+              running = false;
+              if (inView) runCycle();
+            }, hideMs);
+          }, totalReveal + holdMs);
+        }, 80);
+        timers.push(startId);
+      }
+
+      function stop(){
+        inView = false;
+        clearTimers();
+        running = false;
+        hideAll();
+      }
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting){
+            inView = true;
+            if (!running) runCycle();
+          } else {
+            stop();
+          }
+        });
+      }, { threshold: 0.25 });
+
+      observer.observe(stepsWrap);
+    })();
+
+    (function(){
+      const list = document.getElementById('mcFeatureList');
+      if (!list) return;
+      const items = Array.from(list.querySelectorAll('.mc-feature'));
+      if (!items.length) return;
+
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (prefersReduced){
+        items.forEach((el) => el.classList.add('is-visible'));
+        return;
+      }
+
+      let timers = [];
+      let started = false;
+
+      function clearReveal(){
+        timers.forEach(clearTimeout);
+        timers = [];
+      }
+
+      function reveal(){
+        if (started) return;
+        started = true;
+        items.forEach((el, i) => {
+          const id = setTimeout(() => el.classList.add('is-visible'), i * 220);
+          timers.push(id);
+        });
+      }
+
+      function reset(){
+        clearReveal();
+        started = false;
+        items.forEach((el) => el.classList.remove('is-visible'));
+      }
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) reveal();
+          else reset();
+        });
+      }, { threshold: 0.25 });
+
+      observer.observe(list);
+    })();
+
+    (function(){
+      const titles = Array.from(document.querySelectorAll('.js-mc-sec-typed'));
+      if (!titles.length) return;
+
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      titles.forEach((el) => {
+        const text = el.dataset.typedText || '';
+        const target = el.querySelector('.mc-typed-text');
+        const cursor = el.querySelector('.mc-typed-cursor');
+        if (!text || !target) return;
+
+        let timers = [];
+        let waitResolvers = [];
+        let running = false;
+        let inView = false;
+
+        function clearTimers(){
+          timers.forEach(clearTimeout);
+          timers = [];
+          const resolvers = waitResolvers.splice(0);
+          resolvers.forEach((resolve) => resolve());
+        }
+
+        function wait(ms){
+          return new Promise((resolve) => {
+            const id = setTimeout(() => {
+              timers = timers.filter((t) => t !== id);
+              waitResolvers = waitResolvers.filter((r) => r !== resolve);
+              resolve();
+            }, ms);
+            timers.push(id);
+            waitResolvers.push(resolve);
+          });
+        }
+
+        function setStatic(){
+          target.textContent = text;
+          if (cursor) cursor.hidden = true;
+        }
+
+        async function runCycle(){
+          if (running || !inView) return;
+          running = true;
+
+          while (inView){
+            target.textContent = '';
+            if (cursor) cursor.hidden = false;
+
+            for (let i = 1; i <= text.length; i++){
+              if (!inView) break;
+              target.textContent = text.slice(0, i);
+              await wait(42);
+            }
+            if (!inView) break;
+
+            await wait(2400);
+            if (!inView) break;
+          }
+
+          running = false;
+          if (inView) runCycle();
+          else {
+            target.textContent = '';
+            if (cursor) cursor.hidden = true;
+          }
+        }
+
+        if (prefersReduced){
+          setStatic();
+          return;
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting){
+              inView = true;
+              if (!running) runCycle();
+            } else {
+              inView = false;
+              clearTimers();
+              target.textContent = '';
+              if (cursor) cursor.hidden = true;
+            }
+          });
+        }, { threshold: 0.4 });
+
+        observer.observe(el);
+      });
     })();
   </script>
 </body>
